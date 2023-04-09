@@ -7,36 +7,38 @@
     <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <div class="login-box">
     <h2>Registration</h2>
-    <form>
+    <form action="{{route('registration.post')}}" method="POST">
+
+        @csrf
+
       <div class="user-box">
-            <input type="login" name="" required="">
+            <input type="email" name="email" required="">
             <label>Email</label>
       </div>
       <div class="user-box">
-        <input type="login" name="" required="">
+        <input type="text" name="name" required="">
         <label>Name</label>
       </div>
       <div class="user-box">
-        <input type="login" name="" required="">
+        <input type="text" name="lastName" required="">
         <label>Last name</label>
       </div>
       <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Username</label>
+        <input type="text" name="userName" required="">
+        <label>User name</label>
       </div>
       <div class="user-box">
-        <input type="password" name="" required="">
+        <input type="password" name="password" required="">
         <label>Password</label>
       </div>
       <div class="user-box">
         <input type="password" name="" required="">
         <label>Repeat password</label>
       </div>
-      <a href="#">
-        Submit
-      </a>
+      <button type="submit" class="btn btn-primary">Submit</button>
       <a href="login">
         Log in
       </a>

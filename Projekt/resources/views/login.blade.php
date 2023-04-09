@@ -7,9 +7,13 @@
     <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <div class="login-box">
     <h2>Login</h2>
     <form action="{{route('login.post')}}" method="POST">
+
+        @csrf
+
       <div class="user-box">
         <input type="text" name="userName" required="">
         <label>Username</label>
