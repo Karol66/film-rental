@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/index', function () {
     return view('index');
-});
+})->name('index');
 
 Route::get('/login', [AuthManager::class,'login'])->name('login');
 Route::post('/login', [AuthManager::class,'loginPost'])->name('login.post');
@@ -30,3 +30,5 @@ Route::post('/registration', [AuthManager::class,'registrationPost'])->name('reg
 
 
 Route::get('/logout',[AuthManager::class, 'logout'])->name('logout');
+
+
