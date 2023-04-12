@@ -34,7 +34,12 @@ class AuthManager extends Controller
         // dd($credentials);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('index');
+            $user = Auth::user();
+            if ($user->isAdmin == 1) {
+                return redirect()->route('home');
+            } else {
+                return redirect()->route('index');
+            }
         } else {
             return redirect()->route('login')->with('error', 'Invalid credentials');
         }
