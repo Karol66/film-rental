@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\FilmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,10 @@ Route::post('/registration', [AuthManager::class,'registrationPost'])->name('reg
 
 Route::get('/logout',[AuthManager::class, 'logout'])->name('logout');
 
+Route::resource("/film", FilmController::class);
 
+Route::get('/film', [FilmController::class,'index'])->name('adminPanel');
+
+// Route::get('/film/index', function () {
+//     return view('film.index');
+// })->name('admin');

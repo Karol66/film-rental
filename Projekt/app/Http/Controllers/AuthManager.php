@@ -19,6 +19,10 @@ class AuthManager extends Controller
         return view('registration');
     }
 
+    // function adminPanel(){
+    //     return view('film.index');
+    // }
+
     function loginPost(Request $request){
 
         // $user = Auth::user();
@@ -36,7 +40,7 @@ class AuthManager extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->isAdmin == 1) {
-                return redirect()->route('home');
+                return redirect()->route('adminPanel');
             } else {
                 return redirect()->route('index');
             }
