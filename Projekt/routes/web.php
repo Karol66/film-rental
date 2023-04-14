@@ -36,6 +36,3 @@ Route::resource("/film", FilmController::class);
 
 Route::get('/film', [FilmController::class,'index'])->name('adminPanel');
 
-// Route::get('/film/index', function () {
-//     return view('film.index');
-// })->name('admin');

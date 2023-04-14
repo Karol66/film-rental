@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Film;
-use Illuminate\Support\Facades\DB;
 
 class FilmController extends Controller
 {
@@ -32,8 +31,6 @@ class FilmController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-
-
 
         Film::create($input);
         return redirect('film')->with('flash_message', 'Film Addedd!');
@@ -77,10 +74,4 @@ class FilmController extends Controller
         return redirect('film')->with('flash_message', 'Film deleted!');
     }
 
-    public function showPicture($id)
-    {
-        $photo = DB::table('image')->where('id', $id)->first();
-
-        return view('image', ['image' => $photo]);
-    }
 }

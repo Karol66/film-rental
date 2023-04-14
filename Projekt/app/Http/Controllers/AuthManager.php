@@ -19,10 +19,6 @@ class AuthManager extends Controller
         return view('registration');
     }
 
-    // function adminPanel(){
-    //     return view('film.index');
-    // }
-
     function loginPost(Request $request){
 
         // $user = Auth::user();
