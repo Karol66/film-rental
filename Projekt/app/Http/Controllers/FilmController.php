@@ -28,13 +28,55 @@ class FilmController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $input = $request->all();
 
-        Film::create($input);
-        return redirect('film')->with('flash_message', 'Film Addedd!');
+//    public function store(Request $request)
+// {
+//     $input = $request->all();
+
+
+//     $image = $request->file('image');
+//     $imageData = file_get_contents("C:\Users\Admin\Desktop\Internet_Application_App\Projekt\public\img\alaska.jpg");
+//         $base64Image = base64_encode($imageData);
+//         $input["image"] = $imageData;
+
+
+//     //  dd($input);
+
+//     Film::create($input);
+//     return redirect('film')->with('flash_message', 'Film Addedd!');
+// }
+
+//    public function store(Request $request)
+// {
+//     $input = $request->all();
+
+
+//     $image = $request->file('image');
+//     $imageData = file_get_contents($image->getRealPath());
+//     $input['image'] = $imageData;
+
+
+//     //  dd($input);
+
+//     Film::create($input);
+//     return redirect('film')->with('flash_message', 'Film Addedd!');
+// }
+
+public function store(Request $request)
+{
+    $input = $request->all();
+
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        $image = $request->file('image');
+        $imageData = file_get_contents($image->getRealPath());
+        $input['image'] = $imageData;
     }
+
+    // dd($input);
+
+    Film::create($input);
+    return redirect('film')->with('flash_message', 'Film Added!');
+}
 
     /**
      * Display the specified resource.

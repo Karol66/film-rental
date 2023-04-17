@@ -81,7 +81,7 @@ a:hover{
     justify-content: center;
     color: whitesmoke;
     position: absolute;
-    
+
 }
 
 .removeFromBusket{
@@ -95,9 +95,15 @@ a:hover{
     justify-content: center;
     color: whitesmoke;
     position: absolute;
-    
+
 }
 
 #align{
     text-align: center;
+}
+
+.imidz{
+    width: 70px;
+    height: 80px;
+
 }

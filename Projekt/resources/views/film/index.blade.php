@@ -2,10 +2,10 @@
 @section('content')
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand">Navbar</a>
+            <a class="navbar-brand">Admin Panel</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Log out</a>
+                    <a class="nav-link" href="{{route('logout') }}">Log out</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
@@ -43,7 +43,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <img src="{{ $item->image }}" alt="Obrazek">
+                                <img class="imidz" src="data:image/jpeg;base64,{{ base64_encode($item->image) }}">
                             </td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->type }}</td>

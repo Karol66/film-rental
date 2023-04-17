@@ -4,8 +4,9 @@
   <div class="card-header">Create Film</div>
   <div class="card-body">
 
-      <form action="{{ url('film') }}" method="post">
-        {!! csrf_field() !!}
+      <form method="POST" action="{{  route('film.store') }}" enctype="multipart/form-data">
+        @csrf
+
         <label>Name</label></br>
         <input type="text" name="name" id="name" class="form-control"></br>
         <label>Type</label></br>
@@ -20,10 +21,14 @@
         <input type="text" name="price" id="price" class="form-control"></br>
         <label>Number</label></br>
         <input type="text" name="number" id="number" class="form-control"></br>
-        <label>Image</label></br>
-        <input type="text" name="image" id="image" class="form-control"></br>
-        <input type="submit" value="Upload" class="btn btn-success"></br>
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image"></br></br>
+
+        <div>
+            <button type="submit">Upload</button>
+        </div>
     </form>
+
 
   </div>
 </div>

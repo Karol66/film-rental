@@ -7,7 +7,7 @@ html {
     font-family: sans-serif;
     background: #1c1f23;
   }
-  
+
   .login-box {
     position: absolute;
     top: 50%;
@@ -21,18 +21,18 @@ html {
     border-radius: 10px;
     text-align: center;
   }
-  
+
   .login-box h2 {
     margin: 0 0 30px;
     padding: 0;
     color: #fff;
     text-align: center;
   }
-  
+
   .login-box .user-box {
     position: relative;
   }
-  
+
   .login-box .user-box input {
     width: 100%;
     padding: 10px 0;
@@ -54,14 +54,14 @@ html {
     pointer-events: none;
     transition: .5s;
   }
-  
+
   .login-box .user-box input:focus ~ label,
   .login-box .user-box input:valid ~ label {
     top: -20px;
     left: 0;
     font-size: 12px;
   }
-  
+
   .login-box form a {
     position: relative;
     display: inline-block;
@@ -75,14 +75,42 @@ html {
     margin-top: 40px;
     letter-spacing: 4px
   }
-  
+
   .login-box a:hover {
     background: #233ab0;
     color: #fff;
     border-radius: 5px;
   }
-  
+
   .login-box a span {
     position: absolute;
     display: block;
   }
+
+    .login-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #233ab0;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+  }
+
+  .login-box a:hover {
+    background: #233ab0;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  .login-box a span {
+    position: absolute;
+    display: block;
+  }
+
+
+
