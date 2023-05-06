@@ -29,39 +29,6 @@ class FilmController extends Controller
      * Store a newly created resource in storage.
      */
 
-//    public function store(Request $request)
-// {
-//     $input = $request->all();
-
-
-//     $image = $request->file('image');
-//     $imageData = file_get_contents("C:\Users\Admin\Desktop\Internet_Application_App\Projekt\public\img\alaska.jpg");
-//         $base64Image = base64_encode($imageData);
-//         $input["image"] = $imageData;
-
-
-//     //  dd($input);
-
-//     Film::create($input);
-//     return redirect('film')->with('flash_message', 'Film Addedd!');
-// }
-
-//    public function store(Request $request)
-// {
-//     $input = $request->all();
-
-
-//     $image = $request->file('image');
-//     $imageData = file_get_contents($image->getRealPath());
-//     $input['image'] = $imageData;
-
-
-//     //  dd($input);
-
-//     Film::create($input);
-//     return redirect('film')->with('flash_message', 'Film Addedd!');
-// }
-
 public function store(Request $request)
 {
     $input = $request->all();
@@ -83,7 +50,7 @@ public function store(Request $request)
      */
     public function show(string $id)
     {
-        $film = Film::find($id);
+        $film = Film::findOrFail($id);
         return view('film.show')->with('film', $film);
     }
 

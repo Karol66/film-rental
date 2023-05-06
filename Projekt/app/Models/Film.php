@@ -9,10 +9,16 @@ class Film extends Model
 {
     public $timestamps = false;
 
-
-    protected $table = 'film';
-    protected $primaryKey = 'id';
-    protected $fillable = ['image','name','type','time','releseDate','country','price','number'];
+    protected $fillable = [
+        'image',
+        'name',
+        'type',
+        'time',
+        'relese_date',
+        'country',
+        'price',
+        'number'
+    ];
 
     use HasFactory;
 }

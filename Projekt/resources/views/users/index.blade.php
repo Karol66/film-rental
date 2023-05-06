@@ -1,65 +1,56 @@
-@extends('film.layout')
+@extends('users.layout')
 @section('content')
-<nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand">Admin Panel</a>
-        <ul class="navbar-nav d-flex flex-row me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link mx-2" href="{{ route('film.index') }}">Movies administration</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mx-2" href="{{ route('users.index') }}">Users Administration</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mx-2" href="{{ route('logout') }}">Log out</a>
-            </li>
-        </ul>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand">Admin Panel</a>
+            <ul class="navbar-nav d-flex flex-row me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="{{ route('film.index') }}">Movies administration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="{{ route('users.index') }}">Users Administration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="{{ route('logout') }}">Log out</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
 
     <br />
 
     <div id="margin">
-        <a href="{{ route('film.create') }}" class="btn btn-success btn-sm" title="Add New Film">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-        </a>
 
         <div class="table-responsive">
             <table class="table table-dark table-striped" id="margin">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Image</th>
                         <th>Name</th>
-                        <th>Type</th>
-                        <th>Time</th>
-                        <th>Relese Date</th>
-                        <th>Country</th>
-                        <th>Price</th>
-                        <th>Number</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>User Name</th>
+                        <th>Password</th>
+                        <th>Is Admin</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($film as $item)
+                    @foreach ($users as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>
-                                <img class="imidz" src="data:image/jpeg;base64,{{ base64_encode($item->image) }}">
-                            </td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->type }}</td>
-                            <td>{{ $item->time }}</td>
-                            <td>{{ $item->relese_date }}</td>
-                            <td>{{ $item->country }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ $item->number }}</td>
+                            <td>{{ $item->last_name }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->user_name }}</td>
+                            <td>{{ $item->password }}</td>
+                            <td>{{ $item->is_admin }}</td>
                             <td>
-                                <a href="{{ url('/film/' . $item->id) }}">
+                                <a href="{{ url('/users/' . $item->id) }}">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -73,7 +64,7 @@
                                         View
                                     </button>
                                 </a>
-                                <a href="{{ url('/film/' . $item->id . '/edit') }}">
+                                <a href="{{ url('/users/' . $item->id . '/edit') }}">
                                     <button class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"
                                             aria-hidden="true"></i>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -85,7 +76,7 @@
                                         Edit
                                     </button>
                                 </a>
-                                <form method="POST" action="{{ url('/film' . '/' . $item->id) }}" accept-charset="UTF-8"
+                                <form method="POST" action="{{ url('/users' . '/' . $item->id) }}" accept-charset="UTF-8"
                                     style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
