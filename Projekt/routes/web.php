@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/index', function () {
+Route::get('index', function () {
     return view('index');
 })->name('index');
 
@@ -33,4 +35,18 @@ Route::get('/logout',[AuthManager::class, 'logout'])->name('logout');
 
 Route::resource("/film", FilmController::class);
 
-Route::get('/film', [FilmController::class,'index'])->name('adminPanel');
+Route::get('/film', [FilmController::class,'index'])->name('film.index');
+
+Route::resource("/users", UserController::class);
+
+Route::get('/users', [UserController::class,'index'])->name('users.index');
+
+
+Route::get('/shop', [BasketController::class,'index'])->name('shop.index');
+Route::get('/shop/basket', [BasketController::class,'basket'])->name('shop.basket');
+Route::get('/', [BasketController::class,'store'])->name('basket.store');
+
+
+
+
+

@@ -11,72 +11,69 @@ use Illuminate\Support\Facades\Session;
 
 class AuthManager extends Controller
 {
-    function login(){
+    function login()
+    {
         return view('login');
     }
 
-    function registration(){
+    function registration()
+    {
         return view('registration');
     }
 
-    function loginPost(Request $request){
+    function loginPost(Request $request)
+    {
 
         // $user = Auth::user();
         // dd($user);
 
         $request->validate([
-            'userName' => 'required',
+            'user_name' => 'required',
             'password' => 'required'
         ]);
 
-        $credentials = $request->only('userName', 'password');
+        $credentials = $request->only('user_name', 'password');
 
         // dd($credentials);
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            if ($user->isAdmin == 1) {
-                return redirect()->route('adminPanel');
+            if ($user->is_admin == 1) {
+                return redirect()->route('film.index');
             } else {
-                return redirect()->route('index');
+                return redirect()->route('shop.index');
             }
         } else {
             return redirect()->route('login')->with('error', 'Invalid credentials');
         }
-
     }
 
-    function registrationPost(Request $request){
+    function registrationPost(Request $request)
+    {
         $request->validate([
             'email' => 'required|email|unique:users',
             'name' => 'required',
-            'lastName' => 'required',
-            'userName' => 'required',
+            'last_name' => 'required',
+            'user_name' => 'required',
             'password' => 'required',
         ]);
 
         $data['email'] = $request->email;
         $data['name'] = $request->name;
-        $data['lastName'] = $request->lastName;
-        $data['userName'] = $request->userName;
-        // $data['password'] = $request->password;
+        $data['last_name'] = $request->last_name;
+        $data['user_name'] = $request->use_name;
         $data['password'] = Hash::make($request->password);
-
-        // $password = $request->input('password');
-        // $hashedPassword = Hash::make($password);
-        // $passwordLength = strlen($password);
-        // $hashedPasswordLength = strlen($hashedPassword);
-        // dd($passwordLength, $hashedPasswordLength);
 
         $users = User::create($data);
 
-        if(!$users){
+        if (!$users) {
             return redirect(route('registration'))->with("error", "registration fail, try again");
         }
         return redirect(route('login'))->with("succes", "Registraion succes, Login to acces the app");
     }
 
-    function logout(){
+    function logout()
+    {
         Session::flush();
         Auth::logout();
         return redirect(route('login'));

@@ -33,7 +33,7 @@
         @csrf
 
       <div class="user-box">
-        <input type="text" name="userName" required="">
+        <input type="text" name="user_name" required="">
         <label>Username</label>
       </div>
       <div class="user-box">
