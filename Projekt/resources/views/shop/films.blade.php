@@ -56,7 +56,7 @@
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->number }}</td>
                             <td>
-                                <form wire:submit.prevent="addToCart({{ $item->id }})" action="{{ route('basket.store')}}" method="POST">
+                                <form wire:submit.prevent="addToCart({{ $item->id }})" action="" method="POST">
                                     @csrf
                                     <input wire:model="quantity.{{ $item->id }}" type="number"
                                            class="text-sm sm:text-base px-2 pr-2 rounded-lg border border-gray-400 py-1 focus:outline-none focus:border-blue-400"

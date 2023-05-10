@@ -17,10 +17,10 @@ class BasketController extends Controller
         return view('shop.index');
     }
 
-    public function basket()
+    public function films()
     {
         $film = Film::all();
-        return view('shop.basket')->with('film', $film);
+        return view('shop.films')->with('film', $film);
     }
 
     /**

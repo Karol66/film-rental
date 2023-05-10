@@ -17,9 +17,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('index', function () {
     return view('index');
@@ -43,8 +43,8 @@ Route::get('/users', [UserController::class,'index'])->name('users.index');
 
 
 Route::get('/shop', [BasketController::class,'index'])->name('shop.index');
-Route::get('/shop/basket', [BasketController::class,'basket'])->name('shop.basket');
-Route::get('/', [BasketController::class,'store'])->name('basket.store');
+Route::get('/shop/films', [BasketController::class,'films'])->name('shop.films');
+// Route::get('/', [BasketController::class,'store'])->name('basket.store');
 
 
 
