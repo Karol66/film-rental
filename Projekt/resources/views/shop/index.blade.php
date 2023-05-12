@@ -33,7 +33,7 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                                <a class="nav-link active" aria-current="page" href="{{ route('shop.index') }}">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('shop.films') }}">More films</a>
@@ -44,12 +44,12 @@
                                     My account
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="personalData.html">Personal data</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('shop.account') }}">Personal data</a></li>
                                     <li><a class="dropdown-item" href="">My busket</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="login.html">Log out</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>

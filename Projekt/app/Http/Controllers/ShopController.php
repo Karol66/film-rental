@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Film;
 
 
-class BasketController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,6 +21,37 @@ class BasketController extends Controller
     {
         $film = Film::all();
         return view('shop.films')->with('film', $film);
+    }
+
+    public function account()
+    {
+        return view('shop.account');
+    }
+
+    public function basket()
+    {
+        return view('basket');
+    }
+
+    public function addToBasket($id)
+    {
+        $film = Film::findOrFail($id);
+
+        $basket = session()->get('basket', []);
+
+        if (isset($basket[$id])) {
+            $basket[$id]['quantity']++;
+        } else {
+            $basket[$id] = [
+                "name" => $film->product_name,
+                "image" => $film->photo,
+                "price" => $film->price,
+                "quantity" => 1
+            ];
+        }
+
+        session()->put('basket', $basket);
+        return redirect()->back()->with('success', 'Product add to basket successfully!');
     }
 
     /**
@@ -44,7 +75,6 @@ class BasketController extends Controller
      */
     public function show(string $id)
     {
-
     }
 
     /**

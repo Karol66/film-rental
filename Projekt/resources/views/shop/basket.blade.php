@@ -30,9 +30,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('shop.account') }}">Personal data</a></li>
-                                <li>
-                                    <a class="dropdown-item" href="">My busket</a>
-                                </li>
+                                <li><a class="dropdown-item" href="">My busket</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -48,6 +46,8 @@
             </div>
         </div>
     </nav>
+
+    <br />
 
     <div id="margin">
 
@@ -81,7 +81,13 @@
                             <td>{{ $item->price }}</td>
                             <td>
                                 <form wire:submit.prevent="addToCart({{ $item->id }})" action="" method="POST">
-                                        <p class="btn-holder"><a href="{{ route('add_to_basket', $item->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to basket</a> </p>
+                                    @csrf
+                                    <input wire:model="quantity.{{ $item->id }}" type="number"
+                                           class="text-sm sm:text-base px-2 pr-2 rounded-lg border border-gray-400 py-1 focus:outline-none focus:border-blue-400"
+                                           style="width: 50px"/>
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        Add to Cart
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -90,5 +96,4 @@
             </table>
         </div>
     </div>
-
 @endsection
