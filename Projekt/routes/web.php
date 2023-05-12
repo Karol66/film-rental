@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
-<<<<<<< HEAD
+
 use App\Http\Controllers\ShopController;
-=======
+
 use App\Http\Controllers\BasketController;
->>>>>>> main
+
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\UserController;
 
@@ -21,15 +21,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-<<<<<<< HEAD
 Route::get('/', function () {
     return view('welcome');
 });
-=======
-// Route::get('/', function () {
-//     return view('welcome');
-// });
->>>>>>> main
 
 Route::get('index', function () {
     return view('index');
@@ -52,18 +46,20 @@ Route::resource("/users", UserController::class);
 Route::get('/users', [UserController::class,'index'])->name('users.index');
 
 
-<<<<<<< HEAD
+
+
 Route::get('/shop', [ShopController::class,'index'])->name('shop.index');
 Route::get('/shop/films', [ShopController::class,'films'])->name('shop.films');
 Route::get('/shop/account', [ShopController::class,'account'])->name('shop.account');
 // Route::get('/', [ShopController::class,'store'])->name('basket.store');
 Route::get('add_to_basket/{id}', [ShopController::class, 'addToBasket'])->name('add_to_basket');
 Route::get('basket', [ShopController::class, 'basket'])->name('basket');
-=======
+
+
 Route::get('/shop', [BasketController::class,'index'])->name('shop.index');
 Route::get('/shop/films', [BasketController::class,'films'])->name('shop.films');
 // Route::get('/', [BasketController::class,'store'])->name('basket.store');
->>>>>>> main
+
 
 
 

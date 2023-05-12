@@ -1,6 +1,5 @@
 @extends('shop.layout')
 @section('content')
-<<<<<<< HEAD
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Blu-Ray movie rental mail order platform</a>
@@ -49,33 +48,10 @@
             </div>
         </div>
     </nav>
-=======
-<nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand">Admin Panel</a>
-        <ul class="navbar-nav d-flex flex-row me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link mx-2" href="{{ route('film.index') }}">Movies administration</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mx-2" href="{{ route('users.index') }}">Users Administration</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mx-2" href="{{ route('logout') }}">Log out</a>
-            </li>
-        </ul>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
 
     <br />
->>>>>>> main
 
     <div id="margin">
-
         <div class="table-responsive">
             <table class="table table-dark table-striped" id="margin">
                 <thead>
@@ -88,10 +64,6 @@
                         <th>Relese Date</th>
                         <th>Country</th>
                         <th>Price</th>
-<<<<<<< HEAD
-=======
-                        <th>Number</th>
->>>>>>> main
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -108,23 +80,9 @@
                             <td>{{ $item->relese_date }}</td>
                             <td>{{ $item->country }}</td>
                             <td>{{ $item->price }}</td>
-<<<<<<< HEAD
                             <td>
                                 <form wire:submit.prevent="addToCart({{ $item->id }})" action="" method="POST">
                                         <p class="btn-holder"><a href="{{ route('add_to_basket', $item->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to basket</a> </p>
-=======
-                            <td>{{ $item->number }}</td>
-                            <td>
-                                <form wire:submit.prevent="addToCart({{ $item->id }})" action="" method="POST">
-                                    @csrf
-                                    <input wire:model="quantity.{{ $item->id }}" type="number"
-                                           class="text-sm sm:text-base px-2 pr-2 rounded-lg border border-gray-400 py-1 focus:outline-none focus:border-blue-400"
-                                           style="width: 50px"/>
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        Add to Cart
-                                    </button>
->>>>>>> main
-                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -132,8 +90,5 @@
             </table>
         </div>
     </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> main
 @endsection

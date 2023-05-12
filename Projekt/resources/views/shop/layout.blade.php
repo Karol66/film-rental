@@ -1,5 +1,4 @@
 <html lang="en">
-<<<<<<< HEAD
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,23 +33,25 @@
                     <div class="dropdown-menu">
                         <div class="row total-header-section">
                             @php $total = 0 @endphp
-                            @foreach((array) session('basket') as $id => $details)
+                            @foreach ((array) session('basket') as $id => $details)
                                 @php $total += $details['price'] * $details['quantity'] @endphp
                             @endforeach
                             <div class="col-lg-12 col-sm-12 col-12 total-section text-right">
                                 <p>Total: <span class="text-info">$ {{ $total }}</span></p>
                             </div>
                         </div>
-                        @if(session('basket'))
-                            @foreach(session('basket') as $id => $details)
+                        @if (session('basket'))
+                            @foreach (session('basket') as $id => $details)
                                 @php $product =\app\Models\Film::find($id) @endphp
                                 <div class="row cart-detail">
                                     <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                        <img class="imidz" src="data:image/jpeg;base64,{{ base64_encode($product->image) }}">
+                                        <img class="imidz"
+                                            src="data:image/jpeg;base64,{{ base64_encode($product->image) }}">
                                     </div>
                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                         <p>{{ $product->name }}</p>
-                                        <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+                                        <span class="price text-info"> ${{ $details['price'] }}</span> <span
+                                            class="count"> Quantity:{{ $details['quantity'] }}</span>
                                     </div>
                                 </div>
                             @endforeach
@@ -80,18 +81,4 @@
     </div>
 
 </body>
-
-=======
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-
-<div class="container">
-    @yield('content')
-</div>
-
-</body>
->>>>>>> main
 </html>

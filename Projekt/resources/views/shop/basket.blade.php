@@ -48,7 +48,11 @@
     </nav>
 
     <br />
+<<<<<<< Updated upstream
 
+=======
+{{--
+>>>>>>> Stashed changes
     <div id="margin">
 
         <div class="table-responsive">
@@ -95,5 +99,9 @@
                 </tbody>
             </table>
         </div>
+<<<<<<< Updated upstream
     </div>
+=======
+    </div> --}}
+>>>>>>> Stashed changes
 @endsection
