@@ -1,4 +1,4 @@
-@extends('shop.layout')
+@extends('film.layout')
 @section('content')
     <div class="card">
         <div class="card-header">Personal Account</div>

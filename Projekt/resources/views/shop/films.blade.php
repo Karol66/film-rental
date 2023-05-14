@@ -31,7 +31,7 @@
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('shop.account') }}">Personal data</a></li>
                                 <li>
-                                    <a class="dropdown-item" href="">My busket</a>
+                                    <a class="dropdown-item" href="{{ route('shop.basket') }}">My busket</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -79,7 +79,7 @@
                             <td>{{ $item->time }}</td>
                             <td>{{ $item->relese_date }}</td>
                             <td>{{ $item->country }}</td>
-                            <td>{{ $item->price }}</td>
+                            <td>${{ $item->price }}</td>
                             <td>
                                 <form wire:submit.prevent="addToCart({{ $item->id }})" action="" method="POST">
                                         <p class="btn-holder"><a href="{{ route('add_to_basket', $item->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to basket</a> </p>

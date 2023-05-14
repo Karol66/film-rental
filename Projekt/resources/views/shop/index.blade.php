@@ -44,8 +44,9 @@
                                     My account
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="{{ route('shop.account') }}">Personal data</a></li>
-                                    <li><a class="dropdown-item" href="">My busket</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('shop.account') }}">Personal data</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('shop.basket') }}">My busket</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
