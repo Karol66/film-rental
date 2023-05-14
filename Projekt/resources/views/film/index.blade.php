@@ -56,7 +56,7 @@
                             <td>{{ $item->time }}</td>
                             <td>{{ $item->relese_date }}</td>
                             <td>{{ $item->country }}</td>
-                            <td>{{ $item->price }}</td>
+                            <td>${{ $item->price }}</td>
                             <td>{{ $item->number }}</td>
                             <td>
                                 <a href="{{ url('/film/' . $item->id) }}">

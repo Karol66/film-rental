@@ -20,8 +20,15 @@
             <div class="col-lg-12 col-sm-12 col-12">
                 <div class="dropdown">
                     <button type="button" class="btn btn-primary" data-toggle="dropdown">
-                        <i class="bi bi-basket" aria-hidden="true"></i> <span
-                            class="badge badge-pill badge-danger">{{ count((array) session('basket')) }}</span>
+                        <i class="bi bi-basket" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">
+                            @php
+                                $totalQuantity = 0;
+                                foreach((array) session('basket') as $id => $details) {
+                                    $totalQuantity += $details['quantity'];
+                                }
+                                echo $totalQuantity;
+                            @endphp
+                        </span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-basket" viewBox="0 0 16 16">
                             <path
@@ -58,7 +65,7 @@
                         @endif
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                                <a href="{{ route('basket') }}" class="btn btn-primary btn-block">View all</a>
+                                <a class="btn btn-primary btn-block" href="{{ route('shop.basket') }}">My basket</a>
                             </div>
                         </div>
                     </div>

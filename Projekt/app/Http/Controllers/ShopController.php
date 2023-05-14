@@ -44,7 +44,6 @@ class ShopController extends Controller
         } else {
             $basket[$id] = [
                 "name" => $film->name,
-                "image" => $film->image,
                 "price" => $film->price,
                 "quantity" => 1
             ];
