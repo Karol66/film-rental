@@ -43,8 +43,8 @@ class ShopController extends Controller
             $basket[$id]['quantity']++;
         } else {
             $basket[$id] = [
-                "name" => $film->product_name,
-                "image" => $film->photo,
+                "name" => $film->name,
+                "image" => $film->image,
                 "price" => $film->price,
                 "quantity" => 1
             ];
@@ -52,6 +52,11 @@ class ShopController extends Controller
 
         session()->put('basket', $basket);
         return redirect()->back()->with('success', 'Product add to basket successfully!');
+    }
+
+    public function baskett()
+    {
+        return view('shop.basket');
     }
 
     /**

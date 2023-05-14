@@ -54,11 +54,9 @@ Route::get('/shop/account', [ShopController::class,'account'])->name('shop.accou
 // Route::get('/', [ShopController::class,'store'])->name('basket.store');
 Route::get('add_to_basket/{id}', [ShopController::class, 'addToBasket'])->name('add_to_basket');
 Route::get('basket', [ShopController::class, 'basket'])->name('basket');
+Route::get('/shop/basket', [ShopController::class,'baskett'])->name('shop.basket');
 
 
-Route::get('/shop', [BasketController::class,'index'])->name('shop.index');
-Route::get('/shop/films', [BasketController::class,'films'])->name('shop.films');
-// Route::get('/', [BasketController::class,'store'])->name('basket.store');
 
 
 

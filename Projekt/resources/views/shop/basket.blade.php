@@ -1,10 +1,11 @@
-@extends('shop.layout')
+@extends('shop.layout2')
+
 @section('content')
-    <nav class="navbar navbar-dark bg-dark fixed-top">
+    {{-- <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Blu-Ray movie rental mail order platform</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+                aria-controls="offcanvasDarkNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
@@ -24,13 +25,13 @@
                             <a class="nav-link" href="{{ route('shop.films') }}">More films</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 My account
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('shop.account') }}">Personal data</a></li>
-                                <li><a class="dropdown-item" href="">My busket</a></li>
+                                <li><a class="dropdown-item" href="{{ route('shop.basket') }}">My busket</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -45,63 +46,43 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
     <br />
-<<<<<<< Updated upstream
 
-=======
-{{--
->>>>>>> Stashed changes
-    <div id="margin">
+    <tbody>
+        @php $total = 0 @endphp
+        @if(session('basket'))
+            @foreach(session('basket') as $id => $details)
+                @php $total += $details['price'] * $details['quantity'] @endphp
+                <tr data-id="{{ $id }}">
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-3 hidden-xs">
+                                @php
+                                    $product = \App\Models\Film::find($id);
+                                    $image = base64_encode($product->image);
+                                @endphp
+                                <img src="data:image/png;base64,{{ $image }}" width="100" height="100" class="img-responsive" />
+                            </div>
+                            <div class="col-sm-9">
+                                <h4 class="nomargin">{{ $details['name'] }}</h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Price">${{ $details['price'] }}</td>
+                    <td data-th="Quantity">
+                        <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity cart_update" min="1" />
+                    </td>
+                    <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
+                    <td class="actions" data-th="">
+                        <button class="btn btn-danger btn-sm cart_remove"><i class="fa fa-trash-o"></i> Delete</button>
+                    </td>
+                </tr>
+            @endforeach
+        @endif
+    </tbody>
 
-        <div class="table-responsive">
-            <table class="table table-dark table-striped" id="margin">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Time</th>
-                        <th>Relese Date</th>
-                        <th>Country</th>
-                        <th>Price</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($film as $item)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>
-                                <img class="imidz" src="data:image/jpeg;base64,{{ base64_encode($item->image) }}">
-                            </td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->type }}</td>
-                            <td>{{ $item->time }}</td>
-                            <td>{{ $item->relese_date }}</td>
-                            <td>{{ $item->country }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>
-                                <form wire:submit.prevent="addToCart({{ $item->id }})" action="" method="POST">
-                                    @csrf
-                                    <input wire:model="quantity.{{ $item->id }}" type="number"
-                                           class="text-sm sm:text-base px-2 pr-2 rounded-lg border border-gray-400 py-1 focus:outline-none focus:border-blue-400"
-                                           style="width: 50px"/>
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        Add to Cart
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-<<<<<<< Updated upstream
-    </div>
-=======
-    </div> --}}
->>>>>>> Stashed changes
+
+
 @endsection

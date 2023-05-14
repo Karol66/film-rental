@@ -16,8 +16,7 @@ class Film extends Model
         'time',
         'relese_date',
         'country',
-        'price',
-        'number'
+        'price'
     ];
 
     use HasFactory;
