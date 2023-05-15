@@ -44,26 +44,46 @@ class ShopController extends Controller
     /**
      * Add a film to the basket.
      */
-    public function addToBasket($id)
-{
-    $film = Film::findOrFail($id);
 
-    $basket = session()->get('basket', []);
+     public function addToBasket(Request $request, $id)
+     {
+         $film = Film::findOrFail($id);
 
-    if (isset($basket[$id])) {
-        $basket[$id]['quantity']++;
-    } else {
-        $basket[$id] = [
-            "name" => $film->name,
-            "price" => $film->price,
-            "quantity" => 1
-        ];
-    }
+         $quantity = $request->input('quantity');
 
-    session()->put('basket', $basket);
-    return redirect()->back()->with('success', 'Film added to basket successfully!');
-}
+         $basket = session()->get('basket', []);
 
+         if (isset($basket[$id])) {
+             $basket[$id]['quantity'] += $quantity;
+         } else {
+             $basket[$id] = [
+                 "name" => $film->name,
+                 "price" => $film->price,
+                 "quantity" => $quantity
+             ];
+         }
+
+         session()->put('basket', $basket);
+         return redirect()->back()->with('success', 'Film added to basket successfully!');
+     }
+
+     public function update(Request $request, $id)
+     {
+         $film = Film::findOrFail($id);
+
+         $quantity = $request->input('quantity'); // Pobierz wartość wpisaną w polu tekstowym
+
+         $basket = session()->get('basket', []);
+
+         $basket[$id] = [
+             "name" => $film->name,
+             "price" => $film->price,
+             "quantity" => $quantity
+         ];
+
+         session()->put('basket', $basket);
+         return redirect()->back()->with('success', 'Film dodany do koszyka!');
+     }
     /**
      * Remove a film from the basket.
      */

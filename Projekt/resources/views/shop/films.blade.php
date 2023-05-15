@@ -79,11 +79,12 @@
                             <td>{{ $film->country }}</td>
                             <td>{{ $film->price }}</td>
                             <td>
-                                <form action="{{ route('add_to_basket', $film->id) }}" method="GET">
+                                <form action="{{ route('add_to_basket', ['id' => $film->id]) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary btn-block text-center">Add to
-                                        basket</button>
+                                    <input type="number" name="quantity" value="1" min="1" readonly style="display: none;">
+                                    <button type="submit" class="btn btn-primary">Add to Basket</button>
                                 </form>
+
                             </td>
                         </tr>
                     @endforeach
