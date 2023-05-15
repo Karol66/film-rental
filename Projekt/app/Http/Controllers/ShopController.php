@@ -82,7 +82,7 @@ class ShopController extends Controller
          ];
 
          session()->put('basket', $basket);
-         return redirect()->back()->with('success', 'Film dodany do koszyka!');
+         return redirect()->back()->with('success', 'Film added to basket successfully!');
      }
     /**
      * Remove a film from the basket.
