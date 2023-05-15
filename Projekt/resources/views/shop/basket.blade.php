@@ -31,7 +31,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('shop.account') }}">Personal data</a></li>
-                                <li><a class="dropdown-item" href="{{ route('shop.basket') }}">My busket</a></li>
+                                <li><a class="dropdown-item" href="{{ route('shop.basket') }}">My basket</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -89,27 +89,37 @@
                                     </div>
                                 </td>
                                 <td data-th="Price">${{ $details['price'] }}</td>
-                                <td data-th="Quantity">
-                                    <input type="number" value="{{ $details['quantity'] }}"
-                                        class="form-control quantity cart_update" min="1" />
+                                <td>
+                                    <form action="{{ route('add_to_basket', $id) }}" method="POST">
+                                        @csrf
+                                        <input type="number" name="quantity" value="{{ $details['quantity'] }}" class="form-control quantity cart-update" min="1" data-id="{{ $id }}" />
+                                        <input type="hidden" name="film_id" value="{{ $id }}">
+                                        <button type="submit" class="btn btn-primary btn-block text-center">Update</button>
+                                    </form>
                                 </td>
+
+
                                 <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}
                                 </td>
                                 <td>
-                                    <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm(&quot;Confirm delete?&quot;)"><i
-                                            class="fa fa-trash-o"aria-hidden="true"></i>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                            <path
-                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z">
-                                            </path>
-                                            <path
-                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z">
-                                            </path>
-                                        </svg>
-                                        Delete
-                                    </button>
+                                    <form action="{{ route('shop.delete') }}" method="POST" class="delete-form"
+                                        onsubmit="return confirm('Confirm delete?')">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="id" value="{{ $id }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z">
+                                                </path>
+                                                <path
+                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -126,14 +136,15 @@
             </tr>
             <tr>
                 <td class="text-right">
-                    <a href="{{ route('shop.films') }}" class="btn btn-danger"> <i class="bi bi-arrow-return-left"></i>
+                    <a href="{{ route('shop.films') }}" class="btn btn-danger">
+                        <i class="bi bi-arrow-return-left"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-arrow-return-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
                         </svg>
                         Continue Shopping</a>
-                    <button class="btn btn-success">
+                    <button class="btn btn-success" id="pay-btn">
                         <i class="bi bi-credit-card"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-credit-card" viewBox="0 0 16 16">
@@ -145,52 +156,5 @@
                 </td>
             </tr>
         </div>
-
-
-    @endsection
-
-
-    @section('scripts')
-<script type="text/javascript">
-
-    $(".cart_update").change(function (e) {
-        e.preventDefault();
-
-        var ele = $(this);
-
-        $.ajax({
-            url: '{{ route('update_cart') }}',
-            method: "patch",
-            data: {
-                _token: '{{ csrf_token() }}',
-                id: ele.parents("tr").attr("data-id"),
-                quantity: ele.parents("tr").find(".quantity").val()
-            },
-            success: function (response) {
-               window.location.reload();
-            }
-        });
-    });
-
-    $(".cart_remove").click(function (e) {
-        e.preventDefault();
-
-        var ele = $(this);
-
-        if(confirm("Do you really want to remove?")) {
-            $.ajax({
-                url: '{{ route('remove_from_cart') }}',
-                method: "DELETE",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: ele.parents("tr").attr("data-id")
-                },
-                success: function (response) {
-                    window.location.reload();
-                }
-            });
-        }
-    });
-
-</script>
+    </div>
 @endsection

@@ -45,16 +45,14 @@ Route::resource("/users", UserController::class);
 
 Route::get('/users', [UserController::class,'index'])->name('users.index');
 
-
-
-
-Route::get('/shop', [ShopController::class,'index'])->name('shop.index');
-Route::get('/shop/films', [ShopController::class,'films'])->name('shop.films');
-Route::get('/shop/account', [ShopController::class,'account'])->name('shop.account');
-// Route::get('/', [ShopController::class,'store'])->name('basket.store');
-Route::get('add_to_basket/{id}', [ShopController::class, 'addToBasket'])->name('add_to_basket');
-Route::get('basket', [ShopController::class, 'basket'])->name('basket');
-Route::get('/shop/basket', [ShopController::class,'baskett'])->name('shop.basket');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/shop/films', [ShopController::class, 'films'])->name('shop.films');
+Route::get('/shop/account', [ShopController::class, 'account'])->name('shop.account');
+// Route::get('/', [ShopController::class, 'store'])->name('basket.store');
+Route::post('/add_to_basket/{id}', [ShopController::class, 'addToBasket'])->name('add_to_basket');
+Route::get('/basket', [ShopController::class, 'basket'])->name('shop.basket');
+Route::patch('/update_basket', [ShopController::class, 'update'])->name('update_basket');
+Route::delete('/shop/delete', [ShopController::class, 'remove'])->name('shop.delete');
 
 
 

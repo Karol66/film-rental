@@ -3,7 +3,6 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -19,15 +18,16 @@
         <div class="row">
             <div class="col-lg-12 col-sm-12 col-12">
                 <div class="dropdown">
-                    <button type="button" class="btn btn-primary" data-toggle="dropdown">
-                        <i class="bi bi-basket" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">
-                            @php
-                                $totalQuantity = 0;
-                                foreach((array) session('basket') as $id => $details) {
-                                    $totalQuantity += $details['quantity'];
-                                }
-                                echo $totalQuantity;
-                            @endphp
+                    <button type="button" class="btn btn-primary" onclick="toggleDropdown()">
+                        <i class="bi bi-basket" aria-hidden="true"></i> <span class="badge badge-pill badge-danger"
+                            id="cartItemCount">
+                            <?php
+                            $totalQuantity = 0;
+                            foreach ((array) session('basket') as $id => $details) {
+                                $totalQuantity += $details['quantity'];
+                            }
+                            echo $totalQuantity;
+                            ?>
                         </span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-basket" viewBox="0 0 16 16">
@@ -37,32 +37,32 @@
                         Cart
                     </button>
 
-                    <div class="dropdown-menu">
+
+                    <div class="dropdown-menu" id="cartDropdown">
                         <div class="row total-header-section">
-                            @php $total = 0 @endphp
-                            @foreach ((array) session('basket') as $id => $details)
-                                @php $total += $details['price'] * $details['quantity'] @endphp
-                            @endforeach
+                            <?php $total = 0; ?>
+                            <?php foreach ((array) session('basket') as $id => $details): ?>
+                            <?php $total += $details['price'] * $details['quantity']; ?>
+                            <?php endforeach; ?>
                             <div class="col-lg-12 col-sm-12 col-12 total-section text-right">
-                                <p>Total: <span class="text-info">$ {{ $total }}</span></p>
+                                <p>Total: <span class="text-info">$ <?php echo $total; ?></span></p>
                             </div>
                         </div>
-                        @if (session('basket'))
-                            @foreach (session('basket') as $id => $details)
-                                @php $product =\app\Models\Film::find($id) @endphp
-                                <div class="row cart-detail">
-                                    <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                        <img class="imidz"
-                                            src="data:image/jpeg;base64,{{ base64_encode($product->image) }}">
-                                    </div>
-                                    <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                        <p>{{ $product->name }}</p>
-                                        <span class="price text-info"> ${{ $details['price'] }}</span> <span
-                                            class="count"> Quantity:{{ $details['quantity'] }}</span>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
+                        <?php if (session('basket')): ?>
+                        <?php foreach (session('basket') as $id => $details): ?>
+                        <?php $product = \app\Models\Film::find($id); ?>
+                        <div class="row cart-detail">
+                            <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                <img class="imidz" src="data:image/jpeg;base64,<?php echo base64_encode($product->image); ?>">
+                            </div>
+                            <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                <p><?php echo $product->name; ?></p>
+                                <span class="price text-info">$<?php echo $details['price']; ?></span>
+                                <span class="count"> Quantity: <?php echo $details['quantity']; ?></span>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
                                 <a class="btn btn-primary btn-block" href="{{ route('shop.basket') }}">My basket</a>
@@ -72,20 +72,25 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <br />
+        <br />
 
-    <div class="container">
-
-        @if (session('success'))
+        <div class="container">
+            <?php if (session('success')): ?>
             <div class="alert alert-success">
-                {{ session('success') }}
+                <?php echo session('success'); ?>
             </div>
-        @endif
+            <?php endif; ?>
 
-        @yield('content')
-    </div>
+            @yield('content')
+        </div>
 
+        <script>
+            function toggleDropdown() {
+                var dropdown = document.getElementById("cartDropdown");
+                dropdown.classList.toggle("show");
+            }
+        </script>
 </body>
+
 </html>

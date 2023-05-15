@@ -2,106 +2,81 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Film;
-
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the index page.
      */
     public function index()
     {
         return view('shop.index');
     }
 
+    /**
+     * Display the films page.
+     */
     public function films()
     {
-        $film = Film::all();
-        return view('shop.films')->with('film', $film);
+        $films = Film::all();
+        return view('shop.films', compact('films'));
     }
 
+    /**
+     * Display the account page.
+     */
     public function account()
     {
         return view('shop.account');
     }
 
+    /**
+     * Display the basket page.
+     */
     public function basket()
-    {
-        return view('basket');
-    }
-
-    public function addToBasket($id)
-    {
-        $film = Film::findOrFail($id);
-
-        $basket = session()->get('basket', []);
-
-        if (isset($basket[$id])) {
-            $basket[$id]['quantity']++;
-        } else {
-            $basket[$id] = [
-                "name" => $film->name,
-                "price" => $film->price,
-                "quantity" => 1
-            ];
-        }
-
-        session()->put('basket', $basket);
-        return redirect()->back()->with('success', 'Product add to basket successfully!');
-    }
-
-    public function baskett()
     {
         return view('shop.basket');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Add a film to the basket.
      */
-    public function create()
-    {
-        //
+    public function addToBasket($id)
+{
+    $film = Film::findOrFail($id);
+
+    $basket = session()->get('basket', []);
+
+    if (isset($basket[$id])) {
+        $basket[$id]['quantity']++;
+    } else {
+        $basket[$id] = [
+            "name" => $film->name,
+            "price" => $film->price,
+            "quantity" => 1
+        ];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    session()->put('basket', $basket);
+    return redirect()->back()->with('success', 'Film added to basket successfully!');
+}
 
     /**
-     * Display the specified resource.
+     * Remove a film from the basket.
      */
-    public function show(string $id)
+    public function remove(Request $request)
     {
-    }
+        $filmId = $request->input('id');
+        $basket = session()->get('basket');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        if (isset($basket[$filmId])) {
+            unset($basket[$filmId]);
+            session()->put('basket', $basket);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('shop.basket');
     }
 }
