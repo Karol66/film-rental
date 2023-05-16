@@ -1,21 +1,25 @@
 @extends('film.layout')
 @section('content')
-<div class="card">
-  <div class="card-header">Show Film</div>
-  <div class="card-body">
-
+    <div >
+        <div class="card-header">
+            <h3>Show Film</h3>
+        </div>
         <div class="card-body">
-        <h5 class="card-title">Name : {{ $film->name }}</h5>
-        <p class="card-text">Type : {{ $film->type }}</p>
-        <p class="card-text">Time : {{ $film->time }}</p>
-        <p class="card-text">Relese Date : {{ $film->relese_date }}</p>
-        <p class="card-text">Country : {{ $film->country }}</p>
-        <p class="card-text">Price : {{ $film->price }}</p>
-        <p class="card-text">Number : {{ $film->number }}</p>
-        <p class="card-text">Image : {{ $film->image }}</p>
-  </div>
-
-    </hr>
-
-  </div>
-</div>
+            <div class="film-details">
+                <div class="film-image">
+                    <div class="image-wrapper">
+                        <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}" alt="Film Image" class="film-img">
+                    </div>
+                </div>
+                <div class="film-info">
+                    <p class="card-text">Name: {{ $film->name }}</p>
+                    <p class="card-text">Type: {{ $film->type }}</p>
+                    <p class="card-text">Time: {{ $film->time }}</p>
+                    <p class="card-text">Release Date: {{ $film->release_date }}</p>
+                    <p class="card-text">Country: {{ $film->country }}</p>
+                    <p class="card-text">Price: ${{ $film->price }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

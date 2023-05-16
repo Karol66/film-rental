@@ -1,10 +1,7 @@
 body {
-    background-color:#1c1f23;
+    background-color:  #1c1f23;
     color: white;
-}
 
-#a{
-    color: white;
 }
 
 .grid-container {
@@ -31,12 +28,12 @@ body {
     margin-bottom: 2rem;
 }
 
-.heading-title{
+.heading-title {
     font-size: 1.75em;
     font-weight: 500;
 }
 
-.buy{
+.buy {
     font-size: 21px;
     background: #233ab0;
     width: 40px;
@@ -51,26 +48,26 @@ body {
     left: 10px;
 }
 
-.buy2{
+.buy2 {
     position: absolute;
     bottom: 10px;
     left: 135px;
 }
 
-a:link{
+a:link {
     text-decoration: none;
 }
 
-a:hover{
+a:hover {
     text-decoration: none;
     color: black;
 }
 
-#margin{
+#margin {
     margin-top: 50px;
 }
 
-.addToBusket{
+.addToBusket {
     font-size: 21px;
     background: #233ab0;
     width: 30px;
@@ -84,25 +81,47 @@ a:hover{
 
 }
 
-.removeFromBusket{
-    font-size: 21px;
-    background: #b02323;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: whitesmoke;
-    position: absolute;
-
-}
-
-#align{
+#align {
     text-align: center;
 }
 
-.imidz{
+.imidz {
     width: 70px;
     height: 80px;
 }
+
+.film-details {
+    display: flex;
+    align-items: center;
+}
+
+.film-image {
+    width: 250px;
+    height: 350px;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+  }
+
+.image-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.film-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-header,
+.card-title,
+.card-text {
+  color: white;
+}
+
+p {
+    font-size: 20px;
+  }
