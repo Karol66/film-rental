@@ -1,5 +1,5 @@
 body {
-    background-color:  #1c1f23;
+    background-color: #1c1f23;
     color: white;
 
 }
@@ -101,7 +101,7 @@ a:hover {
     margin-right: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
-  }
+}
 
 .image-wrapper {
     width: 100%;
@@ -119,9 +119,15 @@ a:hover {
 .card-header,
 .card-title,
 .card-text {
-  color: white;
+    color: white;
 }
 
 p {
     font-size: 20px;
-  }
+}
+
+.gray-background {
+    background-color: #1c1f23;
+    color: white;
+    border-color: rgba(255, 255, 255, 0.445);
+}
