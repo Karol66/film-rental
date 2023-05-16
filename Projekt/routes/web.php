@@ -38,8 +38,8 @@ Route::post('/registration', [AuthManager::class,'registrationPost'])->name('reg
 Route::get('/logout',[AuthManager::class, 'logout'])->name('logout');
 
 Route::resource("/film", FilmController::class);
-
 Route::get('/film', [FilmController::class,'index'])->name('film.index');
+Route::patch('film/{id}', [FilmController::class,'update'])->name('film.update');
 
 Route::resource("/users", UserController::class);
 

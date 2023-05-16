@@ -40,7 +40,6 @@
                         <th>Relese Date</th>
                         <th>Country</th>
                         <th>Price</th>
-                        <th>Number</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -57,7 +56,6 @@
                             <td>{{ $item->relese_date }}</td>
                             <td>{{ $item->country }}</td>
                             <td>${{ $item->price }}</td>
-                            <td>{{ $item->number }}</td>
                             <td>
                                 <a href="{{ url('/film/' . $item->id) }}">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>

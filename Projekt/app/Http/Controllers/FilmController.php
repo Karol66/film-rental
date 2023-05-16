@@ -59,19 +59,26 @@ public function store(Request $request)
      */
     public function edit(string $id)
     {
-        $film = Film::find($id);
-        return view('film.edit')->with('film', $film);
+        $film = Film::findOrFail($id);
+        return view('film.edit', compact('film'));
     }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        $film = Film::find($id);
+        $film = Film::findOrFail($id);
         $input = $request->all();
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image');
+            $imageData = file_get_contents($image->getRealPath());
+            $input['image'] = $imageData;
+        }
+
         $film->update($input);
-        return redirect('film')->with('flash_message', 'film Updated!');
+
+        return redirect('film')->with('flash_message', 'Film Updated!');
     }
 
     /**
