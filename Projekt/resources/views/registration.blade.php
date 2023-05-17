@@ -41,11 +41,11 @@
         <label>Name</label>
       </div>
       <div class="user-box">
-        <input type="text" name="lastName" required="">
+        <input type="text" name="last_name" required="">
         <label>Last name</label>
       </div>
       <div class="user-box">
-        <input type="text" name="userName" required="">
+        <input type="text" name="user_name" required="">
         <label>User name</label>
       </div>
       <div class="user-box">
@@ -53,11 +53,11 @@
         <label>Password</label>
       </div>
       <div class="user-box">
-        <input type="password" name="" required="">
+        <input type="password" name="password_confirmation" required="">
         <label>Repeat password</label>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-      <a href="login">
+      <a href="{{ route('login') }}" class="btn btn-primary">
         Log in
       </a>
     </form>

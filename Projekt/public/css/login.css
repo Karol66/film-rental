@@ -62,55 +62,15 @@ html {
     font-size: 12px;
   }
 
-  .login-box form a {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #233ab0;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px
-  }
+  .btn-primary {
+    background-color: transparent;
+    border-color: transparent;
+}
 
-  .login-box a:hover {
-    background: #233ab0;
-    color: #fff;
-    border-radius: 5px;
-  }
-
-  .login-box a span {
-    position: absolute;
-    display: block;
-  }
-
-    .login-box form a {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #233ab0;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px
-  }
-
-  .login-box a:hover {
-    background: #233ab0;
-    color: #fff;
-    border-radius: 5px;
-  }
-
-  .login-box a span {
-    position: absolute;
-    display: block;
-  }
+.btn-primary:hover {
+    background-color: #233ab0;
+    border-color: #233ab0;
+}
 
 
 

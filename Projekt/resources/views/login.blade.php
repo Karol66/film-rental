@@ -40,7 +40,7 @@
         <input type="password" name="password" required="">
         <label>Password</label>
       </div>
-      <a href="registration">
+      <a href="{{ route('registration') }}" class="btn btn-primary">
         Sign in
       </a>
       <button type="submit" class="btn btn-primary">Login</button>
