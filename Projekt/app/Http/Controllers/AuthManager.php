@@ -55,21 +55,22 @@ class AuthManager extends Controller
             'name' => 'required',
             'last_name' => 'required',
             'user_name' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ]);
 
         $data['email'] = $request->email;
         $data['name'] = $request->name;
         $data['last_name'] = $request->last_name;
-        $data['user_name'] = $request->use_name;
+        $data['user_name'] = $request->user_name;
         $data['password'] = Hash::make($request->password);
 
-        $users = User::create($data);
+        $user = User::create($data);
 
-        if (!$users) {
-            return redirect(route('registration'))->with("error", "registration fail, try again");
+        if (!$user) {
+            return redirect(route('registration'))->with("error", "Registration failed, please try again.");
         }
-        return redirect(route('login'))->with("succes", "Registraion succes, Login to acces the app");
+
+        return redirect(route('login'))->with("success", "Registration successful! Please login to access the app.");
     }
 
     function logout()

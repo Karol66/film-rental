@@ -43,7 +43,7 @@
       <a href="{{ route('registration') }}" class="btn btn-primary">
         Sign in
       </a>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary">Log in</button>
     </form>
   </div>
 </body>
