@@ -99,4 +99,17 @@ class ShopController extends Controller
 
         return redirect()->route('shop.basket');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        if ($search) {
+            $film = Film::where('name', 'like', '%' . $search . '%')->get();
+        } else {
+            $film = Film::all();
+        }
+
+        return view('shop.films')->with('films', $film)->with('search', $search);
+    }
 }
