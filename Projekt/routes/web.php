@@ -37,9 +37,12 @@ Route::post('/registration', [AuthManager::class,'registrationPost'])->name('reg
 
 Route::get('/logout',[AuthManager::class, 'logout'])->name('logout');
 
+Route::get('/film/search', [FilmController::class, 'search'])->name('film.search');
 Route::resource("/film", FilmController::class);
-Route::get('/film', [FilmController::class,'index'])->name('film.index');
-Route::patch('film/{id}', [FilmController::class,'update'])->name('film.update');
+Route::get('/film', [FilmController::class, 'index'])->name('film.index');
+Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('film.edit');
+Route::patch('/film/{id}', [FilmController::class, 'update'])->name('film.update');
+Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('film.destroy');
 
 Route::resource("/users", UserController::class);
 
@@ -52,6 +55,7 @@ Route::post('/add_to_basket/{id}', [ShopController::class, 'addToBasket'])->name
 Route::get('/basket', [ShopController::class, 'basket'])->name('shop.basket');
 Route::post('/update_basket/{id}', [ShopController::class, 'update'])->name('update_basket');
 Route::delete('/shop/delete', [ShopController::class, 'remove'])->name('shop.delete');
+
 
 
 

@@ -28,22 +28,19 @@ class FilmController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    public function store(Request $request)
+    {
+        $input = $request->all();
 
-public function store(Request $request)
-{
-    $input = $request->all();
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image');
+            $imageData = file_get_contents($image->getRealPath());
+            $input['image'] = $imageData;
+        }
 
-    if ($request->hasFile('image') && $request->file('image')->isValid()) {
-        $image = $request->file('image');
-        $imageData = file_get_contents($image->getRealPath());
-        $input['image'] = $imageData;
+        Film::create($input);
+        return redirect('film')->with('flash_message', 'Film Added!');
     }
-
-    // dd($input);
-
-    Film::create($input);
-    return redirect('film')->with('flash_message', 'Film Added!');
-}
 
     /**
      * Display the specified resource.
@@ -62,6 +59,7 @@ public function store(Request $request)
         $film = Film::findOrFail($id);
         return view('film.edit', compact('film'));
     }
+
     /**
      * Update the specified resource in storage.
      */
@@ -90,4 +88,19 @@ public function store(Request $request)
         return redirect('film')->with('flash_message', 'Film deleted!');
     }
 
+    /**
+     * Search for film.
+     */
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        if ($search) {
+            $film = Film::where('name', 'like', '%' . $search . '%')->get();
+        } else {
+            $film = Film::all();
+        }
+
+        return view('film.index')->with('film', $film)->with('search', $search);
+    }
 }
