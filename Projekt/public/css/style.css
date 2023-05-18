@@ -131,3 +131,40 @@ p {
     color: white;
     border-color: rgba(255, 255, 255, 0.445);
 }
+
+
+.pagination {
+    background-color: transparent;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.pagination a {
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 3px;
+}
+
+.pagination a:hover {
+    background-color: #233ab0;
+    border-color: transparent;
+    color: white;
+}
+
+.pagination .disabled .page-link {
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #233ab0;
+    border-color: transparent;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 3px;
+}

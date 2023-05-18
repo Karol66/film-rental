@@ -24,6 +24,10 @@
                     <label>User Name</label></br>
                     <input type="text" placeholder="{{ Auth::user()->user_name }}" class="form-control gray-background"></br>
                 </div>
+                <div class="form-group">
+                    <label>Password</label></br>
+                    <input type="text" class="form-control gray-background"></br>
+                </div>
 
                 <div class="form-group">
                     <div class="mt-3">

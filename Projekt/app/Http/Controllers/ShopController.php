@@ -21,7 +21,7 @@ class ShopController extends Controller
      */
     public function films()
     {
-        $films = Film::all();
+        $films = Film::paginate(10);
         return view('shop.films', compact('films'));
     }
 

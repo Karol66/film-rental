@@ -79,4 +79,30 @@ class AuthManager extends Controller
         Auth::logout();
         return redirect(route('login'));
     }
+
+    function update(Request $request, $id)
+{
+    $request->validate([
+        'email' => 'required|email|unique:users,email,'.$id,
+        'name' => 'required',
+        'last_name' => 'required',
+        'user_name' => 'required',
+        'password' => 'nullable|confirmed',
+    ]);
+
+    $user = User::findOrFail($id);
+
+    $user->email = $request->email;
+    $user->name = $request->name;
+    $user->last_name = $request->last_name;
+    $user->user_name = $request->user_name;
+
+    if ($request->password) {
+        $user->password = Hash::make($request->password);
+    }
+
+    $user->save();
+
+    return redirect()->route('film.index')->with("success", "User data updated successfully!");
+}
 }

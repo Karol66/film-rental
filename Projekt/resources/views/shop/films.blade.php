@@ -39,7 +39,8 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="search" action="{{ route('shop.search') }}" method="GET">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                            name="search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
@@ -75,13 +76,14 @@
                             <td>{{ $film->name }}</td>
                             <td>{{ $film->type }}</td>
                             <td>{{ $film->time }}</td>
-                            <td>{{ $film->release_date }}</td>
+                            <td>{{ $film->relese_date }}</td>
                             <td>{{ $film->country }}</td>
                             <td>{{ $film->price }}</td>
                             <td>
                                 <form action="{{ route('add_to_basket', ['id' => $film->id]) }}" method="POST">
                                     @csrf
-                                    <input type="number" name="quantity" value="1" min="1" readonly style="display: none;">
+                                    <input type="number" name="quantity" value="1" min="1" readonly
+                                        style="display: none;">
                                     <button type="submit" class="btn btn-primary">Add to Basket</button>
                                 </form>
 
@@ -92,4 +94,9 @@
             </table>
         </div>
     </div>
+
+    <div class="pagination-container d-flex justify-content-center mt-5">
+        {{ $films->links('pagination::bootstrap-4') }}
+    </div>
+
 @endsection
