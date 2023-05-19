@@ -4,7 +4,7 @@
         <div class="card-header">Edit Film</div>
         <div class="card-body">
 
-            <form action="{{ url('users/' . $users->id) }}" method="post">
+            <form action="{{ route('users.update', $users->id) }}" method="post">
                 @csrf
                 @method('PATCH')
                 <input type="hidden" name="id" id="id" value="{{ $users->id }}" id="id" />

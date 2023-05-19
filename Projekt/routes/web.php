@@ -45,6 +45,7 @@ Route::patch('/film/{id}', [FilmController::class, 'update'])->name('film.update
 Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('film.destroy');
 
 Route::resource("/users", UserController::class);
+Route::patch('/users/{id}', [FilmController::class, 'update'])->name('users.update');
 
 Route::get('/users', [UserController::class,'index'])->name('users.index');
 

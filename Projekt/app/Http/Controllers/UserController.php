@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -59,6 +60,7 @@ class UserController extends Controller
     {
         $users = User::find($id);
         $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
         $users->update($input);
         return redirect('users')->with('flash_message', 'User Updated!');
     }
