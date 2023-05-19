@@ -11,30 +11,24 @@ use Illuminate\Support\Facades\Session;
 
 class AuthManager extends Controller
 {
-    function login()
+    public function login()
     {
         return view('login');
     }
 
-    function registration()
+    public function registration()
     {
         return view('registration');
     }
 
-    function loginPost(Request $request)
+    public function loginPost(Request $request)
     {
-
-        // $user = Auth::user();
-        // dd($user);
-
         $request->validate([
             'user_name' => 'required',
             'password' => 'required'
         ]);
 
         $credentials = $request->only('user_name', 'password');
-
-        // dd($credentials);
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
@@ -48,21 +42,15 @@ class AuthManager extends Controller
         }
     }
 
-    function registrationPost(Request $request)
+    public function registrationPost(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:users',
-            'name' => 'required',
-            'last_name' => 'required',
-            'user_name' => 'required',
+            'email' => 'email|unique:users',
             'password' => 'required|confirmed',
         ]);
 
-        $data['email'] = $request->email;
-        $data['name'] = $request->name;
-        $data['last_name'] = $request->last_name;
-        $data['user_name'] = $request->user_name;
-        $data['password'] = Hash::make($request->password);
+        $data = $request->only('email', 'name', 'last_name', 'user_name', 'password');
+        $data['password'] = Hash::make($data['password']);
 
         $user = User::create($data);
 
@@ -73,36 +61,27 @@ class AuthManager extends Controller
         return redirect(route('login'))->with("success", "Registration successful! Please login to access the app.");
     }
 
-    function logout()
+    public function logout()
     {
         Session::flush();
         Auth::logout();
         return redirect(route('login'));
     }
 
-    function update(Request $request, $id)
-{
-    $request->validate([
-        'email' => 'required|email|unique:users,email,'.$id,
-        'name' => 'required',
-        'last_name' => 'required',
-        'user_name' => 'required',
-        'password' => 'nullable|confirmed',
-    ]);
+    public function update(Request $request, int $id)
+    {
+        $user = User::find($id);
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'user_name' => 'required',
+            'password' => 'required|confirmed',
+        ]);
 
-    $user = User::findOrFail($id);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        $user->update($validatedData);
 
-    $user->email = $request->email;
-    $user->name = $request->name;
-    $user->last_name = $request->last_name;
-    $user->user_name = $request->user_name;
-
-    if ($request->password) {
-        $user->password = Hash::make($request->password);
+        return redirect('/shop/account')->with('flash_message', 'User Updated!');
     }
-
-    $user->save();
-
-    return redirect()->route('film.index')->with("success", "User data updated successfully!");
-}
 }

@@ -1,4 +1,5 @@
 @extends('shop.layout2')
+
 @section('content')
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
@@ -50,38 +51,57 @@
             <h3>Personal Account</h3>
         </div>
         <div class="card-body">
-
-            <form method="POST" action="{{ route('film.store') }}" enctype="multipart/form-data">
+            <form action="{{ route('account.update', ['id' => Auth::user()->id]) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label>Name</label></br>
-                    <input type="text" placeholder="{{ Auth::user()->name }}" class="form-control gray-background"></br>
+                    <label>Name</label><br>
+                    <input type="text" name="name" value="{{ Auth::user()->name }}"
+                        class="form-control gray-background">
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label>Last Name</label></br>
-                    <input type="text" placeholder="{{ Auth::user()->last_name }}"
-                        class="form-control gray-background"></br>
+                    <label>Last Name</label><br>
+                    <input type="text" name="last_name" value="{{ Auth::user()->last_name }}"
+                        class="form-control gray-background">
+                    @error('last_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label>Email</label></br>
-                    <input type="text" placeholder="{{ Auth::user()->email }}" class="form-control gray-background"></br>
+                    <label>Email</label><br>
+                    <input type="text" name="email" value="{{ Auth::user()->email }}"
+                        class="form-control gray-background">
+                    @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label>User Name</label></br>
-                    <input type="text" placeholder="{{ Auth::user()->user_name }}"
-                        class="form-control gray-background"></br>
+                    <label>User Name</label><br>
+                    <input type="text" name="user_name" value="{{ Auth::user()->user_name }}"
+                        class="form-control gray-background">
+                    @error('user_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label>Password</label></br>
-                    <input type="text" class="form-control gray-background"></br>
+                    <label>Password</label><br>
+                    <input type="password" name="password" value="{{ Auth::user()->password }}"
+                        class="form-control gray-background">
+                    @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
-                    <div class="mt-3">
-                        <button type="submit" class="btn btn-success">Upload</button>
-                    </div>
+                    <label>Confirm Password</label><br>
+                    <input type="password" name="password_confirmation" class="form-control gray-background">
                 </div>
-
+                <br>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
         </div>
     </div>
-@stop
+@endsection

@@ -2,11 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
-
 use App\Http\Controllers\ShopController;
-
-use App\Http\Controllers\BasketController;
-
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\UserController;
 
@@ -15,8 +11,8 @@ use App\Http\Controllers\UserController;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
+| Here is where you can register web routes for your application.
+| These routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
 */
@@ -29,13 +25,13 @@ Route::get('index', function () {
     return view('index');
 })->name('index');
 
-Route::get('/login', [AuthManager::class,'login'])->name('login');
-Route::post('/login', [AuthManager::class,'loginPost'])->name('login.post');
+Route::get('/login', [AuthManager::class, 'login'])->name('login');
+Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
 
-Route::get('/registration', [AuthManager::class,'registration'])->name('registration');
-Route::post('/registration', [AuthManager::class,'registrationPost'])->name('registration.post');
+Route::get('/registration', [AuthManager::class, 'registration'])->name('registration');
+Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('registration.post');
 
-Route::get('/logout',[AuthManager::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
 Route::get('/film/search', [FilmController::class, 'search'])->name('film.search');
 Route::resource("/film", FilmController::class);
@@ -45,9 +41,9 @@ Route::patch('/film/{id}', [FilmController::class, 'update'])->name('film.update
 Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('film.destroy');
 
 Route::resource("/users", UserController::class);
-Route::patch('/users/{id}', [FilmController::class, 'update'])->name('users.update');
+Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
 
-Route::get('/users', [UserController::class,'index'])->name('users.index');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/films', [ShopController::class, 'films'])->name('shop.films');
@@ -58,12 +54,4 @@ Route::post('/update_basket/{id}', [ShopController::class, 'update'])->name('upd
 Route::delete('/shop/delete', [ShopController::class, 'remove'])->name('shop.delete');
 Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search');
 
-
-
-
-
-
-
-
-
-
+Route::post('/account/update/{id}', [AuthManager::class, 'update'])->name('account.update');
