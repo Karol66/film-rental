@@ -103,4 +103,8 @@
             </table>
         </div>
     </div>
+
+    <div class="pagination-container d-flex justify-content-center mt-5">
+        {{ $users->links('pagination::bootstrap-4') }}
+    </div>
 @endsection
