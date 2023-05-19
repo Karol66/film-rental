@@ -105,9 +105,9 @@ class ShopController extends Controller
         $search = $request->input('search');
 
         if ($search) {
-            $film = Film::where('name', 'like', '%' . $search . '%')->get();
+            $film = Film::where('name', 'like', '%' . $search . '%')->paginate(10);
         } else {
-            $film = Film::all();
+            $film = Film::paginate(10);
         }
 
         return view('shop.films')->with('films', $film)->with('search', $search);

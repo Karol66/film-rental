@@ -18,8 +18,6 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-
-
         </div>
     </nav>
 
@@ -39,7 +37,7 @@
                         <th>Name</th>
                         <th>Type</th>
                         <th>Time</th>
-                        <th>Relese Date</th>
+                        <th>Release Date</th>
                         <th>Country</th>
                         <th>Price</th>
                         <th>Actions</th>
@@ -56,7 +54,7 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->type }}</td>
                                 <td>{{ $item->time }}</td>
-                                <td>{{ $item->relese_date }}</td>
+                                <td>{{ $item->release_date }}</td>
                                 <td>{{ $item->country }}</td>
                                 <td>${{ $item->price }}</td>
                                 <td>

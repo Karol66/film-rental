@@ -20,22 +20,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
@@ -49,7 +33,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $users = User::find($id);
+        $users = User::findOrFail($id);
         return view('users.edit')->with('users', $users);
     }
 
@@ -58,7 +42,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $users = User::find($id);
+        $users = User::findOrFail($id);
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $users->update($input);
@@ -72,5 +56,18 @@ class UserController extends Controller
     {
         User::destroy($id);
         return redirect('users')->with('flash_message', 'User deleted!');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        if ($search) {
+            $users = User::where('name', 'like', '%' . $search . '%')->paginate(10);
+        } else {
+            $users = User::paginate(10);
+        }
+
+        return view('users.index')->with('users', $users)->with('search', $search);
     }
 }

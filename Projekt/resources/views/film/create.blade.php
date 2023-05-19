@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label>Release Date</label></br>
-                    <input type="text" name="release_date" id="release_date" class="form-control gray-background"></br>
+                    <input type="date" name="release_date" id="release_date" class="form-control gray-background" value="{{ old('release_date') }}"></br>
                 </div>
                 <div class="form-group">
                     <label>Country</label></br>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Film;
@@ -31,6 +32,8 @@ class FilmController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+
+        $input['release_date'] = Carbon::parse($input['release_date']);
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
@@ -68,6 +71,8 @@ class FilmController extends Controller
         $film = Film::findOrFail($id);
         $input = $request->all();
 
+        $input['release_date'] = Carbon::parse($input['release_date']);
+
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
             $imageData = file_get_contents($image->getRealPath());
@@ -96,9 +101,9 @@ class FilmController extends Controller
         $search = $request->input('search');
 
         if ($search) {
-            $film = Film::where('name', 'like', '%' . $search . '%')->get();
+            $film = Film::where('name', 'like', '%' . $search . '%')->paginate(10);
         } else {
-            $film = Film::all();
+            $film = Film::paginate(10);
         }
 
         return view('film.index')->with('film', $film)->with('search', $search);

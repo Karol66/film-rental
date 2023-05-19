@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div >
+            <div>
                 <div class="card-header">
                     <h3>Edit Film</h3>
                 </div>
@@ -11,7 +11,8 @@
                         <div class="d-flex">
                             <div class="film-image">
                                 <div class="image-wrapper">
-                                    <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}" alt="Film Image" class="film-img">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}" alt="Film Image"
+                                        class="film-img">
                                 </div>
                             </div>
                             <div class="ml-auto">
@@ -35,7 +36,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="relese_date">Release Date</label>
-                                    <input type="text" name="relese_date" id="relese_date" value="{{ $film->relese_date }}"
+                                    <input type="date" name="release_date" id="release_date"
+                                        value="{{ old('release_date', $film->release_date ? date('Y-m-d', strtotime($film->release_date)) : '') }}"
                                         class="form-control gray-background">
                                 </div>
                                 <div class="form-group">

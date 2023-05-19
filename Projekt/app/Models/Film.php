@@ -14,7 +14,7 @@ class Film extends Model
         'name',
         'type',
         'time',
-        'relese_date',
+        'release_date',
         'country',
         'price'
     ];

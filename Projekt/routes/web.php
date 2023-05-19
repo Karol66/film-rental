@@ -40,10 +40,12 @@ Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('film.edit'
 Route::patch('/film/{id}', [FilmController::class, 'update'])->name('film.update');
 Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('film.destroy');
 
+Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
 Route::resource("/users", UserController::class);
-Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
-
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/films', [ShopController::class, 'films'])->name('shop.films');

@@ -14,8 +14,8 @@
                     <a class="nav-link mx-2" href="{{ route('logout') }}">Log out</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" role="search" action="{{ route('users.search') }}" method="GET">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
@@ -51,7 +51,7 @@
                             <td>{{ $item->password }}</td>
                             <td>{{ $item->is_admin }}</td>
                             <td>
-                                <a href="{{ url('/users/' . $item->id) }}">
+                                <a href="{{ route('users.show', $item->id) }}">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -65,7 +65,7 @@
                                         View
                                     </button>
                                 </a>
-                                <a href="{{ url('/users/' . $item->id . '/edit') }}">
+                                <a href="{{ route('users.edit', $item->id) }}">
                                     <button class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"
                                             aria-hidden="true"></i>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -77,7 +77,7 @@
                                         Edit
                                     </button>
                                 </a>
-                                <form method="POST" action="{{ url('/users' . '/' . $item->id) }}" accept-charset="UTF-8"
+                                <form method="POST" action="{{ route('users.destroy', $item->id) }}" accept-charset="UTF-8"
                                     style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
