@@ -13,7 +13,14 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('shop.index');
+        $films = Film::orderBy('id', 'desc')->take(6)->get();
+        return view('shop.index')->with('films', $films);
+    }
+
+    public function index_home()
+    {
+        $films = Film::orderBy('id', 'desc')->take(6)->get();
+        return view('index')->with('films', $films);
     }
 
     /**

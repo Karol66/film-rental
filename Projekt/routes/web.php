@@ -17,9 +17,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ShopController::class, 'index_home'])->name('index');
 
 Route::get('index', function () {
     return view('index');

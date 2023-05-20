@@ -37,20 +37,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('shop.films') }}">More films</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    My account
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="{{ route('shop.account') }}">Personal data</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{ route('shop.basket') }}">My busket</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{ route('logout') }}">Log out</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{{ route('login') }}">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -116,7 +104,7 @@
                 <div class="card text-bg-dark">
                     <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}" class="card-img" alt="...">
                     <div class="card-img-overlay">
-                        <a href="#" class="buy">
+                        <a href="{{ route('registration') }}" class="buy">
                             <i class='bx bx-basket'></i>
                         </a>
                     </div>

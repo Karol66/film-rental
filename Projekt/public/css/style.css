@@ -168,3 +168,14 @@ p {
     padding: 8px 12px;
     border-radius: 3px;
 }
+
+.carousel-item img {
+    object-fit: cover;
+    height: 700px;
+    width: 100%;
+}
+
+.card-img {
+    height: 550px;
+    object-fit: cover;
+}
