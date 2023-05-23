@@ -15,7 +15,8 @@ class Adresses extends Model
         'street',
         'home_number',
         'apartment_number',
-        'city'
+        'city',
+        'id_user'
     ];
 
     public function user()

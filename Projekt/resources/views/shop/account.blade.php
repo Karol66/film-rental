@@ -101,6 +101,9 @@
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Update</button>
+                <div class="mt-4">
+                    <a href="{{ route('addresses.index') }}" class="btn btn-primary">Manage Addresses</a>
+                </div>
             </form>
         </div>
     </div>

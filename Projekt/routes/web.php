@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdressesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\ShopController;
@@ -55,3 +56,7 @@ Route::delete('/shop/delete', [ShopController::class, 'delete'])->name('shop.del
 Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search');
 
 Route::post('/account/update/{id}', [AuthManager::class, 'update'])->name('account.update');
+
+Route::resource('/shop/account/addresses', AdressesController::class);
+// Route::get('/shop/account/addresses', [AdressesController::class, 'index'])->name('addresses.index');
+
