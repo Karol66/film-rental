@@ -78,7 +78,7 @@ class ShopController extends Controller
      {
          $film = Film::findOrFail($id);
 
-         $quantity = $request->input('quantity'); // Pobierz wartość wpisaną w polu tekstowym
+         $quantity = $request->input('quantity');
 
          $basket = session()->get('basket', []);
 
@@ -92,9 +92,9 @@ class ShopController extends Controller
          return redirect()->back()->with('success', 'Film added to basket successfully!');
      }
     /**
-     * Remove a film from the basket.
+     * Delete a film from the basket.
      */
-    public function remove(Request $request)
+    public function delete(Request $request)
     {
         $filmId = $request->input('id');
         $basket = session()->get('basket');

@@ -30,8 +30,8 @@
                                         class="form-control gray-background">
                                 </div>
                                 <div class="form-group">
-                                    <label for="time">Time</label>
-                                    <input type="text" name="time" id="time" value="{{ $film->time }}"
+                                    <label for="time">Film Length</label>
+                                    <input type="text" name="film_length" id="film_length" value="{{ $film->film_length }}"
                                         class="form-control gray-background">
                                 </div>
                                 <div class="form-group">

@@ -20,13 +20,13 @@
                     <button type="button" class="btn btn-primary" onclick="toggleDropdown()">
                         <i class="bi bi-basket" aria-hidden="true"></i> <span class="badge badge-pill badge-danger"
                             id="cartItemCount">
-                            <?php
+                            @php
                             $totalQuantity = 0;
                             foreach ((array) session('basket') as $id => $details) {
                                 $totalQuantity += $details['quantity'];
                             }
                             echo $totalQuantity;
-                            ?>
+                            @endphp
                         </span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-basket" viewBox="0 0 16 16">
@@ -39,29 +39,29 @@
 
                     <div class="dropdown-menu" id="cartDropdown">
                         <div class="row total-header-section">
-                            <?php $total = 0; ?>
-                            <?php foreach ((array) session('basket') as $id => $details): ?>
-                            <?php $total += $details['price'] * $details['quantity']; ?>
-                            <?php endforeach; ?>
+                            @php $total = 0; @endphp
+                            @foreach ((array) session('basket') as $id => $details)
+                            @php $total += $details['price'] * $details['quantity']; @endphp
+                            @endforeach
                             <div class="col-lg-12 col-sm-12 col-12 total-section text-right">
-                                <p>Total: <span class="text-info">$ <?php echo $total; ?></span></p>
+                                <p>Total: <span class="text-info">$ {{ $total }}</span></p>
                             </div>
                         </div>
-                        <?php if (session('basket')): ?>
-                        <?php foreach (session('basket') as $id => $details): ?>
-                        <?php $product = \app\Models\Film::find($id); ?>
+                        @if (session('basket'))
+                        @foreach (session('basket') as $id => $details)
+                        @php $product = \app\Models\Film::find($id); @endphp
                         <div class="row cart-detail">
                             <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                <img class="imidz" src="data:image/jpeg;base64,<?php echo base64_encode($product->image); ?>">
+                                <img class="imidz" src="data:image/jpeg;base64,{{ base64_encode($product->image) }}">
                             </div>
                             <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                <p><?php echo $product->name; ?></p>
-                                <span class="price text-info">$<?php echo $details['price']; ?></span>
-                                <span class="count"> Quantity: <?php echo $details['quantity']; ?></span>
+                                <p>{{ $product->name }}</p>
+                                <span class="price text-info">${{ $details['price'] }}</span>
+                                <span class="count"> Quantity: {{ $details['quantity'] }}</span>
                             </div>
                         </div>
-                        <?php endforeach; ?>
-                        <?php endif; ?>
+                        @endforeach
+                        @endif
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
                                 <a class="btn btn-primary btn-block" href="{{ route('shop.basket') }}">My basket</a>
@@ -75,11 +75,11 @@
         <br />
 
         <div class="container">
-            <?php if (session('success')): ?>
+            @if (session('success'))
             <div class="alert alert-success">
-                <?php echo session('success'); ?>
+                {{ session('success') }}
             </div>
-            <?php endif; ?>
+            @endif
 
             @yield('content')
         </div>

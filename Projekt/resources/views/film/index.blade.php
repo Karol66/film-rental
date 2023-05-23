@@ -36,7 +36,7 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Type</th>
-                        <th>Time</th>
+                        <th>Film Length</th>
                         <th>Release Date</th>
                         <th>Country</th>
                         <th>Price</th>
@@ -53,7 +53,7 @@
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->type }}</td>
-                                <td>{{ $item->time }}</td>
+                                <td>{{ $item->film_length }}</td>
                                 <td>{{ $item->release_date }}</td>
                                 <td>{{ $item->country }}</td>
                                 <td>${{ $item->price }}</td>

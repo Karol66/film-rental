@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Adresses extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'street',
+        'home_number',
+        'apartment_number',
+        'city'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transactions::class);
+    }
 }

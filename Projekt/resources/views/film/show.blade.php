@@ -14,7 +14,7 @@
                 <div class="film-info">
                     <p class="card-text">Name: {{ $film->name }}</p>
                     <p class="card-text">Type: {{ $film->type }}</p>
-                    <p class="card-text">Time: {{ $film->time }}</p>
+                    <p class="card-text">Film Length: {{ $film->film_length }}</p>
                     <p class="card-text">Release Date: {{ $film->release_date }}</p>
                     <p class="card-text">Country: {{ $film->country }}</p>
                     <p class="card-text">Price: ${{ $film->price }}</p>

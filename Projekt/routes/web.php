@@ -51,7 +51,7 @@ Route::get('/shop/account', [ShopController::class, 'account'])->name('shop.acco
 Route::post('/add_to_basket/{id}', [ShopController::class, 'addToBasket'])->name('add_to_basket');
 Route::get('/basket', [ShopController::class, 'basket'])->name('shop.basket');
 Route::post('/update_basket/{id}', [ShopController::class, 'update'])->name('update_basket');
-Route::delete('/shop/delete', [ShopController::class, 'remove'])->name('shop.delete');
+Route::delete('/shop/delete', [ShopController::class, 'delete'])->name('shop.delete');
 Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search');
 
 Route::post('/account/update/{id}', [AuthManager::class, 'update'])->name('account.update');

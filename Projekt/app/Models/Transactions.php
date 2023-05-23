@@ -5,21 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Film extends Model
+class Transactions extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-    protected $fillable = [
-        'image',
-        'name',
-        'type',
-        'film_length',
-        'release_date',
-        'country',
-        'price'
-    ];
+    public function adresses()
+    {
+        return $this->belongsTo(Adresses::class);
+    }
 
     public function item()
     {
