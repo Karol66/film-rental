@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label>Time</label></br>
-                    <input type="number" name="film_length" id="film_length" class="form-control gray-background"></br>
+                    <input type="text" name="film_length" id="film_length" class="form-control gray-background"></br>
                 </div>
                 <div class="form-group">
                     <label>Release Date</label></br>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label>Price</label></br>
-                    <input type="number" name="price" id="price" class="form-control gray-background"></br>
+                    <input type="text" name="price" id="price" class="form-control gray-background"></br>
                 </div>
                 <div class="form-group">
                     <label for="image">Image:</label>

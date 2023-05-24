@@ -22,9 +22,10 @@ class ShopController extends Controller
 
     public function index_home()
     {
-        $films = Film::orderBy('id', 'desc')->take(6)->get();
+        $films = Film::orderBy('id', 'desc')->get();
         return view('index')->with('films', $films);
     }
+    // ->take(6)
 
     /**
      * Display the films page.
