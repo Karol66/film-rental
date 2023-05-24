@@ -9,13 +9,15 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['id_film','id_transaction'];
+
     public function films()
     {
-        return $this->belongsTo(Film::class);
+        return $this->belongsTo(Film::class, 'id_film');
     }
 
     public function transactions()
     {
-        return $this->belongsTo(Adresses::class);
+        return $this->belongsTo(Transactions::class, 'id_transaction');
     }
 }

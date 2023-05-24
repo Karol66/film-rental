@@ -11,16 +11,16 @@ class Transactions extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user');
     }
 
     public function adresses()
     {
-        return $this->belongsTo(Adresses::class);
+        return $this->belongsTo(Adresses::class, 'id_adresses');
     }
 
     public function item()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Item::class, 'id_transaction');
     }
 }

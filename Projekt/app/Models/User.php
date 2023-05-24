@@ -49,11 +49,11 @@ class User extends Authenticatable
 
     public function adresses()
     {
-        return $this->hasMany(Adresses::class);
+        return $this->hasMany(Adresses::class, 'id_adresses');
     }
 
     public function transactions()
     {
-        return $this->hasMany(Transactions::class);
+        return $this->hasMany(Transactions::class, 'id_transaction');
     }
 }

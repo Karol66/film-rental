@@ -55,8 +55,9 @@ Route::post('/update_basket/{id}', [ShopController::class, 'update'])->name('upd
 Route::delete('/shop/delete', [ShopController::class, 'delete'])->name('shop.delete');
 Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search');
 
+Route::post('/pay', [ShopController::class, 'pay'])->name('shop.pay');
+
 Route::post('/account/update/{id}', [AuthManager::class, 'update'])->name('account.update');
 
 Route::resource('/shop/account/addresses', AdressesController::class);
-// Route::get('/shop/account/addresses', [AdressesController::class, 'index'])->name('addresses.index');
 

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Adresses;
+use App\Models\Transactions;
+
 
 class ShopController extends Controller
 {
@@ -44,9 +47,12 @@ class ShopController extends Controller
      * Display the basket page.
      */
     public function basket()
-    {
-        return view('shop.basket');
-    }
+{
+    $user = Auth::user();
+    $addresses = Adresses::where('id_user', $user->id)->get();
+    return view('shop.basket', compact('addresses'));
+}
+
 
     /**
      * Add a film to the basket.
@@ -118,5 +124,41 @@ class ShopController extends Controller
         }
 
         return view('shop.films')->with('films', $film)->with('search', $search);
+    }
+
+    public function pay(Request $request)
+    {
+        $addressId = $request->input('address_id');
+        $user = Auth::user();
+
+        $basket = session()->get('basket');
+        $total = 0;
+
+        // Calculate the total price
+        foreach ($basket as $id => $details) {
+            $total += $details['price'] * $details['quantity'];
+        }
+
+        // Create a new transaction
+        $transaction = new Transactions();
+        $transaction->id_user = $user->id;
+        $transaction->id_adresses = $addressId;
+        $transaction->price = $total;
+        $transaction->save();
+
+        // Add items to the transaction
+        foreach ($basket as $id => $details) {
+            $transaction->item()->create([
+                'id_film' => $id,
+                'quantity' => $details['quantity'],
+                'price' => $details['price'],
+                'id_transaction' => $transaction->id,
+            ]);
+        }
+
+        // Clear the basket
+        session()->forget('basket');
+
+        return redirect()->route('shop.index')->with('success', 'Payment successful! Transaction added to the database.');
     }
 }

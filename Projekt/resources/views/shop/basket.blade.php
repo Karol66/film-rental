@@ -154,6 +154,24 @@
                         Pay</button>
                 </td>
             </tr>
+            <form action="{{ route('shop.pay') }}" method="POST">
+                @csrf
+                <select class="form-select" name="address_id">
+                    @foreach ($addresses as $address)
+                        <option value="{{ $address->id }}">{{ $address->street }}, {{ $address->home_number }},
+                            {{ $address->apartment_number }}, {{ $address->city }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-success" id="pay-btn">
+                    <i class="bi bi-credit-card"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-credit-card" viewBox="0 0 16 16">
+                    </svg>
+                    Pay</button>
+            </form>
+
+
+
         </div>
     </div>
 @endsection

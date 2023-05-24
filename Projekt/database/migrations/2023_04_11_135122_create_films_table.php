@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //TO Do zmiana w obrazach z blob na medium blob
         Schema::create('films', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->string('country');
             $table->binary('image')->nullable();
             $table->string('type');
-            $table->string('price');
+            $table->double('price');
             $table->timestamps();
         });
     }

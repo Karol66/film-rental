@@ -23,6 +23,6 @@ class Film extends Model
 
     public function item()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Item::class, 'id_transaction');
     }
 }
