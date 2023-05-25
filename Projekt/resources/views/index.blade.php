@@ -9,6 +9,40 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <style>
+        .film-card {
+            position: relative;
+        }
+
+        .image-container {
+            position: relative;
+        }
+
+        .card-img {
+            transition: filter 0.8s;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0;
+            transition: opacity 0.8s, transform 0.8s;
+            transition-delay: 0.2s;
+        }
+
+        .film-card:hover .card-img {
+            filter: blur(5px);
+        }
+
+        .film-card:hover .play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -49,21 +83,33 @@
                     @php
                         $chunkedFilms = $films->chunk(4);
                     @endphp
-                    @foreach($chunkedFilms as $key => $filmGroup)
-                        <li data-target="#movieCarousel" data-slide-to="{{ $key }}" @if($key == 0) class="active" @endif></li>
+                    @foreach ($chunkedFilms as $key => $filmGroup)
+                        <li data-target="#movieCarousel" data-slide-to="{{ $key }}"
+                            @if ($key == 0) class="active" @endif></li>
                     @endforeach
                 </ol>
                 <div class="carousel-inner">
-                    @foreach($chunkedFilms as $key => $filmGroup)
-                        <div class="carousel-item @if($key == 0) active @endif">
+                    @foreach ($chunkedFilms as $key => $filmGroup)
+                        <div class="carousel-item @if ($key == 0) active @endif">
                             <div class="row">
-                                @foreach($filmGroup as $film)
+                                @foreach ($filmGroup as $film)
                                     <div class="col-md-3">
-                                        <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}" class="card-img" alt="...">
-                                        <div class="carousel-caption">
-                                            <h3>{{ $film->tytuł }}</h3>
-                                            <p>{{ $film->opis }}</p>
-                                        </div>
+                                        <a href="{{ route('film.show', $film->id) }}">
+                                            <div class="film-card">
+                                                <div class="image-container">
+                                                    <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}"
+                                                        class="card-img" alt="...">
+                                                    <div class="play-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="100"
+                                                            height="100" fill="white" class="bi bi-play"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 @endforeach
                             </div>
@@ -81,6 +127,8 @@
             </div>
         </div>
     </section>
+
+
 
 
 
