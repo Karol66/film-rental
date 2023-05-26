@@ -48,56 +48,56 @@ class ShopController extends Controller
      * Display the basket page.
      */
     public function basket()
-{
-    $user = Auth::user();
-    $addresses = Adresses::where('id_user', $user->id)->get();
-    return view('shop.basket', compact('addresses'));
-}
+    {
+        $user = Auth::user();
+        $addresses = Adresses::where('id_user', $user->id)->get();
+        return view('shop.basket', compact('addresses'));
+    }
 
 
     /**
      * Add a film to the basket.
      */
 
-     public function addToBasket(Request $request, $id)
-     {
-         $film = Film::findOrFail($id);
+    public function addToBasket(Request $request, $id)
+    {
+        $film = Film::findOrFail($id);
 
-         $quantity = $request->input('quantity');
+        $quantity = $request->input('quantity');
 
-         $basket = session()->get('basket', []);
+        $basket = session()->get('basket', []);
 
-         if (isset($basket[$id])) {
-             $basket[$id]['quantity'] += $quantity;
-         } else {
-             $basket[$id] = [
-                 "name" => $film->name,
-                 "price" => $film->price,
-                 "quantity" => $quantity
-             ];
-         }
+        if (isset($basket[$id])) {
+            $basket[$id]['quantity'] += $quantity;
+        } else {
+            $basket[$id] = [
+                "name" => $film->name,
+                "price" => $film->price,
+                "quantity" => $quantity
+            ];
+        }
 
-         session()->put('basket', $basket);
-         return redirect()->back()->with('success', 'Film added to basket successfully!');
-     }
+        session()->put('basket', $basket);
+        return redirect()->back()->with('success', 'Film added to basket successfully!');
+    }
 
-     public function update(Request $request, $id)
-     {
-         $film = Film::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $film = Film::findOrFail($id);
 
-         $quantity = $request->input('quantity');
+        $quantity = $request->input('quantity');
 
-         $basket = session()->get('basket', []);
+        $basket = session()->get('basket', []);
 
-         $basket[$id] = [
-             "name" => $film->name,
-             "price" => $film->price,
-             "quantity" => $quantity
-         ];
+        $basket[$id] = [
+            "name" => $film->name,
+            "price" => $film->price,
+            "quantity" => $quantity
+        ];
 
-         session()->put('basket', $basket);
-         return redirect()->back()->with('success', 'Film added to basket successfully!');
-     }
+        session()->put('basket', $basket);
+        return redirect()->back()->with('success', 'Film added to basket successfully!');
+    }
     /**
      * Delete a film from the basket.
      */
