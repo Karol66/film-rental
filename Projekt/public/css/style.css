@@ -3,19 +3,19 @@ body {
     color: white;
 }
 
-/* .grid-container {
+.grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
     background-color: #1c1f23;
     padding: 10px;
-} */
+}
 
-/* .grid-item {
+.grid-item {
     background-color: transparent;
     padding: 20px;
     font-size: 30px;
     text-align: center;
-} */
+}
 
 .heading {
     display: flex;
@@ -27,12 +27,12 @@ body {
     margin-bottom: 2rem;
 }
 
-/* .heading-title {
+.heading-title {
     font-size: 1.75em;
     font-weight: 500;
-} */
+}
 
-/* .buy {
+.buy {
     font-size: 21px;
     background: #233ab0;
     width: 40px;
@@ -51,9 +51,9 @@ body {
     position: absolute;
     bottom: 10px;
     left: 135px;
-} */
+}
 
-/* a:link {
+a:link {
     text-decoration: none;
 }
 
@@ -64,9 +64,9 @@ a:hover {
 
 #margin {
     margin-top: 50px;
-} */
+}
 
-/* .addToBusket {
+.addToBusket {
     font-size: 21px;
     background: #233ab0;
     width: 30px;
@@ -78,7 +78,7 @@ a:hover {
     color: whitesmoke;
     position: absolute;
 
-} */
+}
 
 #align {
     text-align: center;
