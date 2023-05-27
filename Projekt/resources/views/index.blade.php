@@ -5,169 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wypożyczalnia Filmów</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        .film-card {
-            position: relative;
-        }
-
-        .image-container {
-            position: relative;
-        }
-
-        .card-img {
-            transition: filter 0.8s;
-        }
-
-        .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.5);
-            opacity: 0;
-            transition: opacity 0.8s, transform 0.8s;
-            transition-delay: 0.2s;
-        }
-
-        .film-card:hover .card-img {
-            filter: blur(5px);
-        }
-
-        .film-card:hover .play-icon {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .film-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            color: white;
-            text-align: center;
-            transform: translateY(100%);
-            transition: transform 0.6s;
-        }
-
-        .film-card:hover .film-title {
-            transform: translateY(0);
-        }
-
-        .promotions .button-container {
-            flex: 1;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .promotions .promo-button {
-            background-color: beige;
-            border-color: transparent;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            border-radius: 5px;
-            height: 150px;
-        }
-
-        .promotions .promo-button:hover {
-            transform: scale(0.95);
-        }
-
-        .promotions .promo-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-        }
-
-        .promotions .promo-text {
-            margin-bottom: 1rem;
-        }
-
-        .films-section .card {
-            position: relative;
-            width: 250px;
-            height: 300px;
-            margin-bottom: 20px;
-            background-color: transparent;
-            transition: filter 0.3s;
-        }
-
-        .films-section .image-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        .films-section .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: filter 0.8s;
-        }
-
-        .films-section .card:hover img {
-            filter: blur(5px);
-        }
-
-        .films-section .card .bi-eye {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.5);
-            opacity: 0;
-            transition: opacity 0.8s, transform 0.8s;
-            transition-delay: 0.2s;
-            z-index: 1;
-            color: white;
-            font-size: 40px;
-        }
-
-        .films-section .card:hover .bi-eye {
-            display: block;
-            animation: eyeAppear 0.8s ease forwards;
-        }
-
-        .films-section .card .film-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            color: white;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(0%);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-
-        .films-section .card:hover .film-title {
-            opacity: 1;
-        }
-
-        @keyframes eyeAppear {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-    </style>
-
-
 </head>
 
 <body>
@@ -182,16 +21,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Strona główna</a>
+                    <a class="nav-link" href="">Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Filmy</a>
+                    <a class="nav-link" href="{{ route('shop.films') }}">Filmy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Kontakt</a>
+                    <a class="nav-link"  href="">Kontakt</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logowanie</a>
+                    <a class="nav-link" href="{{ route('login') }}">Logowanie</a>
                 </li>
             </ul>
         </div>
@@ -201,7 +40,7 @@
         style="background-image: url(/img/tlo2.jpg); height: 450px; background-size: cover;">
         <h1>Wypożyczalnia Filmów Online</h1>
         <p>Znajdź i wypożycz swoje ulubione filmy.</p>
-        <a href="#" class="btn btn-primary">Przejdź do kolekcji filmów</a>
+        <a href="{{ route('shop.films') }}" class="btn btn-primary">Przejdź do kolekcji filmów</a>
     </header>
 
     <br>

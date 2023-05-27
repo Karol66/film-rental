@@ -1,39 +1,40 @@
 html {
     height: 100%;
-  }
-  body {
-    margin:0;
-    padding:0;
-    font-family: sans-serif;
-    background: #1c1f23;
-  }
+}
 
-  .login-box {
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: url(/img/tlo2.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.login-box {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 400px;
     padding: 40px;
     transform: translate(-50%, -50%);
-    background: rgba(0,0,0,.5);
+    background: rgb(18, 16, 16);
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
     text-align: center;
-  }
+}
 
-  .login-box h2 {
+.login-box h2 {
     margin: 0 0 30px;
     padding: 0;
     color: #fff;
     text-align: center;
-  }
+}
 
-  .login-box .user-box {
+.login-box .user-box {
     position: relative;
-  }
+}
 
-  .login-box .user-box input {
+.login-box .user-box input {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -43,34 +44,40 @@ html {
     border-bottom: 1px solid #fff;
     outline: none;
     background: transparent;
-  }
-  .login-box .user-box label {
+}
+
+.login-box .user-box label {
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     padding: 10px 0;
     font-size: 16px;
     color: #fff;
     pointer-events: none;
     transition: .5s;
-  }
+}
 
-  .login-box .user-box input:focus ~ label,
-  .login-box .user-box input:valid ~ label {
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
     top: -20px;
     left: 0;
     font-size: 12px;
-  }
+}
 
-  .btn-primary {
+.login-box .btn-primary {
     background-color: transparent;
     border-color: transparent;
+    outline: none;
+    box-shadow: none;
 }
 
-.btn-primary:hover {
-    background-color: #233ab0;
-    border-color: #233ab0;
+.login-box .btn-primary:hover{
+    background-color:#b02323;
+    border-color: #b02323;
 }
-
-
-
+.login-box .btn-primary:active {
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+    box-shadow: none;
+}
