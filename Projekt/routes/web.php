@@ -32,12 +32,14 @@ Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('re
 
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
+Route::get('/film/films', [FilmController::class, 'film'])->name('film.films');
 Route::get('/film/search', [FilmController::class, 'search'])->name('film.search');
 Route::resource("/film", FilmController::class);
 Route::get('/film', [FilmController::class, 'index'])->name('film.index');
 Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('film.edit');
 Route::patch('/film/{id}', [FilmController::class, 'update'])->name('film.update');
 Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('film.destroy');
+
 
 Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
 Route::resource("/users", UserController::class);

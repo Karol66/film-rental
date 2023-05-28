@@ -27,9 +27,6 @@
                     <a class="nav-link" href="{{ route('shop.films') }}">Filmy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="">Kontakt</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Logowanie</a>
                 </li>
             </ul>
@@ -134,7 +131,7 @@
             <div class="button-container">
                 <button class="promo-button">
                     <div class="promo-content">
-                        <p class="promo-text text-center">Co 10 zamówień otrzymaj 5% upust ceny!</p>
+                        <p class="promo-text text-center">Oferta dla stałych klientów po zakupie 200 filmów stałe 3% zniżki!</p>
                     </div>
                 </button>
             </div>

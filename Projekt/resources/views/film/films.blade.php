@@ -1,30 +1,37 @@
 @extends('film.layout')
 @section('content')
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="table-responsive">
-                <table class="table table-dark table-striped" id="margin">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>User Name</th>
-                            <th>Is Admin</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $item)
+        <div class="table-responsive">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Film Length</th>
+                        <th>Release Date</th>
+                        <th>Country</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @isset($film)
+                        @foreach ($film as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->last_name }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->user_name }}</td>
-                                <td>{{ $item->is_admin }}</td>
                                 <td>
-                                    <a href="{{ route('users.show', $item->id) }}">
+                                    <img class="imidz" src="data:image/jpeg;base64,{{ base64_encode($item->image) }}">
+                                </td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->type }}</td>
+                                <td>{{ $item->film_length }}</td>
+                                <td>{{ $item->release_date }}</td>
+                                <td>{{ $item->country }}</td>
+                                <td>${{ $item->price }}</td>
+                                <td>
+                                    <a href="{{ route('film.show', $item->id) }}">
                                         <button class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -37,7 +44,7 @@
                                             </svg>
                                         </button>
                                     </a>
-                                    <a href="{{ route('users.edit', $item->id) }}">
+                                    <a href="{{ route('film.edit', $item->id) }}">
                                         <button class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"
                                                 aria-hidden="true"></i>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -48,8 +55,8 @@
                                             </svg>
                                         </button>
                                     </a>
-                                    <form method="POST" action="{{ route('users.destroy', $item->id) }}"
-                                        accept-charset="UTF-8" style="display:inline">
+                                    <form method="POST" action="{{ route('film.destroy', $item->id) }}" accept-charset="UTF-8"
+                                        style="display:inline">
                                         {{ method_field('DELETE') }}
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-danger btn-sm"
@@ -69,12 +76,12 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
+                    @endisset
+                </tbody>
+            </table>
+            <div class="pagination-container d-flex justify-content-center mt-5">
+                {{ $film->links('pagination::bootstrap-4') }}
             </div>
-
-        <div class="pagination-container d-flex justify-content-center mt-5">
-            {{ $users->links('pagination::bootstrap-4') }}
         </div>
-     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    </main>
 @endsection

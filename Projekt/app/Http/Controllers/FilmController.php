@@ -18,6 +18,12 @@ class FilmController extends Controller
         return view('film.index')->with('film', $film);
     }
 
+    public function film()
+    {
+        $film = Film::paginate(10);
+        return view('film.films')->with('film', $film);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

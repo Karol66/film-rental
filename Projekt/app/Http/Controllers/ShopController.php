@@ -134,20 +134,44 @@ class ShopController extends Controller
 
         $basket = session()->get('basket');
         $total = 0;
+        $filmCount = 0;
 
-        // Calculate the total price
         foreach ($basket as $id => $details) {
             $total += $details['price'] * $details['quantity'];
+            $filmCount += $details['quantity'];
         }
 
-        // Create a new transaction
+        if ($total >= 100) {
+            $discount = $total * 0.05;
+            $total -= $discount;
+        }
+
+        $previousTransactions = Transactions::where('id_user', $user->id)->get();
+
+        $previousFilmCount = 0;
+        foreach ($previousTransactions as $transaction) {
+            $previousFilmCount += $transaction->quantity;
+        }
+
+        $totalFilmCount = $filmCount + $previousFilmCount;
+
+        if ($totalFilmCount >= 200) {
+            $discount = ($basket[$id]['price'] * 0.03);
+            $total -= $discount;
+        }
+
+        if ($previousTransactions->isEmpty()) {
+            $discount = $total * 0.2;
+            $total -= $discount;
+        }
+
         $transaction = new Transactions();
         $transaction->id_user = $user->id;
         $transaction->id_adresses = $addressId;
         $transaction->price = $total;
+        $transaction->quantity = $filmCount;
         $transaction->save();
 
-        // Add items to the transaction
         foreach ($basket as $id => $details) {
             $transaction->item()->create([
                 'id_film' => $id,
@@ -157,9 +181,8 @@ class ShopController extends Controller
             ]);
         }
 
-        // Clear the basket
         session()->forget('basket');
 
-        return redirect()->route('shop.index')->with('success', 'Payment successful! Transaction added to the database.');
+        return redirect()->route('shop.index')->with('success', 'Payment successful! Transaction added to the database.')->with('total', $total);
     }
 }

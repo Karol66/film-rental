@@ -1,8 +1,9 @@
 @extends('film.layout')
+
 @section('content')
-    <div>
-        <div class="card-header">
-            <h3>Create Film</h3>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Create Film</h1>
         </div>
         <div>
 
@@ -22,7 +23,8 @@
                 </div>
                 <div class="form-group">
                     <label>Release Date</label></br>
-                    <input type="date" name="release_date" id="release_date" class="form-control gray-background" value="{{ old('release_date') }}"></br>
+                    <input type="date" name="release_date" id="release_date" class="form-control gray-background"
+                        value="{{ old('release_date') }}"></br>
                 </div>
                 <div class="form-group">
                     <label>Country</label></br>
@@ -42,8 +44,6 @@
                     </div>
                 </div>
             </form>
-
-
         </div>
-    </div>
-@stop
+    </main>
+@endsection
