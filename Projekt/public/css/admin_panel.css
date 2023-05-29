@@ -24,12 +24,16 @@ table tbody td {
 }
 
 .film-image {
-    width: 250px;
-    height: 375px;
+    width: 400px;
+    height: 520px;
     margin-right: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
 }
+
+.film-info p {
+    margin-bottom: 50px;
+  }
 
 .image-wrapper {
     width: 100%;
@@ -188,10 +192,6 @@ right: 0;
 .sidebar .nav-link .feather {
     margin-right: 4px;
     color: #727272;
-}
-
-.sidebar .nav-link.active {
-    color: #2470dc;
 }
 
 .sidebar .nav-link:hover .feather,

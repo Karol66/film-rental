@@ -9,7 +9,10 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>User</th>
-                        <th colspan="4">Address</th>
+                        <th>Street</th>
+                        <th>Home Number</th>
+                        <th>Apartment Number</th>
+                        <th>City</th>
                     </tr>
                 </thead>
                 <tbody>

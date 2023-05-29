@@ -20,39 +20,46 @@
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" name="name" id="name" value="{{ $film->name }}"
-                                class="form-control gray-background">
+                                class="form-control"
+                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                         </div>
                         <div class="form-group">
                             <label for="type">Type</label>
                             <input type="text" name="type" id="type" value="{{ $film->type }}"
-                                class="form-control gray-background">
+                                class="form-control"
+                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                         </div>
                         <div class="form-group">
                             <label for="time">Film Length</label>
                             <input type="text" name="film_length" id="film_length" value="{{ $film->film_length }}"
-                                class="form-control gray-background">
+                                class="form-control"
+                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                         </div>
                         <div class="form-group">
                             <label for="relese_date">Release Date</label>
                             <input type="date" name="release_date" id="release_date"
                                 value="{{ old('release_date', $film->release_date ? date('Y-m-d', strtotime($film->release_date)) : '') }}"
-                                class="form-control gray-background">
+                                class="form-control"
+                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                         </div>
                         <div class="form-group">
                             <label for="country">Country</label>
                             <input type="text" name="country" id="country" value="{{ $film->country }}"
-                                class="form-control gray-background">
+                                class="form-control"
+                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
                             <input type="text" name="price" id="price" value="{{ $film->price }}"
-                                class="form-control gray-background">
+                                class="form-control"
+                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="image">Image</label>
-                            <input type="file" name="image" id="image" class="form-control-file">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" name="image" id="image" class="form-control-file" title="Browse">
                         </div>
+
                         <div class="mt-3">
                             <button type="submit" class="btn btn-success">Upload</button>
                         </div>
