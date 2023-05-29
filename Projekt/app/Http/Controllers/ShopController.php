@@ -183,6 +183,6 @@ class ShopController extends Controller
 
         session()->forget('basket');
 
-        return redirect()->route('shop.index')->with('success', 'Payment successful! Transaction added to the database.')->with('total', $total);
+        return redirect()->route('shop.index')->with('success', 'Payment successful! Transaction added to the database.');
     }
 }

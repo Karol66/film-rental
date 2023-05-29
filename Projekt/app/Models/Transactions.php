@@ -14,7 +14,7 @@ class Transactions extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function adresses()
+    public function addresses()
     {
         return $this->belongsTo(Adresses::class, 'id_adresses');
     }

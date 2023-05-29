@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\TransactionsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +32,7 @@ Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('re
 
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
+Route::get('film/transactions', [TransactionsController::class, 'index'])->name('film.transactions');
 Route::get('/film/films', [FilmController::class, 'film'])->name('film.films');
 Route::get('/film/search', [FilmController::class, 'search'])->name('film.search');
 Route::resource("/film", FilmController::class);
@@ -62,4 +63,6 @@ Route::post('/pay', [ShopController::class, 'pay'])->name('shop.pay');
 Route::post('/account/update/{id}', [AuthManager::class, 'update'])->name('account.update');
 
 Route::resource('/shop/account/addresses', AdressesController::class);
+
+
 

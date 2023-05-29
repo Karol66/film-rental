@@ -1,7 +1,7 @@
 @extends('film.layout')
 @section('content')
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="table-responsive">
+        <div class="table-responsive pt-4">
             <table class="table table-dark table-striped">
                 <thead>
                     <tr>

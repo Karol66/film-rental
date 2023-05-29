@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Transactions;
 
 class FilmController extends Controller
 {
@@ -23,6 +24,12 @@ class FilmController extends Controller
         $film = Film::paginate(10);
         return view('film.films')->with('film', $film);
     }
+
+    // public function tra()
+    // {
+    //     $transactions = Transactions::paginate(10);
+    //     return view('transactions')->with('transactions', $transactions);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -112,6 +119,6 @@ class FilmController extends Controller
             $film = Film::paginate(10);
         }
 
-        return view('film.index')->with('film', $film)->with('search', $search);
+        return view('film.films')->with('film', $film)->with('search', $search);
     }
 }

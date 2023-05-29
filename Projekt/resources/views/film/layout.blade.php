@@ -23,6 +23,11 @@
 
 
     <style>
+        body {
+            background-color: #1c1f23;
+            color: white;
+        }
+
         .form-control-dark {
             color: #fff;
             background-color: rgba(255, 255, 255, .1);
@@ -33,26 +38,46 @@
             border-color: transparent;
             box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
         }
+
+        /* Add this style to make the search bar narrower */
+        @media (min-width: 992px) {
+            .form-control-dark {
+                height: 40px;
+                width: 1080px;
+                display: inline-block;
+                margin-right: 5px;
+            }
+        }
+
+        .sidebar {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
     </style>
+
 
 </head>
 
 <body>
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Movie <span style="color: #a51a1a;">cave</span></a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <form class="w-100" action="{{ route('film.search') }}" method="GET">
+            <input class="form-control form-control-dark" name="search" type="text" placeholder="Search"
+                aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3"href="{{ route('logout') }}">Sign out</a>
+                <a class="nav-link px-3" href="{{ route('logout') }}">Sign out</a>
             </div>
         </div>
     </header>
+
 
     <div class="container-fluid">
         <div class="row">
@@ -65,12 +90,12 @@
                                 Dashboard
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span data-feather="file"></span>
                                 Orders
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('film.films') }}">
                                 <span data-feather="shopping-cart"></span>
@@ -84,9 +109,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('film.transactions') }}">
                                 <span data-feather="bar-chart-2"></span>
-                                Reports
+                                Transactions
                             </a>
                         </li>
                         <li class="nav-item">
@@ -96,17 +121,14 @@
                             </a>
                         </li>
                     </ul>
-
-
                 </div>
             </nav>
 
-<div class="container">
-    @yield('content')
-</div>
-
+            <div class="container">
+                @yield('content')
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
-
-

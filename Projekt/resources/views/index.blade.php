@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Wypożyczalnia Filmów</a>
+        <a class="navbar-brand" href="#"><img src="\img\Movie_Cave.png" height="80px" class="m-0"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,11 +33,12 @@
         </div>
     </nav>
 
-    <header class="jumbotron text-center"
+    <header class="jumbotron text-center pt-4"
         style="background-image: url(/img/tlo2.jpg); height: 450px; background-size: cover;">
         <h1>Wypożyczalnia Filmów Online</h1>
         <p>Znajdź i wypożycz swoje ulubione filmy.</p>
-        <a href="{{ route('shop.films') }}" class="btn btn-primary">Przejdź do kolekcji filmów</a>
+        <a href="{{ route('shop.films') }}" class="btn btn-primary border-white">Przejdź do kolekcji
+            filmów</a>
     </header>
 
     <br>
@@ -103,8 +104,6 @@
         </div>
     </section>
 
-
-
     <br>
     <br>
 
@@ -122,7 +121,7 @@
                 </button>
             </div>
             <div class="button-container">
-                <button class="promo-button" style="background-color: rgba(255, 0, 0, 0.686); color:beige">
+                <button class="promo-button" style="background-color: #711212; color:beige">
                     <div class="promo-content">
                         <p class="promo-text text-center">Zdobądź 5% zniżki dla zamówień powyżej 100 zł!</p>
                     </div>
@@ -131,7 +130,8 @@
             <div class="button-container">
                 <button class="promo-button">
                     <div class="promo-content">
-                        <p class="promo-text text-center">Oferta dla stałych klientów po zakupie 200 filmów stałe 3% zniżki!</p>
+                        <p class="promo-text text-center">Oferta dla stałych klientów po zakupie 200 filmów stałe 3%
+                            zniżki!</p>
                     </div>
                 </button>
             </div>

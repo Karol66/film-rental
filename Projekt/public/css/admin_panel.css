@@ -78,19 +78,19 @@ p {
 }
 
 .pagination a:hover {
-    background-color: #b02323;
+    background-color: #711212;
     border-color: transparent;
     color: white;
 }
 
-.pagination .disabled .page-link {
+.pagination .page-item.disabled .page-link {
     background-color: transparent;
     border-color: transparent;
     color: white;
 }
 
 .pagination .page-item.active .page-link {
-    background-color: #b02323;
+    background-color: #711212;
     border-color: transparent;
     color: white;
     padding: 8px 12px;
@@ -111,7 +111,12 @@ a:hover {
     height: 90px;
 }
 
-
+.pagination {
+    background-color: transparent;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
 
 
 
@@ -177,7 +182,7 @@ right: 0;
 
 .sidebar .nav-link {
     font-weight: 500;
-    color: #333;
+    color: white;
 }
 
 .sidebar .nav-link .feather {

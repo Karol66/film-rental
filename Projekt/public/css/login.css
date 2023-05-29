@@ -72,8 +72,8 @@ body {
 }
 
 .login-box .btn-primary:hover{
-    background-color:#b02323;
-    border-color: #b02323;
+    background-color:#711212;
+    border-color: #711212;
 }
 .login-box .btn-primary:active {
     background-color: transparent;
