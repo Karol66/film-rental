@@ -43,8 +43,7 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $users = User::findOrFail($id);
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
+        $input = $request->except('password'); // Wyklucz pole 'password' z żądania
         $users->update($input);
         return redirect('users')->with('flash_message', 'User Updated!');
     }
