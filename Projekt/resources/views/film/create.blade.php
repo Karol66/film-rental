@@ -15,42 +15,28 @@
                 margin-bottom: 20px;
             }
 
-            .custom-file-upload {
+            .film-image {
                 width: 350px;
                 height: 500px;
-                margin-top: 20px;
-                margin-bottom: 20px;
+                margin-top: 40px;
+                margin-bottom: 0;
                 border-radius: 10px;
                 border: 1px solid #ccc;
                 display: inline-block;
-                padding: 10px 20px;
-                cursor: pointer;
-                position: relative;
                 overflow: hidden;
                 float: left;
+                margin-right: 20px;
             }
 
-            .custom-file-upload input[type="file"] {
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                cursor: pointer;
-            }
-
-            .custom-file-upload img {
+            .film-img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                margin: 0; /* Nowa linijka */
             }
 
             .form-fields {
                 float: left;
-                margin-left: 20px;
                 padding-top: 20px;
                 width: calc(100% - 380px);
             }
@@ -60,28 +46,31 @@
             }
         </style>
 
-        <div class="row">
-            <form method="POST" action="{{ route('film.store') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="custom-file-upload" onclick="document.getElementById('image').click()">
-                    <input type="file" name="image" id="image"><br><br>
-                    <img id="preview" src="#" alt="Preview" style="display: none; max-width: 100%;">
-                </div>
+<div class="row">
+    <form method="POST" action="{{ route('film.store') }}" enctype="multipart/form-data">
+        @csrf
+        <div class="film-image" onclick="document.getElementById('image').click()">
+            <input type="file" name="image" id="image"><br><br>
+            <div class="image-wrapper">
+                <img id="preview" src="#" alt="Preview" class="film-img"
+                    style="display: none; max-width: 100%;">
+            </div>
+        </div>
 
-                <div class="form-fields">
-                    <div class="form-group">
-                        <label>Name</label><br>
-                        <input type="text" name="name" id="name" class="form-control"
-                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;"><br>
+        <div class="form-fields">
+            <div class="form-group">
+                <label>Name</label><br>
+                <input type="text" name="name" id="name" class="form-control"
+                    style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;"><br>
+            </div>
+            <div class="form-group">
+                <label>Type</label><br>
+                <div class="d-flex">
+                    <div class="form-check flex-fill">
+                        <input type="radio" name="type" id="type_comedy" class="form-check-input" value="comedy"
+                            checked>
+                        <label for="type_comedy" class="form-check-label">Comedy</label>
                     </div>
-                    <div class="form-group">
-                        <label>Type</label><br>
-                        <div class="d-flex">
-                            <div class="form-check flex-fill">
-                                <input type="radio" name="type" id="type_comedy" class="form-check-input" value="comedy"
-                                    checked>
-                                <label for="type_comedy" class="form-check-label">Comedy</label>
-                            </div>
                             <div class="form-check flex-fill">
                                 <input type="radio" name="type" id="type_adventure" class="form-check-input"
                                     value="adventure">
@@ -139,7 +128,7 @@
 
 
     <script>
-        document.getElementById('image').addEventListener('change', function(e) {
+       addEventListener('change', function(e) {
             var fileInput = e.target;
             var file = fileInput.files[0];
 

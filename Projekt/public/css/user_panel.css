@@ -1,0 +1,138 @@
+body {
+    background-color: #1c1f23;
+    color: white;
+}
+
+.navbar{
+    padding: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: x-large;
+}
+
+.navbar a{
+    color: white;
+}
+
+.pagination {
+    background-color: transparent;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.pagination a {
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 3px;
+}
+
+.pagination a:hover {
+    background-color: #711212;
+    border-color: transparent;
+    color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #711212;
+    border-color: transparent;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 3px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.imidz {
+    width: 80px;
+    height: 100px;
+}
+
+.buy {
+    border-color: transparent;
+    background-color: #8e1616;
+}
+
+.buy:hover,
+.buy:focus {
+    border-color: transparent;
+    background-color: #b51b1b;
+}
+
+.buy:active,
+.buy:focus:active {
+    border-color: transparent;
+    background-color: #b51b1b;
+}
+
+table thead th {
+    text-align: center;
+}
+
+table tbody td {
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price-quantity {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price-quantity .price {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price-quantity .count {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-menu {
+    min-width: 300px;
+    max-width: 500px;
+    background-color: #343a40;
+    padding: 10px;
+}
+
+
+.dropdown-menu .total-section p,
+.dropdown-menu .product-name,
+.dropdown-menu .price-quantity .price,
+.dropdown-menu .count,
+.dropdown-menu .checkout a {
+    color: #fff;
+}
+
+
