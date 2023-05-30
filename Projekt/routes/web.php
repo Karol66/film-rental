@@ -52,6 +52,12 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/films', [ShopController::class, 'films'])->name('shop.films');
 Route::get('/shop/account', [ShopController::class, 'account'])->name('shop.account');
+Route::get('/shop/account/change',function () {
+    return view('shop.password_change');
+})->name('shop.password_change');
+Route::get('/shop/account/payment',function () {
+    return view('shop.payment');
+})->name('shop.payment');
 Route::post('/add_to_basket/{id}', [ShopController::class, 'addToBasket'])->name('add_to_basket');
 Route::get('/basket', [ShopController::class, 'basket'])->name('shop.basket');
 Route::post('/update_basket/{id}', [ShopController::class, 'update'])->name('update_basket');

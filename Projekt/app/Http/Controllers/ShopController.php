@@ -16,7 +16,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $films = Film::orderBy('id', 'desc')->take(6)->get();
+        $films = Film::orderBy('id', 'desc')->take(20)->get();
         return view('shop.index')->with('films', $films);
     }
 

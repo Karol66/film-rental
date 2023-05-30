@@ -1,4 +1,4 @@
-@extends('shop.layout2')
+@extends('shop.layout')
 
 @section('content')
     <div class="card-header">
@@ -39,7 +39,6 @@
             </tbody>
         </table>
 
-        <!-- Form for creating a new address -->
         <form action="{{ route('addresses.store') }}" method="POST">
             @csrf
             <div class="form-group">

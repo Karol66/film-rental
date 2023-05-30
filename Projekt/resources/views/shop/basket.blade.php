@@ -24,13 +24,12 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td data-th="Product">
                                     <div class="row">
-                                        <div class="col-sm-3 hidden-xs">
+                                        <div>
                                             @php
                                                 $product = \App\Models\Film::find($id);
                                                 $image = base64_encode($product->image);
                                             @endphp
-                                            <img src="data:image/png;base64,{{ $image }}" width="100"
-                                                height="100" class="img-responsive" />
+                                            <img class="imidz" src="data:image/png;base64,{{ $image }}"/>
                                         </div>
                                     </div>
                                 </td>
@@ -43,15 +42,15 @@
                                 <td>
                                     <form action="{{ route('update_basket', $id) }}" method="POST">
                                         @csrf
-                                        <input type="number" name="quantity" value="{{ $details['quantity'] }}"
-                                            class="form-control quantity cart-update" min="1"
-                                            data-id="{{ $id }}" />
-                                        <input type="hidden" name="film_id" value="{{ $id }}">
-                                        <button type="submit" class="btn btn-primary btn-block text-center">Update</button>
+                                        <div class="input-group">
+                                            <input type="number" name="quantity" value="{{ $details['quantity'] }}"
+                                                class="form-control form-control-sm quantity cart-update short-input" min="1"
+                                                data-id="{{ $id }}"  style="width: 30px;"/>
+                                            <input type="hidden" name="film_id" value="{{ $id }}">
+                                            <button type="submit" class="btn btn-primary buy">Update</button>
+                                        </div>
                                     </form>
                                 </td>
-
-
                                 <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}
                                 </td>
                                 <td>
@@ -97,7 +96,8 @@
                             <path fill-rule="evenodd"
                                 d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
                         </svg>
-                        Continue Shopping</a>
+                        Continue Shopping
+                    </a>
                     <button class="btn btn-success" id="pay-btn">
                         <i class="bi bi-credit-card"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -106,7 +106,8 @@
                                 d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
                             <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
                         </svg>
-                        Pay</button>
+                        Pay
+                    </button>
                 </td>
             </tr>
             <form action="{{ route('shop.pay') }}" method="POST">

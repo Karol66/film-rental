@@ -4,57 +4,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/css/user_panel.css">
-
-    <style>
-        .product-name {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .price-quantity {
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .price-quantity .price {
-            flex: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .price-quantity .count {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .dropdown-menu {
-            min-width: 300px;
-            max-width: 500px;
-            background-color: #343a40;
-            padding: 10px;
-        }
-
-
-        .dropdown-menu .total-section p,
-        .dropdown-menu .product-name,
-        .dropdown-menu .price-quantity .price,
-        .dropdown-menu .count,
-        .dropdown-menu .checkout a {
-            color: #fff;
-        }
-
-        .cart-detail-img img {
-            width: 100%;
-            height: auto;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -95,7 +44,7 @@
                             </div>
                             @if (session('basket'))
                                 @foreach (session('basket') as $id => $details)
-                                    @php $product = \app\Models\Film::find($id); @endphp
+                                    @php $product = App\Models\Film::find($id); @endphp
                                     <div class="row cart-detail">
                                         <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
                                             <img class="imidz"
@@ -120,6 +69,38 @@
             </ul>
         </div>
     </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            @if(Route::is('shop.account')||Route::is('shop.password_change'))
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('film.index') }}">
+                                <span data-feather="home"></span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('shop.password_change') }}">
+                                <span data-feather="users"></span>
+                                Password Change
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('addresses.index') }}">
+                                <span data-feather="users"></span>
+                                Add Address
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            @endif
+        </div>
+    </div>
 
     <div class="container pt-4">
         @if (session('success'))
