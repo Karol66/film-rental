@@ -1,4 +1,4 @@
-@extends('shop.account')
+@extends('shop.layout')
 
 @section('content')
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -7,7 +7,7 @@
                 <h3>Update Account</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('account.update', ['id' => auth()->user()->id]) }}" method="POST">
+                <form action="{{ route('account.update') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label>Email</label>

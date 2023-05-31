@@ -182,7 +182,7 @@ right: 0;
 
 .sidebar .nav-link:hover .feather,
 .sidebar .nav-link.active .feather {
-    color: inherit;
+    color: #c32828;
 }
 
 .sidebar-heading {

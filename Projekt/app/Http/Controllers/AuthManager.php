@@ -74,30 +74,30 @@ class AuthManager extends Controller
     }
 
     public function update(Request $request)
-{
-    $user = auth()->user();
+    {
+        $user = auth()->user();
 
-    $validatedData = $request->validate([
-        'current_password' => 'required',
-        'new_password' => 'required|confirmed',
-        'email' => 'required|email|unique:users,email,' . $user->id,
-        'user_name' => 'required|unique:users,user_name,' . $user->id,
-        'name' => 'required',
-        'last_name' => 'required',
-    ]);
+        $validatedData = $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'user_name' => 'required|unique:users,user_name,' . $user->id,
+            'name' => 'required',
+            'last_name' => 'required',
+        ]);
 
-    if (!Hash::check($validatedData['current_password'], $user->password)) {
-        return back()->withErrors(['current_password' => 'Incorrect current password']);
+        if (!Hash::check($validatedData['current_password'], $user->password)) {
+            return back()->withErrors(['current_password' => 'Incorrect current password']);
+        }
+
+        $user->update([
+            'password' => Hash::make($validatedData['new_password']),
+            'email' => $validatedData['email'],
+            'user_name' => $validatedData['user_name'],
+            'name' => $validatedData['name'],
+            'last_name' => $validatedData['last_name'],
+        ]);
+
+        return redirect('/shop/account')->with('flash_message', 'Account Updated!');
     }
-
-    $user->update([
-        'password' => Hash::make($validatedData['new_password']),
-        'email' => $validatedData['email'],
-        'user_name' => $validatedData['user_name'],
-        'name' => $validatedData['name'],
-        'last_name' => $validatedData['last_name'],
-    ]);
-
-    return redirect('/shop/account')->with('flash_message', 'Account Updated!');
-}
 }

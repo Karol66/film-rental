@@ -78,12 +78,16 @@
 
     <div class="container-fluid">
         <div class="row">
-            @if (Route::is('shop.account') || Route::is('shop.password_change') || Route::is('addresses.index') || Route::is('shop.create'))
+            @if (Route::is('shop.account') ||
+                    Route::is('shop.password_change') ||
+                    Route::is('addresses.index') ||
+                    Route::is('shop.create') ||
+                    Route::is('shop.edit'))
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ route('shop.account') }}">
+                                <a class="nav-link" aria-current="page" href="{{ route('shop.account') }}">
                                     <span data-feather="home"></span>
                                     Dashboard
                                 </a>
@@ -113,15 +117,34 @@
         </div>
     </div>
 
-    <div class="container pt-4">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+    @if (Route::is('shop.account') ||
+            Route::is('shop.password_change') ||
+            Route::is('addresses.index') ||
+            Route::is('shop.create') ||
+            Route::is('shop.edit'))
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="container pt-4">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-        @yield('content')
-    </div>
+                @yield('content')
+            </div>
+        </main>
+    @else
+        <div class="container pt-4">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @yield('content')
+        </div>
+    @endif
+
 
     <script>
         function toggleDropdown() {

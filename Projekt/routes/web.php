@@ -64,8 +64,11 @@ Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search
 Route::post('/pay', [ShopController::class, 'pay'])->name('shop.pay');
 
 Route::get('/shop/account/change', [AuthManager::class, 'changePasswordForm'])->name('shop.password_change');
+Route::post('/shop/account/change', [AuthManager::class, 'update'])->name('account.update');
 
 Route::resource('/shop/account/addresses', AdressesController::class);
 Route::get('/shop/account/addresses', [AdressesController::class, 'index'])->name('addresses.index');
 Route::get('/shop/account/create', [AdressesController::class, 'create'])->name('shop.create');
+Route::patch('/shop/account/{id}', [AdressesController::class, 'update'])->name('shop.update');
+Route::get('/shop/account/{id}/edit', [AdressesController::class, 'edit'])->name('shop.edit');
 

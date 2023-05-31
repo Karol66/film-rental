@@ -324,3 +324,7 @@ p {
         transform: translate(-50%, -50%) scale(1);
     }
 }
+
+.nav-link:hover {
+    color: #c32828;
+}

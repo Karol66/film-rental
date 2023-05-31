@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Adresses;
 use App\Models\Transactions;
+use Faker\Provider\ar_EG\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,9 +66,10 @@ class AdressesController extends Controller
      * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function edit(Adresses $address)
+    public function edit(string $id)
     {
-        return view('addresses.edit', compact('address'));
+        $address = Adresses::findOrFail($id);
+        return view('shop.edit', compact('address'));
     }
 
     /**
@@ -77,8 +79,9 @@ class AdressesController extends Controller
      * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Adresses $address)
+    public function update(Request $request, string $id)
     {
+        $address = Adresses::findOrFail($id);
         $request->validate([
             'street' => 'required',
             'home_number' => 'required',
@@ -97,9 +100,9 @@ class AdressesController extends Controller
      * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Adresses $address)
+    public function destroy(string $id)
     {
-        $address->delete();
+        Adresses::destroy($id);
 
         return redirect()->route('addresses.index')->with('success', 'Address deleted successfully.');
     }
