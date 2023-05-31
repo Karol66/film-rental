@@ -133,6 +133,15 @@ class ShopController extends Controller
         return view('shop.films')->with('films', $film)->with('search', $search);
     }
 
+
+    public function payment()
+    {
+        $user = Auth::user();
+        $addresses = Adresses::where('id_user', $user->id)->get();
+        return view('shop.payment', compact('addresses'));
+    }
+
+
     public function pay(Request $request)
     {
         $addressId = $request->input('address_id');

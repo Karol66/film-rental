@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Adresses;
-use App\Models\Transactions;
-use Faker\Provider\ar_EG\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

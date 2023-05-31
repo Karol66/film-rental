@@ -1,12 +1,12 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/css/user_panel.css">
     <style>
         .sidebar {
-            background-color: rgba(255, 255, 255, 0.1) !important;
+            background-color: #ffffff1a !important;
         }
     </style>
 </head>
@@ -30,7 +30,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('shop.account') }}">Personal data</a>
                 </li>
-                <li>
+                <li class="nav-item">
                     <div class="dropdown">
                         <a class="nav-link" href="{{ route('shop.basket') }}" onmouseenter="toggleDropdown()"
                             onmouseleave="hideDropdown()">

@@ -30,13 +30,13 @@
 
         .form-control-dark {
             color: #fff;
-            background-color: rgba(255, 255, 255, .1);
-            border-color: rgba(255, 255, 255, .1);
+            background-color: #ffffff1a;
+            border-color: #ffffff1a;
         }
 
         .form-control-dark:focus {
             border-color: transparent;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+            box-shadow: 0 0 0 3px #ffffff1a;
         }
 
         /* Add this style to make the search bar narrower */
@@ -50,7 +50,7 @@
         }
 
         .sidebar {
-            background-color: rgba(255, 255, 255, 0.1) !important;
+            background-color: #5a1212 !important;
         }
     </style>
 
@@ -60,7 +60,8 @@
 <body>
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Movie <span style="color: #a51a1a;">cave</span></a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Movie <span
+                style="color: #a51a1a;">cave</span></a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
