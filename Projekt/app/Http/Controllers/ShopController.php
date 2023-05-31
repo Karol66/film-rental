@@ -41,7 +41,13 @@ class ShopController extends Controller
      */
     public function account()
     {
-        return view('shop.account');
+        $userId = Auth::id();
+
+        // Fetch the transactions for the user
+        $transactions = Transactions::where('id_user', $userId)->get();
+
+        return view('shop.account', compact('transactions'));
+        // return view('shop.account');
     }
 
     /**

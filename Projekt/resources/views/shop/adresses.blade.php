@@ -1,13 +1,12 @@
 @extends('shop.layout')
 
 @section('content')
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="card-header">
         <h3>Addresses</h3>
     </div>
     <div class="card-body">
-        <a href="{{ route('addresses.create') }}" class="btn btn-primary">Add Address</a>
-        <br><br>
-        <table class="table">
+        <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -38,26 +37,6 @@
                 @endforeach
             </tbody>
         </table>
-
-        <form action="{{ route('addresses.store') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="street">Street:</label>
-                <input type="text" name="street" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="home_number">Home Number:</label>
-                <input type="text" name="home_number" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="apartment_number">Apartment Number:</label>
-                <input type="text" name="apartment_number" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" name="city" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-success">Save</button>
-        </form>
     </div>
+</main>
 @endsection

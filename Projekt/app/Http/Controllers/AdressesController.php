@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Adresses;
+use App\Models\Transactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,12 +15,17 @@ class AdressesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $addresses = Adresses::all();
+        $userId = Auth::id();
+
+        // Fetch the addresses for the user
+        $addresses = Adresses::where('id_user', $userId)->get();
 
         return view('shop.adresses', compact('addresses'));
     }
+
 
     /**
      * Show the form for creating a new address.
@@ -28,7 +34,7 @@ class AdressesController extends Controller
      */
     public function create()
     {
-        return view('addresses.create');
+        return view('shop.create');
     }
 
     /**

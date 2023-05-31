@@ -4,6 +4,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/css/user_panel.css">
+    <style>
+        .sidebar {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -73,31 +78,37 @@
 
     <div class="container-fluid">
         <div class="row">
-            @if(Route::is('shop.account')||Route::is('shop.password_change'))
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('film.index') }}">
-                                <span data-feather="home"></span>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('shop.password_change') }}">
-                                <span data-feather="users"></span>
-                                Password Change
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('addresses.index') }}">
-                                <span data-feather="users"></span>
-                                Add Address
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            @if (Route::is('shop.account') || Route::is('shop.password_change') || Route::is('addresses.index') || Route::is('shop.create'))
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('shop.account') }}">
+                                    <span data-feather="home"></span>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('shop.password_change') }}">
+                                    <span data-feather="users"></span>
+                                    Change Password
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('addresses.index') }}">
+                                    <span data-feather="users"></span>
+                                    My Address
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('shop.create') }}">
+                                    <span data-feather="users"></span>
+                                    Add Address
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             @endif
         </div>
     </div>

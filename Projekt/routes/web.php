@@ -52,10 +52,7 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/films', [ShopController::class, 'films'])->name('shop.films');
 Route::get('/shop/account', [ShopController::class, 'account'])->name('shop.account');
-Route::get('/shop/account/change',function () {
-    return view('shop.password_change');
-})->name('shop.password_change');
-Route::get('/shop/account/payment',function () {
+Route::get('/shop/account/payment', function () {
     return view('shop.payment');
 })->name('shop.payment');
 Route::post('/add_to_basket/{id}', [ShopController::class, 'addToBasket'])->name('add_to_basket');
@@ -66,9 +63,9 @@ Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search
 
 Route::post('/pay', [ShopController::class, 'pay'])->name('shop.pay');
 
-Route::post('/account/update/{id}', [AuthManager::class, 'update'])->name('account.update');
+Route::get('/shop/account/change', [AuthManager::class, 'changePasswordForm'])->name('shop.password_change');
 
 Route::resource('/shop/account/addresses', AdressesController::class);
-
-
+Route::get('/shop/account/addresses', [AdressesController::class, 'index'])->name('addresses.index');
+Route::get('/shop/account/create', [AdressesController::class, 'create'])->name('shop.create');
 
