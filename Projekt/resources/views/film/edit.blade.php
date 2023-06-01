@@ -33,96 +33,100 @@
             }
 
             .form-fields {
-                float: left;
-                margin-left: 20px;
                 padding-top: 20px;
-                width: calc(100% - 380px);
             }
 
-            .form-fields .form-group {
-                width: 100%;
+            @media (min-width: 768px) {
+                .film-image {
+                    float: left;
+                    margin-right: 20px;
+                }
+
+                .form-fields {
+                    float: left;
+                    width: calc(100% - 380px);
+                }
             }
         </style>
 
         <div class="card-body">
             <form action="{{ route('film.update', $film->id) }}" method="post" enctype="multipart/form-data">
-                <div class="d-flex">
-                    <div class="film-image" onclick="document.getElementById('image').click()">
-                        <input type="file" name="image" id="image"><br><br>
-                        <div class="image-wrapper">
-                            <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}" alt="Film Image" class="film-img">
-                        </div>
+                <div class="film-image" onclick="document.getElementById('image').click()">
+                    <input type="file" name="image" id="image"><br><br>
+                    <div class="image-wrapper">
+                        <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}" alt="Film Image" class="film-img">
                     </div>
-                    <div class="form-fields">
-                        @csrf
-                        @method('PATCH')
-                        <input type="hidden" name="id" id="id" value="{{ $film->id }}" />
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" id="name" value="{{ $film->name }}"
-                                class="form-control"
-                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
-                        </div>
-                        <div class="form-group">
-                            <label>Type</label><br>
-                            <div class="d-flex">
-                                <div class="form-check flex-fill">
-                                    <input type="radio" name="type" id="type_comedy" class="form-check-input" value="comedy"
-                                        checked>
-                                    <label for="type_comedy" class="form-check-label">Comedy</label>
-                                </div>
-                                <div class="form-check flex-fill">
-                                    <input type="radio" name="type" id="type_adventure" class="form-check-input"
-                                        value="adventure">
-                                    <label for="type_adventure" class="form-check-label">Adventure</label>
-                                </div>
-                                <div class="form-check flex-fill">
-                                    <input type="radio" name="type" id="type_drama" class="form-check-input" value="drama">
-                                    <label for="type_drama" class="form-check-label">Drama</label>
-                                </div>
-                                <div class="form-check flex-fill">
-                                    <input type="radio" name="type" id="type_action" class="form-check-input" value="action">
-                                    <label for="type_action" class="form-check-label">Action</label>
-                                </div>
-                                <div class="form-check flex-fill">
-                                    <input type="radio" name="type" id="type_horror" class="form-check-input" value="horror">
-                                    <label for="type_horror" class="form-check-label">Horror</label>
-                                </div>
-                                <div class="form-check flex-fill">
-                                    <input type="radio" name="type" id="type_thriller" class="form-check-input"
-                                        value="thriller">
-                                    <label for="type_thriller" class="form-check-label">Thriller</label>
-                                </div>
+                </div>
+
+                <div class="form-fields">
+                    @csrf
+                    @method('PATCH')
+                    <input type="hidden" name="id" id="id" value="{{ $film->id }}" />
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" value="{{ $film->name }}"
+                            class="form-control"
+                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label><br>
+                        <div class="d-flex flex-wrap">
+                            <div class="form-check flex-fill">
+                                <input type="radio" name="type" id="type_comedy" class="form-check-input" value="comedy"
+                                    checked>
+                                <label for="type_comedy" class="form-check-label">Comedy</label>
+                            </div>
+                            <div class="form-check flex-fill">
+                                <input type="radio" name="type" id="type_adventure" class="form-check-input"
+                                    value="adventure">
+                                <label for="type_adventure" class="form-check-label">Adventure</label>
+                            </div>
+                            <div class="form-check flex-fill">
+                                <input type="radio" name="type" id="type_drama" class="form-check-input" value="drama">
+                                <label for="type_drama" class="form-check-label">Drama</label>
+                            </div>
+                            <div class="form-check flex-fill">
+                                <input type="radio" name="type" id="type_action" class="form-check-input" value="action">
+                                <label for="type_action" class="form-check-label">Action</label>
+                            </div>
+                            <div class="form-check flex-fill">
+                                <input type="radio" name="type" id="type_horror" class="form-check-input" value="horror">
+                                <label for="type_horror" class="form-check-label">Horror</label>
+                            </div>
+                            <div class="form-check flex-fill">
+                                <input type="radio" name="type" id="type_thriller" class="form-check-input"
+                                    value="thriller">
+                                <label for="type_thriller" class="form-check-label">Thriller</label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="film_length">Film Length</label>
-                            <input type="text" name="film_length" id="film_length" value="{{ $film->film_length }}"
-                                class="form-control"
-                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
-                        </div>
-                        <div class="form-group">
-                            <label for="release_date">Release Date</label>
-                            <input type="date" name="release_date" id="release_date"
-                                value="{{ old('release_date', $film->release_date ? date('Y-m-d', strtotime($film->release_date)) : '') }}"
-                                class="form-control"
-                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Country</label>
-                            <input type="text" name="country" id="country" value="{{ $film->country }}"
-                                class="form-control"
-                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
-                        </div>
-                        <div class="form-group">
-                            <label for="price">Price</label>
-                            <input type="text" name="price" id="price" value="{{ $film->price }}"
-                                class="form-control"
-                                style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
-                        </div>
-                        <div class="mt-3">
-                            <button type="submit" class="btn btn-success">Upload</button>
-                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="film_length">Film Length</label>
+                        <input type="text" name="film_length" id="film_length" value="{{ $film->film_length }}"
+                            class="form-control"
+                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
+                    </div>
+                    <div class="form-group">
+                        <label for="release_date">Release Date</label>
+                        <input type="date" name="release_date" id="release_date"
+                            value="{{ old('release_date', $film->release_date ? date('Y-m-d', strtotime($film->release_date)) : '') }}"
+                            class="form-control"
+                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" name="country" id="country" value="{{ $film->country }}"
+                            class="form-control"
+                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="text" name="price" id="price" value="{{ $film->price }}"
+                            class="form-control"
+                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-success">Upload</button>
                     </div>
                 </div>
             </form>

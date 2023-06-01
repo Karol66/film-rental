@@ -19,62 +19,72 @@
                 width: 350px;
                 height: 500px;
                 margin-top: 40px;
-                margin-bottom: 0;
+                margin-bottom: 20px;
                 border-radius: 10px;
                 border: 1px solid #ccc;
                 display: inline-block;
                 overflow: hidden;
-                float: left;
-                margin-right: 20px;
             }
 
             .film-img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                margin: 0; /* Nowa linijka */
+                margin: 0;
             }
 
             .form-fields {
-                float: left;
                 padding-top: 20px;
-                width: calc(100% - 380px);
             }
 
             .form-fields .form-group {
                 width: 100%;
             }
+
+            @media (min-width: 768px) {
+                .film-image {
+                    float: left;
+                    margin-right: 20px;
+                }
+
+                .form-fields {
+                    float: left;
+                    width: calc(100% - 380px);
+                }
+            }
+
+            @media (max-width: 767px) {
+                .form-check {
+                    flex-basis: 100%;
+                }
+            }
         </style>
 
-<div class="row">
-    <form method="POST" action="{{ route('film.store') }}" enctype="multipart/form-data">
-        @csrf
-        <div class="film-image" onclick="document.getElementById('image').click()">
-            <input type="file" name="image" id="image"><br><br>
-            <div class="image-wrapper">
-                <img id="preview" src="#" alt="Preview" class="film-img"
-                    style="display: none; max-width: 100%;">
-            </div>
-        </div>
-
-
-        <div class="form-fields">
-            <div class="form-group">
-                <label>Name</label><br>
-                <input type="text" name="name" id="name" class="form-control"
-                    style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;"><br>
-            </div>
-            <div class="form-group">
-                <label>Type</label><br>
-                <div class="d-flex">
-                    <div class="form-check flex-fill">
-                        <input type="radio" name="type" id="type_comedy" class="form-check-input" value="comedy"
-                            checked>
-                        <label for="type_comedy" class="form-check-label">Comedy</label>
+        <div class="row">
+            <form method="POST" action="{{ route('film.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="film-image" onclick="document.getElementById('image').click()">
+                    <input type="file" name="image" id="image"><br><br>
+                    <div class="image-wrapper">
+                        <img id="preview" src="#" alt="Preview" class="film-img" style="display: none;">
                     </div>
+                </div>
+
+                <div class="form-fields">
+                    <div class="form-group">
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" id="name" class="form-control"
+                        style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label><br>
+                         <div class="d-flex flex-wrap ">   {{-- pokminić coś z d-flex do responsyywnośći --}}
                             <div class="form-check flex-fill">
-                                <input type="radio" name="type" id="type_adventure" class="form-check-input"
-                                    value="adventure">
+                                <input type="radio" name="type" id="type_comedy" class="form-check-input" value="comedy" checked>
+                                <label for="type_comedy" class="form-check-label">Comedy</label>
+                            </div>
+                            <div class="form-check flex-fill">
+                                <input type="radio" name="type" id="type_adventure" class="form-check-input" value="adventure">
                                 <label for="type_adventure" class="form-check-label">Adventure</label>
                             </div>
                             <div class="form-check flex-fill">
@@ -90,46 +100,41 @@
                                 <label for="type_horror" class="form-check-label">Horror</label>
                             </div>
                             <div class="form-check flex-fill">
-                                <input type="radio" name="type" id="type_thriller" class="form-check-input"
-                                    value="thriller">
+                                <input type="radio" name="type" id="type_thriller" class="form-check-input" value="thriller">
                                 <label for="type_thriller" class="form-check-label">Thriller</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Time</label><br>
+                        <label for="film_length">Time</label><br>
                         <input type="text" name="film_length" id="film_length" class="form-control"
-                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;"><br>
+                        style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                     </div>
                     <div class="form-group">
-                        <label>Release Date</label><br>
-                        <input type="date" name="release_date" id="release_date" class="form-control"
-                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;"
-                            value="{{ old('release_date') }}"><br>
+                        <label for="release_date">Release Date</label><br>
+                        <input type="date" name="release_date" id="release_date" class="form-control" value="{{ old('release_date') }}"
+                        style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                     </div>
                     <div class="form-group">
-                        <label>Country</label><br>
+                        <label for="country">Country</label><br>
                         <input type="text" name="country" id="country" class="form-control"
-                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;"><br>
+                        style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                     </div>
                     <div class="form-group">
-                        <label>Price</label><br>
+                        <label for="price">Price</label><br>
                         <input type="text" name="price" id="price" class="form-control"
-                            style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;"><br>
+                        style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                     </div>
-                    <div class="form-group">
-                        <div class="mt-3">
-                            <button type="submit" class="btn btn-success">Upload</button>
-                        </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-success">Upload</button>
                     </div>
                 </div>
             </form>
         </div>
     </main>
 
-
     <script>
-       addEventListener('change', function(e) {
+        document.addEventListener('change', function(e) {
             var fileInput = e.target;
             var file = fileInput.files[0];
 

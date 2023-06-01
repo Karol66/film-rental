@@ -153,31 +153,31 @@
             <h2 class="heading-title">Oferty</h2>
         </div>
         <div class="row">
-            <div class="button-container">
-                <button class="promo-button">
+            <div class="col-md-4">
+                <button class="promo-button btn btn-primary btn-block">
                     <div class="promo-content">
-                        <p class="promo-text text-center">Załóż konto teraz i otrzymaj 20% zniżki na pierwsze
-                            zamówienie!</p>
+                        <p class="promo-text text-center">Załóż konto teraz i otrzymaj 20% zniżki na pierwsze zamówienie!</p>
                     </div>
                 </button>
             </div>
-            <div class="button-container">
-                <button class="promo-button" style="background-color: #711212; color:beige">
+            <div class="col-md-4">
+                <button class="promo-button btn btn-danger btn-block">
                     <div class="promo-content">
                         <p class="promo-text text-center">Zdobądź 5% zniżki dla zamówień powyżej 100 zł!</p>
                     </div>
                 </button>
             </div>
-            <div class="button-container">
-                <button class="promo-button">
+            <div class="col-md-4">
+                <button class="promo-button btn btn-primary btn-block">
                     <div class="promo-content">
-                        <p class="promo-text text-center">Oferta dla stałych klientów po zakupie 200 filmów stałe 3%
-                            zniżki!</p>
+                        <p class="promo-text text-center">Oferta dla stałych klientów po zakupie 200 filmów stałe 3% zniżki!</p>
                     </div>
                 </button>
             </div>
         </div>
     </section>
+
+
 
     <br>
     <br>
@@ -188,7 +188,7 @@
         </div>
         <div class="row">
             @foreach ($films as $film)
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <a href="{{ route('film.show', $film->id) }}">
                         <div class="card">
                             <div class="image-container">
