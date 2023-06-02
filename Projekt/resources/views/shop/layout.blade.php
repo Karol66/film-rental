@@ -82,7 +82,7 @@
                                 </div>
                                 @if (session('basket'))
                                     @foreach (session('basket') as $id => $details)
-                                        @php $product = \app\Models\Film::find($id); @endphp
+                                        @php $product = App\Models\Film::find($id); @endphp
                                         <div class="row cart-detail">
                                             <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
                                                 <img class="imidz"

@@ -23,8 +23,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ Auth::check() ? route('shop.index') : route('login') }}">Home</a>
+                        <a class="nav-link" href="{{ route('shop.index') }}">Home</a>
                     </li>
+                    @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ Auth::check() ? route('shop.films') : route('login') }}">Films</a>
                     </li>
@@ -53,7 +54,7 @@
                                 </div>
                                 @if (session('basket'))
                                     @foreach (session('basket') as $id => $details)
-                                        @php $product = \app\Models\Film::find($id); @endphp
+                                        @php $product = App\Models\Film::find($id); @endphp
                                         <div class="row cart-detail">
                                             <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
                                                 <img class="imidz"
@@ -62,13 +63,9 @@
                                             <div class="col-lg-6 col-sm-6 col-6 cart-detail-product">
                                                 <p class="product-name">{{ $product->name }}</p>
                                                 <div class="price-quantity">
-                                                    <span class="price">{{ $details['price'] }}</span>
-                                                    <span class="quantity">Quantity: {{ $details['quantity'] }}</span>
+                                                    <span class="price text-info">${{ $details['price'] }}</span>
+                                                    <span class="count"> Quantity: {{ $details['quantity'] }}</span>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-2 col-sm-2 col-2 cart-detail-delete text-right">
-                                                <a href="{{ route('shop.remove', $product->id) }}"><i
-                                                        class="fas fa-trash"></i></a>
                                             </div>
                                         </div>
                                     @endforeach
@@ -76,6 +73,8 @@
                             </div>
                         </div>
                     </li>
+                    @endif
+
                     @if (Auth::check())
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
@@ -240,8 +239,26 @@
     <br>
 
     <footer class="bg-dark text-white text-center p-3 mt-5">
-        <p>Wypożyczalnia Filmów &copy; 2023. Wszelkie prawa zastrzeżone.</p>
+        <p>Movie Rental  &copy; 2023. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("cartDropdown");
+            dropdown.style.display = "block";
+            dropdown.classList.toggle("show");
+        }
+
+        function hideDropdown() {
+            var dropdown = document.getElementById("cartDropdown");
+            dropdown.style.display = "none";
+        }
+
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebarMenu");
+            sidebar.classList.toggle("active");
+        }
+    </script>
 
 </body>
 
