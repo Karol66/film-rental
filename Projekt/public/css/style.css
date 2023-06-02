@@ -19,8 +19,14 @@ body {
     background-color:transparent;
 }
 
-.btn-primary:hover{
+.btn-primary:hover
+{
     background-color:#711212;
+}
+
+.btn-primary:active,
+.btn-primary:focus:active{
+    background-color:#b51b1b;
 }
 
 .grid-container {

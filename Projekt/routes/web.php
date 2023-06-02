@@ -18,11 +18,7 @@ use App\Http\Controllers\TransactionsController;
 |
 */
 
-Route::get('/', [ShopController::class, 'index_home'])->name('index');
-
-Route::get('index', function () {
-    return view('index');
-})->name('index');
+Route::get('/', [ShopController::class, 'index'])->name('index');
 
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
 Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
@@ -57,6 +53,7 @@ Route::get('/basket', [ShopController::class, 'basket'])->name('shop.basket');
 Route::post('/update_basket/{id}', [ShopController::class, 'update'])->name('update_basket');
 Route::delete('/shop/delete', [ShopController::class, 'delete'])->name('shop.delete');
 Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search');
+Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 Route::post('/shop/account/payment', [ShopController::class, 'pay'])->name('shop.pay');
 Route::get('/shop/account/payment',  [ShopController::class, 'payment'])->name('shop.payment');

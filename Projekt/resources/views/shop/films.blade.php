@@ -29,7 +29,7 @@
                             <td>{{ $film->film_length }}</td>
                             <td>{{ $film->release_date }}</td>
                             <td>{{ $film->country }}</td>
-                            <td>{{ $film->price }}</td>
+                            <td>${{ $film->price }}</td>
                             <td>
                                 <form action="{{ route('add_to_basket', ['id' => $film->id]) }}" method="POST">
                                     @csrf

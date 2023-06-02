@@ -82,6 +82,45 @@
                     @endisset
                 </tbody>
             </table>
+            {{-- @isset($film)
+                        @foreach ($film as $item)
+            <div class="filmx">
+                <div class="filmx-leftwrapper">
+                    <div class="film-item">
+                        1
+                    </div>
+                    <div class="film-imgx">
+                        <img class="imidz" src="data:image/jpeg;base64,{{ base64_encode($item->image) }}">
+                    </div>
+                </div>
+                <div class="film-rightwrapper">
+                    <div class="film-item">
+                        {{ $item->name }}
+                    </div>
+                    <div class="film-item">
+                        drama
+                    </div>
+                    <div class="film-item">
+                        11
+                    </div>
+                    <div class="film-item">
+                        2023-05-25
+                    </div>
+                    <div class="film-item">
+                        xd
+                    </div>
+                    <div class="film-item">
+                        2137
+                    </div>
+                    <div class="film-itembtns">
+                        <button>xd</button>
+                        <button>xd</button>
+                        <button>xd</button>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @endisset --}}
             <div class="pagination-container d-flex justify-content-center mt-5">
                 {{ $film->links('pagination::bootstrap-4') }}
             </div>
