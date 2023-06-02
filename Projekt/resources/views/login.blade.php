@@ -41,6 +41,8 @@
             </div>
             <a href="{{ route('registration') }}" class="btn btn-primary">Sign up</a>
             <button type="submit" class="btn btn-primary">Sign in</button>
+            <br>
+            <a href="{{ route('index') }}" class="btn btn-primary">Go to home page</a>
         </form>
     </div>
 </body>

@@ -16,17 +16,10 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $films = Film::orderBy('id', 'desc')->take(20)->get();
-        return view('shop.index')->with('films', $films);
+        $latestFilms = Film::orderBy('id', 'desc')->take(12)->get();
+        $films = Film::orderBy('id', 'desc')->skip(12)->take(12)->get();
+        return view('shop.index')->with('latestFilms', $latestFilms)->with('films', $films);
     }
-
-    public function index_home()
-    {
-        $films = Film::orderBy('id', 'desc')->get();
-        return view('index')->with('films', $films);
-    }
-    // ->take(6)
-
     /**
      * Display the films page.
      */
@@ -57,7 +50,40 @@ class ShopController extends Controller
     {
         $user = Auth::user();
         $addresses = Adresses::where('id_user', $user->id)->get();
-        return view('shop.basket', compact('addresses'));
+
+        $basket = session()->get('basket');
+        $total = 0;
+        $filmCount = 0;
+
+        foreach ($basket as $id => $details) {
+            $total += $details['price'] * $details['quantity'];
+            $filmCount += $details['quantity'];
+        }
+
+        if ($total >= 100) {
+            $discount = $total * 0.05;
+            $total -= $discount;
+        }
+
+        $previousTransactions = Transactions::where('id_user', $user->id)->get();
+
+        $previousFilmCount = 0;
+        foreach ($previousTransactions as $transaction) {
+            $previousFilmCount += $transaction->quantity;
+        }
+
+        $totalFilmCount = $filmCount + $previousFilmCount;
+
+        if ($totalFilmCount >= 200) {
+            $discount = $total * 0.03;
+            $total -= $discount;
+        }
+
+        if ($previousTransactions->isEmpty()) {
+            $discount = $total * 0.2;
+            $total -= $discount;
+        }
+        return view('shop.basket', compact('addresses', 'total'));
     }
 
 
@@ -104,6 +130,16 @@ class ShopController extends Controller
         session()->put('basket', $basket);
         return redirect()->back()->with('success', 'Film added to basket successfully!');
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $film = Film::findOrFail($id);
+        return view('shop.show')->with('film', $film);
+    }
+
     /**
      * Delete a film from the basket.
      */
