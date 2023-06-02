@@ -36,7 +36,6 @@
             margin-bottom: 50px;
         }
 
-
         .film-info {
             margin-left: 20px;
         }
@@ -58,7 +57,17 @@
                 <p class="card-text"><strong>Release Date:</strong> {{ $film->release_date }}</p>
                 <p class="card-text"><strong>Country:</strong> {{ $film->country }}</p>
                 <p class="card-text"><strong>Price:</strong> ${{ $film->price }}</p>
-
+                <td>
+                    @if(Auth::check())
+                        <form action="{{ route('add_to_basket', ['id' => $film->id]) }}" method="POST">
+                            @csrf
+                            <input type="number" name="quantity" value="1" min="1" readonly style="display: none;">
+                            <button type="submit" class="btn btn-primary buy">Add to Basket</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-primary buy">Add to Basket</a>
+                    @endif
+                </td>
             </div>
         </div>
     </div>

@@ -57,6 +57,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('shop.index') }}">Home</a>
                     </li>
+                    @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('shop.films') }}">Films</a>
                     </li>
@@ -101,8 +102,18 @@
                             </div>
                         </div>
                     </li>
+                    @endif
+                    @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
+                    </li>
+                    @endif
+                    <li>
+                        @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+                    @endguest
                     </li>
                 </ul>
                 <form class="d-flex">

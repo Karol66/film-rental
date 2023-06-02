@@ -43,7 +43,7 @@
         @media (min-width: 992px) {
             .form-control-dark {
                 height: 40px;
-                width: 1000px;
+                width: 900px;
                 display: inline-block;
                 margin-right: 5px;
             }

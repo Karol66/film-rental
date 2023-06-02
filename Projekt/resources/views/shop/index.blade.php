@@ -127,7 +127,7 @@
                             <div class="row">
                                 @foreach ($filmGroup as $film)
                                     <div class="col-md-3">
-                                        <a href="{{Auth::check() ? route('shop.show', $film->id) : route('login') }}">
+                                        <a href="{{ route('shop.show', $film->id) }}">
                                             <div class="film-card">
                                                 <div class="image-container">
                                                     <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}"
@@ -212,7 +212,7 @@
         <div class="row">
             @foreach ($films as $film)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <a href="{{Auth::check() ? route('shop.show', $film->id) : route('login') }}">
+                    <a href="{{ route('shop.show', $film->id) }}">
                         <div class="card">
                             <div class="image-container">
                                 <img src="data:image/jpeg;base64,{{ base64_encode($film->image) }}">
