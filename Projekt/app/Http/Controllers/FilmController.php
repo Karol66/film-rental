@@ -15,21 +15,20 @@ class FilmController extends Controller
      */
     public function index()
     {
-        $film = Film::paginate(10);
-        return view('film.index')->with('film', $film);
+        $startDate = Carbon::now()->subWeek();
+        $endDate = Carbon::now();
+
+        $transactions = Transactions::whereBetween('created_at', [$startDate, $endDate])->get();
+
+        return view('film.index')->with('transactions', $transactions);
     }
+
 
     public function film()
     {
         $film = Film::paginate(10);
         return view('film.films')->with('film', $film);
     }
-
-    // public function tra()
-    // {
-    //     $transactions = Transactions::paginate(10);
-    //     return view('transactions')->with('transactions', $transactions);
-    // }
 
     /**
      * Show the form for creating a new resource.

@@ -36,11 +36,9 @@ class ShopController extends Controller
     {
         $userId = Auth::id();
 
-        // Fetch the transactions for the user
         $transactions = Transactions::where('id_user', $userId)->get();
 
         return view('shop.account', compact('transactions'));
-        // return view('shop.account');
     }
 
     /**
@@ -128,7 +126,7 @@ class ShopController extends Controller
         ];
 
         session()->put('basket', $basket);
-        return redirect()->back()->with('success', 'Film added to basket successfully!');
+        return redirect()->back()->with('success', 'Number of days has been updated !');
     }
 
     /**

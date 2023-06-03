@@ -10,7 +10,7 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Quantity</th>
+                        <th>Number Of Days</th>
                         <th>Total Piece Prices</th>
                         <th>Actions</th>
                     </tr>

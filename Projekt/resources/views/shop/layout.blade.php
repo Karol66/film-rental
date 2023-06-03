@@ -62,7 +62,7 @@
                         <a class="nav-link" href="{{ route('shop.films') }}">Films</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('shop.account') }}">Personal data</a>
+                        <a class="nav-link" href="{{ route('shop.account') }}">My Data</a>
                     </li>
                     <li>
                         <div class="dropdown">
