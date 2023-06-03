@@ -11,11 +11,8 @@
                     <th>#</th>
                     <th>Price</th>
                     <th>Quantity</th>
-                    <th>User</th>
-                    <th>Street</th>
-                    <th>Home Number</th>
-                    <th>Apartment Number</th>
-                    <th>City</th>
+                    <th>Addresses</th>
+                    <th>Rented Films</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,14 +21,31 @@
                         <td>{{ $transaction->id }}</td>
                         <td>${{ $transaction->price }}</td>
                         <td>{{ $transaction->quantity }}</td>
-                        <td>{{ $transaction->user->name }}</td>
-                        <td>{{ $transaction->addresses->street }}</td>
-                        <td>{{ $transaction->addresses->home_number }}</td>
-                        <td>{{ $transaction->addresses->apartment_number }}</td>
-                        <td>{{ $transaction->addresses->city }}</td>
+                        <td>
+                            @php
+                                 $address = $transaction->addresses
+                                    ->selectRaw("CONCAT(street, ', ', home_number, ', ', apartment_number, ', ', city) AS full_address")
+                                    ->pluck('full_address')
+                                    ->first();
+
+                                echo $address;
+                            @endphp
+
+                        </td>
+                        <td>
+                            <ul class="list-unstyled">
+                                @foreach ($transaction->item as $item)
+                                    <li>{{ $item->films->name }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <div class="pagination-container d-flex justify-content-center mt-5">
+        {{ $transactions->links('pagination::bootstrap-4') }}
     </div>
 @endsection

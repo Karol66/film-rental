@@ -28,6 +28,7 @@
             .sidebar.active {
                 margin-left: 0;
             }
+
         }
     </style>
 </head>
@@ -132,7 +133,7 @@
                     Route::is('addresses.index') ||
                     Route::is('shop.create') ||
                     Route::is('shop.edit'))
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar ">
                     <div class="position-sticky pt-3 sidebar-wrapper">
                         <ul class="nav flex-column">
                             <li class="nav-item">

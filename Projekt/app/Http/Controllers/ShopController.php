@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Film;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Adresses;
+use App\Models\Item;
 use App\Models\Transactions;
 
 
@@ -36,7 +37,9 @@ class ShopController extends Controller
     {
         $userId = Auth::id();
 
-        $transactions = Transactions::where('id_user', $userId)->get();
+        $transactions = Transactions::with(['user', 'addresses', 'item.films'])
+            ->where('id_user', $userId)
+            ->paginate(5);
 
         return view('shop.account', compact('transactions'));
     }
