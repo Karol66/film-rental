@@ -1,3 +1,0 @@
-@extends('shop.layout')
-
-@endsection

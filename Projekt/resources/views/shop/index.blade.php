@@ -25,6 +25,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('shop.index') }}">Home</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('info') }}">Info</a>
+                    </li>
                     @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ Auth::check() ? route('shop.films') : route('login') }}">Films</a>

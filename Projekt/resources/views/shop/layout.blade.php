@@ -58,6 +58,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('shop.index') }}">Home</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('info') }}">Info</a>
+                    </li>
                     @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('shop.films') }}">Films</a>
@@ -197,6 +200,9 @@
         </div>
     @endif
 
+    <footer class="bg-dark text-white text-center p-3 mt-5">
+        <p>Movie Rental  &copy; 2023. All rights reserved.</p>
+    </footer>
 
     <script>
         function toggleDropdown() {

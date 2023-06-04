@@ -67,3 +67,7 @@ Route::get('/shop/account/create', [AdressesController::class, 'create'])->name(
 Route::patch('/shop/account/{id}', [AdressesController::class, 'update'])->name('shop.update');
 Route::get('/shop/account/{id}/edit', [AdressesController::class, 'edit'])->name('shop.edit');
 
+Route::get('/info', function () {
+    return view('info');
+})->name('info');
+
