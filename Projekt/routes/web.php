@@ -28,46 +28,50 @@ Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('re
 
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
-Route::get('film/transactions', [TransactionsController::class, 'index'])->name('film.transactions');
-Route::get('/film/films', [FilmController::class, 'film'])->name('film.films');
-Route::get('/film/search', [FilmController::class, 'search'])->name('film.search');
-Route::resource("/film", FilmController::class);
-Route::get('/film', [FilmController::class, 'index'])->name('film.index');
-Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('film.edit');
-Route::patch('/film/{id}', [FilmController::class, 'update'])->name('film.update');
-Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('film.destroy');
+Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->group(function () {
+    Route::get('film/transactions', [TransactionsController::class, 'index'])->name('film.transactions');
+    Route::get('/film/films', [FilmController::class, 'film'])->name('film.films');
+    Route::get('/film/search', [FilmController::class, 'search'])->name('film.search');
+    Route::resource("/film", FilmController::class);
+    Route::get('/film', [FilmController::class, 'index'])->name('film.index');
+    Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('film.edit');
+    Route::patch('/film/{id}', [FilmController::class, 'update'])->name('film.update');
+    Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('film.destroy');
 
 
-Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
-Route::resource("/users", UserController::class);
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
-Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
+    Route::resource("/users", UserController::class);
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+});
+
+Route::middleware([\App\Http\Middleware\UserMiddleware::class])->group(function () {
+    Route::get('/shop/films', [ShopController::class, 'films'])->name('shop.films');
+    Route::get('/shop/account', [ShopController::class, 'account'])->name('shop.account');
+    Route::post('/add-to-basket/{id}', [ShopController::class, 'addToBasket'])->name('add_to_basket');
+    Route::get('/basket', [ShopController::class, 'basket'])->name('shop.basket');
+    Route::post('/update-basket/{id}', [ShopController::class, 'update'])->name('update_basket');
+    Route::delete('/shop/delete', [ShopController::class, 'delete'])->name('shop.delete');
+    Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search');
+    Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
+
+    Route::post('/shop/account/payment', [ShopController::class, 'pay'])->name('shop.pay');
+    Route::get('/shop/account/payment',  [ShopController::class, 'payment'])->name('shop.payment');
+
+    Route::get('/shop/account/change', [AuthManager::class, 'changePasswordForm'])->name('shop.password_change');
+    Route::post('/shop/account/change', [AuthManager::class, 'update'])->name('account.update');
+
+    Route::resource('/shop/account/addresses', AdressesController::class);
+    Route::get('/shop/account/addresses', [AdressesController::class, 'index'])->name('addresses.index');
+    Route::get('/shop/account/create', [AdressesController::class, 'create'])->name('shop.create');
+    Route::patch('/shop/account/{id}', [AdressesController::class, 'update'])->name('shop.update');
+    Route::get('/shop/account/{id}/edit', [AdressesController::class, 'edit'])->name('shop.edit');
+});
+
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
-Route::get('/shop/films', [ShopController::class, 'films'])->name('shop.films');
-Route::get('/shop/account', [ShopController::class, 'account'])->name('shop.account');
-Route::post('/add-to-basket/{id}', [ShopController::class, 'addToBasket'])->name('add_to_basket');
-Route::get('/basket', [ShopController::class, 'basket'])->name('shop.basket');
-Route::post('/update-basket/{id}', [ShopController::class, 'update'])->name('update_basket');
-Route::delete('/shop/delete', [ShopController::class, 'delete'])->name('shop.delete');
-Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search');
-Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
-
-Route::post('/shop/account/payment', [ShopController::class, 'pay'])->name('shop.pay');
-Route::get('/shop/account/payment',  [ShopController::class, 'payment'])->name('shop.payment');
-
-Route::get('/shop/account/change', [AuthManager::class, 'changePasswordForm'])->name('shop.password_change');
-Route::post('/shop/account/change', [AuthManager::class, 'update'])->name('account.update');
-
-Route::resource('/shop/account/addresses', AdressesController::class);
-Route::get('/shop/account/addresses', [AdressesController::class, 'index'])->name('addresses.index');
-Route::get('/shop/account/create', [AdressesController::class, 'create'])->name('shop.create');
-Route::patch('/shop/account/{id}', [AdressesController::class, 'update'])->name('shop.update');
-Route::get('/shop/account/{id}/edit', [AdressesController::class, 'edit'])->name('shop.edit');
-
 Route::get('/info', function () {
     return view('info');
 })->name('info');
-
