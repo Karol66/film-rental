@@ -101,7 +101,22 @@ class FilmController extends Controller
      */
     public function destroy(string $id)
     {
-        Film::destroy($id);
+        $film = Film::findOrFail($id);
+
+        // Get all transactions that have this film
+        $transactions = $film->transactions;
+
+        // Check if there are transactions with the film
+        if ($transactions) {
+            // Remove the film from each transaction
+            foreach ($transactions as $transaction) {
+                $transaction->item()->where('film_id', $film->id)->delete();
+            }
+        }
+
+        // Delete the film
+        $film->delete();
+
         return redirect('film')->with('flash_message', 'Film deleted!');
     }
 

@@ -29,6 +29,7 @@
         body {
             background-color: #1c1f23;
             color: white;
+            font-family: 'Roboto Slab', serif;
         }
 
         .form-control-dark {
@@ -64,6 +65,14 @@
 
         .sidebar {
             background-color: #5a1212 !important;
+        }
+        /* .sidebar .nav-link:hover .feather
+        .sidebar .nav-link.active .feather{
+            color: #c32828;
+        } */
+
+        .nav-link:hover {
+            color: #c32828 !important;
         }
 
     </style>
@@ -148,6 +157,10 @@
     <footer class="bg-dark text-white text-center p-3 mt-5">
         <p>Movie Rental  &copy; 2023. All rights reserved.</p>
     </footer>
+
+    <script>
+        feather.replace();
+    </script>
 
 </body>
 
