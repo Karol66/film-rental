@@ -4,6 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/user_panel.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <style>
         .sidebar {
             background-color: rgb(22, 24, 28) !important;
@@ -43,9 +46,9 @@
                     Route::is('addresses.index') ||
                     Route::is('shop.create') ||
                     Route::is('shop.edit'))
-            <button class="navbar-toggler" type="button" onclick="toggleSidebar()">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="navbar-toggler" type="button" onclick="toggleSidebar()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             @endif
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -62,55 +65,56 @@
                         <a class="nav-link" href="{{ route('info') }}">Info</a>
                     </li>
                     @if (Auth::check())
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shop.films') }}">Films</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('shop.account') }}">My Data</a>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <a class="nav-link" href="{{ route('shop.basket') }}" onmouseenter="toggleDropdown()"
-                                onmouseleave="hideDropdown()">
-                                My basket
-                            </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('shop.films') }}">Films</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('shop.account') }}">My Data</a>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="nav-link" href="{{ route('shop.basket') }}" onmouseenter="toggleDropdown()"
+                                    onmouseleave="hideDropdown()">
+                                    My basket
+                                </a>
 
-                            <div class="dropdown-menu" id="cartDropdown">
-                                <div class="row total-header-section">
-                                    @php $total = 0; @endphp
-                                    @foreach ((array) session('basket') as $id => $details)
-                                        @php $total += $details['price'] * $details['quantity']; @endphp
-                                    @endforeach
-                                    <div class="col-lg-12 col-sm-12 col-12 total-section text-right">
-                                        <p>Total: <span class="text-info">$ {{ $total }}</span></p>
+                                <div class="dropdown-menu" id="cartDropdown">
+                                    <div class="row total-header-section">
+                                        @php $total = 0; @endphp
+                                        @foreach ((array) session('basket') as $id => $details)
+                                            @php $total += $details['price'] * $details['quantity']; @endphp
+                                        @endforeach
+                                        <div class="col-lg-12 col-sm-12 col-12 total-section text-right">
+                                            <p>Total: <span class="text-info">$ {{ $total }}</span></p>
+                                        </div>
                                     </div>
-                                </div>
-                                @if (session('basket'))
-                                    @foreach (session('basket') as $id => $details)
-                                        @php $product = App\Models\Film::find($id); @endphp
-                                        <div class="row cart-detail">
-                                            <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                                <img class="imidz"
-                                                    src="data:image/jpeg;base64,{{ base64_encode($product->image) }}">
-                                            </div>
-                                            <div class="col-lg-6 col-sm-6 col-6 cart-detail-product">
-                                                <p class="product-name">{{ $product->name }}</p>
-                                                <div class="price-quantity">
-                                                    <span class="price text-info">${{ $details['price'] }}</span>
-                                                    <span class="count"> Quantity: {{ $details['quantity'] }}</span>
+                                    @if (session('basket'))
+                                        @foreach (session('basket') as $id => $details)
+                                            @php $product = App\Models\Film::find($id); @endphp
+                                            <div class="row cart-detail">
+                                                <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                                    <img class="imidz"
+                                                        src="data:image/jpeg;base64,{{ base64_encode($product->image) }}">
+                                                </div>
+                                                <div class="col-lg-6 col-sm-6 col-6 cart-detail-product">
+                                                    <p class="product-name">{{ $product->name }}</p>
+                                                    <div class="price-quantity">
+                                                        <span class="price text-info">${{ $details['price'] }}</span>
+                                                        <span class="count"> Quantity:
+                                                            {{ $details['quantity'] }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                @endif
+                                        @endforeach
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
                     @endif
                     @if (Auth::check())
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
+                        </li>
                     @endif
                     <li>
                         @guest
@@ -120,10 +124,13 @@
                     @endguest
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                @if (Route::is('shop.films'))
+                <form class="d-flex" role="search" action="{{ route('shop.search') }}" method="GET">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        name="search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                @endif
             </div>
         </div>
     </nav>
@@ -199,10 +206,6 @@
             @yield('content')
         </div>
     @endif
-
-    <footer class="bg-dark text-white text-center p-3 mt-5">
-        <p>Movie Rental  &copy; 2023. All rights reserved.</p>
-    </footer>
 
     <script>
         function toggleDropdown() {

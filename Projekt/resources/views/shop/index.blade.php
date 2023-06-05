@@ -7,6 +7,9 @@
     <title>Movie Rental</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -29,53 +32,56 @@
                         <a class="nav-link" href="{{ route('info') }}">Info</a>
                     </li>
                     @if (Auth::check())
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ Auth::check() ? route('shop.films') : route('login') }}">Films</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ Auth::check() ? route('shop.account') : route('login') }}">Personal
-                            data</a>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <a class="nav-link" href="{{ Auth::check() ? route('shop.basket') : route('login') }}"
-                                onmouseenter="toggleDropdown()" onmouseleave="hideDropdown()">
-                                My basket
-                            </a>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{{ Auth::check() ? route('shop.films') : route('login') }}">Films</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link"
+                                href="{{ Auth::check() ? route('shop.account') : route('login') }}">Personal
+                                data</a>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="nav-link" href="{{ Auth::check() ? route('shop.basket') : route('login') }}"
+                                    onmouseenter="toggleDropdown()" onmouseleave="hideDropdown()">
+                                    My basket
+                                </a>
 
-                            <div class="dropdown-menu" id="cartDropdown">
-                                <div class="row total-header-section">
-                                    @php $total = 0; @endphp
+                                <div class="dropdown-menu" id="cartDropdown">
+                                    <div class="row total-header-section">
+                                        @php $total = 0; @endphp
+                                        @if (session('basket'))
+                                            @foreach (session('basket') as $id => $details)
+                                                @php $total += $details['price'] * $details['quantity']; @endphp
+                                            @endforeach
+                                        @endif
+                                        <div class="col-lg-12 col-sm-12 col-12 total-section text-right">
+                                            <p>Total: <span class="text-info">$ {{ $total }}</span></p>
+                                        </div>
+                                    </div>
                                     @if (session('basket'))
                                         @foreach (session('basket') as $id => $details)
-                                            @php $total += $details['price'] * $details['quantity']; @endphp
-                                        @endforeach
-                                    @endif
-                                    <div class="col-lg-12 col-sm-12 col-12 total-section text-right">
-                                        <p>Total: <span class="text-info">$ {{ $total }}</span></p>
-                                    </div>
-                                </div>
-                                @if (session('basket'))
-                                    @foreach (session('basket') as $id => $details)
-                                        @php $product = App\Models\Film::find($id); @endphp
-                                        <div class="row cart-detail">
-                                            <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                                <img class="imidz"
-                                                    src="data:image/jpeg;base64,{{ base64_encode($product->image) }}">
-                                            </div>
-                                            <div class="col-lg-6 col-sm-6 col-6 cart-detail-product">
-                                                <p class="product-name">{{ $product->name }}</p>
-                                                <div class="price-quantity">
-                                                    <span class="price text-info">${{ $details['price'] }}</span>
-                                                    <span class="count"> Quantity: {{ $details['quantity'] }}</span>
+                                            @php $product = App\Models\Film::find($id); @endphp
+                                            <div class="row cart-detail">
+                                                <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                                    <img class="imidz"
+                                                        src="data:image/jpeg;base64,{{ base64_encode($product->image) }}">
+                                                </div>
+                                                <div class="col-lg-6 col-sm-6 col-6 cart-detail-product">
+                                                    <p class="product-name">{{ $product->name }}</p>
+                                                    <div class="price-quantity">
+                                                        <span class="price text-info">${{ $details['price'] }}</span>
+                                                        <span class="count"> Quantity:
+                                                            {{ $details['quantity'] }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                @endif
+                                        @endforeach
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
                     @endif
 
                     @if (Auth::check())
@@ -102,7 +108,8 @@
         style="background-image: url(/img/tlo2.jpg); height: 450px; background-size: cover;">
         <h1>Online Movie Rental</h1>
         <p>Find and rent your favorite movies</p>
-        <a href="{{ Auth::check() ? route('shop.films') : route('login') }}" class="btn btn-primary border-white ">Go to the collection of
+        <a href="{{ Auth::check() ? route('shop.films') : route('login') }}" class="btn btn-primary border-white ">Go
+            to the collection of
             videos</a>
     </header>
 
@@ -117,7 +124,7 @@
             <div id="movieCarousel" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
                     @php
-                        $chunkedFilms = $latestFilms ->chunk(4);
+                        $chunkedFilms = $latestFilms->chunk(4);
                     @endphp
                     @foreach ($chunkedFilms as $key => $filmGroup)
                         <li data-bs-target="#movieCarousel" data-bs-slide-to="{{ $key }}"
@@ -180,7 +187,8 @@
             <div class="col-md-4">
                 <button class="promo-button btn btn-primary btn-block">
                     <div class="promo-content" style="color:black">
-                        <p class="promo-text text-center">Create an account now and receive a 20% discount on your first
+                        <p class="promo-text text-center">Create an account now and receive a 20% discount on your
+                            first
                             order!</p>
                     </div>
                 </button>
@@ -188,14 +196,16 @@
             <div class="col-md-4">
                 <button class="promo-button btn btn-danger btn-block" style="background-color: #711212; color:beige">
                     <div class="promo-content">
-                        <p class="promo-text text-center">Receive a 5% discount on your order if it is $100 or more!</p>
+                        <p class="promo-text text-center">Receive a 5% discount on your order if it is $100 or more!
+                        </p>
                     </div>
                 </button>
             </div>
             <div class="col-md-4">
                 <button class="promo-button btn btn-primary btn-block">
                     <div class="promo-content" style="color:black">
-                        <p class="promo-text text-center">Offer for regular customers after the purchase of 200 films fixed 3%
+                        <p class="promo-text text-center">Offer for regular customers after the purchase of 200 films
+                            fixed 3%
                             discounts!</p>
                     </div>
                 </button>
@@ -242,7 +252,7 @@
     <br>
 
     <footer class="bg-dark text-white text-center p-3 mt-5">
-        <p>Movie Rental  &copy; 2023. All rights reserved.</p>
+        <p>Movie Rental &copy; 2023. All rights reserved.</p>
     </footer>
 
     <script>

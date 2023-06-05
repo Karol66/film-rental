@@ -25,8 +25,20 @@
         }
 
         .image-container img {
-            height: 400px;
+            max-width: 100%;
+            height: auto;
             object-fit: contain;
+        }
+
+        /* Responsywność */
+        @media (max-width: 600px) {
+            h1, p {
+                font-size: 24px;
+            }
+
+            .image-container img {
+                height: 200px;
+            }
         }
     </style>
 </head>

@@ -52,38 +52,46 @@ class ShopController extends Controller
         $user = Auth::user();
         $addresses = Adresses::where('id_user', $user->id)->get();
 
-        $basket = session()->get('basket');
-        $total = 0;
-        $filmCount = 0;
+        if (session()->has('basket')) {
+            $basket = session()->get('basket');
+            $total = 0;
+            $filmCount = 0;
 
-        foreach ($basket as $id => $details) {
-            $total += $details['price'] * $details['quantity'];
-            $filmCount += $details['quantity'];
+            foreach ($basket as $id => $details) {
+                $total += $details['price'] * $details['quantity'];
+                $filmCount += $details['quantity'];
+            }
+
+            if ($total >= 100) {
+                $discount = $total * 0.05;
+                $total -= $discount;
+            }
+
+            $previousTransactions = Transactions::where('id_user', $user->id)->get();
+
+            $previousFilmCount = 0;
+            foreach ($previousTransactions as $transaction) {
+                $previousFilmCount += $transaction->quantity;
+            }
+
+            $totalFilmCount = $filmCount + $previousFilmCount;
+
+            if ($totalFilmCount >= 200) {
+                $discount = $total * 0.03;
+                $total -= $discount;
+            }
+
+            if ($previousTransactions->isEmpty()) {
+                $discount = $total * 0.2;
+                $total -= $discount;
+            }
+        } else {
+            $total = 0;
+            $filmCount = 0;
+            $previousTransactions = collect();
+            $totalFilmCount = 0;
         }
 
-        if ($total >= 100) {
-            $discount = $total * 0.05;
-            $total -= $discount;
-        }
-
-        $previousTransactions = Transactions::where('id_user', $user->id)->get();
-
-        $previousFilmCount = 0;
-        foreach ($previousTransactions as $transaction) {
-            $previousFilmCount += $transaction->quantity;
-        }
-
-        $totalFilmCount = $filmCount + $previousFilmCount;
-
-        if ($totalFilmCount >= 200) {
-            $discount = $total * 0.03;
-            $total -= $discount;
-        }
-
-        if ($previousTransactions->isEmpty()) {
-            $discount = $total * 0.2;
-            $total -= $discount;
-        }
         return view('shop.basket', compact('addresses', 'total'));
     }
 
