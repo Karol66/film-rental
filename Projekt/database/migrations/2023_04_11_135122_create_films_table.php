@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('type');
             $table->double('price');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         DB::statement("ALTER TABLE films ADD image MEDIUMBLOB");

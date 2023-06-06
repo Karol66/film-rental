@@ -37,6 +37,7 @@ Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->group(function
     Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('film.edit');
     Route::patch('/film/{id}', [FilmController::class, 'update'])->name('film.update');
     Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('film.destroy');
+    Route::post('/film/{id}', [FilmController::class, 'restore'])->name('film.restore');
 
 
     Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
@@ -45,6 +46,8 @@ Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->group(function
     Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::post('/users/{id}', [UserController::class, 'restore'])->name('users.restore');
+
 });
 
 Route::middleware([\App\Http\Middleware\UserMiddleware::class])->group(function () {

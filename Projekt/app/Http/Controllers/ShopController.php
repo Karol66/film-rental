@@ -183,13 +183,14 @@ class ShopController extends Controller
     {
         $user = Auth::user();
         $addresses = Adresses::where('id_user', $user->id)->get();
-        return view('shop.payment', compact('addresses'));
+        $transaction = Transactions::where('id_user', $user->id)->first();
+        return view('shop.payment', compact('addresses', 'transaction'));
     }
 
 
     public function pay(Request $request)
     {
-        $addressId = $request->input('address_id');
+        $addressId = $request->input('id_adresses');
         $user = Auth::user();
 
         $basket = session()->get('basket');

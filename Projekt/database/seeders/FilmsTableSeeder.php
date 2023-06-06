@@ -85,7 +85,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Japan',
                 'type' => 'Adventure',
                 'image_path' => public_path('/img/pirates.jpg'),
-                'price' => 8.99,
+                'price' => 7.99,
             ],
             [
                 'name' => 'Batman',
@@ -94,7 +94,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'type' => 'Drama',
                 'image_path' => public_path('/img/bat-man.jpg'),
-                'price' => 9.99,
+                'price' => 10.00,
             ],
             [
                 'name' => 'Jurasic Park',
@@ -103,7 +103,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'type' => 'Action',
                 'image_path' => public_path('/img/jurasic-park.jpg'),
-                'price' => 8.99,
+                'price' => 6.99,
             ],
             [
                 'name' => 'Jurasic World',
@@ -112,7 +112,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'type' => 'Horror',
                 'image_path' => public_path('/img/atlantis.jpg'),
-                'price' => 9.99,
+                'price' => 19.99,
             ],
             [
                 'name' => 'Mandalorian',
@@ -139,7 +139,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Japan',
                 'type' => 'Adventure',
                 'image_path' => public_path('/img/wanda.png'),
-                'price' => 8.99,
+                'price' => 5.99,
             ],
             [
                 'name' => 'Star Trek',
@@ -148,7 +148,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Russia',
                 'type' => 'Drama',
                 'image_path' => public_path('/img/star-trek.jpg'),
-                'price' => 9.99,
+                'price' => 4.99,
             ],
             [
                 'name' => 'Resident Evil',
@@ -157,7 +157,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'type' => 'Action',
                 'image_path' => public_path('/img/resident-evil.jpg'),
-                'price' => 8.99,
+                'price' => 18.99,
             ],
             [
                 'name' => 'Stranger Thing',
@@ -166,7 +166,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'UK',
                 'type' => 'Horror',
                 'image_path' => public_path('/img/stranger-thing.jpg'),
-                'price' => 9.99,
+                'price' => 20.00,
             ],
             [
                 'name' => 'End Game',
@@ -193,7 +193,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Japan',
                 'type' => 'Adventure',
                 'image_path' => public_path('/img/avatar.jpg'),
-                'price' => 8.99,
+                'price' => 15.99,
             ],
             [
                 'name' => 'Penthouses',
@@ -202,7 +202,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Russia',
                 'type' => 'Drama',
                 'image_path' => public_path('/img/penthouses.jpg'),
-                'price' => 9.99,
+                'price' => 16.99,
             ],
             [
                 'name' => 'Titans',
@@ -211,7 +211,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'type' => 'Action',
                 'image_path' => public_path('/img/titans.jpg'),
-                'price' => 8.99,
+                'price' => 17.99,
             ],
             [
                 'name' => 'Wanda',
@@ -220,7 +220,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'UK',
                 'type' => 'Horror',
                 'image_path' => public_path('/img/wanda.webp'),
-                'price' => 9.99,
+                'price' => 19.99,
             ],
             [
                 'name' => 'The Falcon',
@@ -238,7 +238,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'type' => 'Comedy',
                 'image_path' => public_path('/img/ring.jpg'),
-                'price' => 9.99,
+                'price' => 6.99,
             ],
             [
                 'name' => 'Scream',
@@ -247,7 +247,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Japan',
                 'type' => 'Adventure',
                 'image_path' => public_path('/img/scream.jpg'),
-                'price' => 8.99,
+                'price' => 7.99,
             ],
             [
                 'name' => 'Dark',
@@ -265,7 +265,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'type' => 'Action',
                 'image_path' => public_path('/img/meg.jpg'),
-                'price' => 8.99,
+                'price' => 10.99,
             ],
             [
                 'name' => 'Dark Widow',
@@ -274,7 +274,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'UK',
                 'type' => 'Action',
                 'image_path' => public_path('/img/widow.jpg'),
-                'price' => 9.99,
+                'price' => 11.99,
             ],
             [
                 'name' => 'Life',
@@ -283,7 +283,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'France',
                 'type' => 'Thriller',
                 'image_path' => public_path('/img/life.jpg'),
-                'price' => 8.99,
+                'price' => 12.99,
             ],
             [
                 'name' => 'The godfather',
@@ -292,7 +292,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'type' => 'Comedy',
                 'image_path' => public_path('/img/godfather.jpg'),
-                'price' => 9.99,
+                'price' => 12.99,
             ],
             [
                 'name' => 'Harry Potter',
@@ -301,7 +301,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'type' => 'Adventure',
                 'image_path' => public_path('/img/harrypotter.jpg'),
-                'price' => 8.99,
+                'price' => 16.99,
             ],
         ];
 

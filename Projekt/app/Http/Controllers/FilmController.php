@@ -27,7 +27,7 @@ class FilmController extends Controller
 
     public function film()
     {
-        $film = Film::paginate(10);
+        $film = Film::withTrashed()->paginate(10);
         return view('film.films')->with('film', $film);
     }
 
@@ -104,16 +104,23 @@ class FilmController extends Controller
     {
         $film = Film::findOrFail($id);
 
-        // Usuń wszystkie rekordy z tabeli 'items' powiązane z tym filmem
-        $film->item()->delete();
-
-        // Aktualizuj klucz obcy 'id_film' w tabeli 'items' na NULL
-        Item::where('id_film', $id)->update(['id_film' => null]);
-
-        // Usuń sam film
+        // Soft delete the film
         $film->delete();
 
         return redirect('film')->with('flash_message', 'Film deleted!');
+    }
+
+    public function restore($id)
+    {
+        $film = Film::withTrashed()->find($id);
+
+        if (!$film) {
+            return redirect('film')->with('error', 'Film not found');
+        }
+
+        $film->restore();
+
+        return redirect('film')->with('success', 'Film restored successfully');
     }
 
     /**

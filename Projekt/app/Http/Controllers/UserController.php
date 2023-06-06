@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::withTrashed()->paginate(10);
         return view('users.index')->with('users', $users);
     }
 
@@ -69,16 +69,16 @@ class UserController extends Controller
         return redirect('users')->with('flash_message', 'User deleted!');
     }
 
-    // public function search(Request $request)
-    // {
-    //     $search = $request->input('search');
+    public function restore($id)
+    {
+        $user = User::withTrashed()->find($id);
 
-    //     if ($search) {
-    //         $users = User::where('name', 'like', '%' . $search . '%')->paginate(10);
-    //     } else {
-    //         $users = User::paginate(10);
-    //     }
+        if (!$user) {
+            return redirect('film')->with('error', 'Film not found');
+        }
 
-    //     return view('users.index')->with('users', $users)->with('search', $search);
-    // }
+        $user->restore();
+
+        return redirect('film')->with('success', 'Film restored successfully');
+    }
 }

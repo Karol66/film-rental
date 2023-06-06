@@ -44,17 +44,23 @@ class AdressesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'street' => 'required',
-            'home_number' => 'required',
-            'apartment_number' => 'nullable',
-            'city' => 'required',
+        $validator = $request->validate([
+            'street' => 'required|string',
+            'home_number' => 'required|numeric',
+            'apartment_number' => 'nullable|string',
+            'city' => 'required|string',
+        ], [
+            'home_number.numeric' => 'The home number must be a number.',
         ]);
 
         $addressData = $request->all();
-        $addressData['id_user'] = Auth::id(); // Przypisanie ID aktualnie zalogowanego użytkownika
+        $addressData['id_user'] = Auth::id();
 
-        Adresses::create($addressData);
+        try {
+            Adresses::create($addressData);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['general' => 'An error occurred while creating the address. Please try again.']);
+        }
 
         return redirect()->route('addresses.index')->with('success', 'Address created successfully.');
     }
@@ -80,18 +86,20 @@ class AdressesController extends Controller
     public function update(Request $request, string $id)
     {
         $address = Adresses::findOrFail($id);
-        $request->validate([
-            'street' => 'required',
-            'home_number' => 'required',
-            'apartment_number' => 'nullable',
-            'city' => 'required',
+
+        $validator = $request->validate([
+            'street' => 'required|string',
+            'home_number' => 'required|numeric',
+            'apartment_number' => 'nullable|string',
+            'city' => 'required|string',
+        ], [
+            'home_number.numeric' => 'The home number must be a number.',
         ]);
 
         $address->update($request->all());
 
         return redirect()->route('addresses.index')->with('success', 'Address updated successfully.');
     }
-
     /**
      * Remove the specified address from storage.
      *

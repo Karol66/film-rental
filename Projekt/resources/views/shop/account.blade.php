@@ -23,7 +23,7 @@
                         <td>{{ $transaction->quantity }}</td>
                         <td>
                             @php
-                                 $address = $transaction->addresses
+                                $address = $transaction->addresses
                                     ->selectRaw("CONCAT(street, ', ', home_number, ', ', apartment_number, ', ', city) AS full_address")
                                     ->pluck('full_address')
                                     ->first();
@@ -35,7 +35,9 @@
                         <td>
                             <ul class="list-unstyled">
                                 @foreach ($transaction->item as $item)
-                                    <li>{{ $item->films->name }}</li>
+                                    @if ($item->films)
+                                        <li>{{ $item->films->name }}</li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </td>

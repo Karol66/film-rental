@@ -5,6 +5,17 @@
         <h1 class="h2">Edit Address</h1>
     </div>
 
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="list-unstyled">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('shop.update', $address->id) }}" method="POST">
         @csrf
         @method('PATCH')
