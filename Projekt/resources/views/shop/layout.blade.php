@@ -111,26 +111,29 @@
                             </div>
                         </li>
                     @endif
-                    @if (Auth::check())
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
-                        </li>
-                    @endif
-                    <li>
-                        @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                    @endguest
-                    </li>
                 </ul>
                 @if (Route::is('shop.films'))
-                <form class="d-flex" role="search" action="{{ route('shop.search') }}" method="GET">
+                <form class="d-flex  me-auto" role="search" action="{{ route('shop.search') }}" method="GET">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                         name="search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 @endif
+
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    @if (Auth::check())
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
+                            </li>
+                        @endif
+                        <li>
+                            @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            </li>
+                        @endguest
+                        </li>
+                    </ul>
             </div>
         </div>
     </nav>

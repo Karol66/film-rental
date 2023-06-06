@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Item;
 use App\Models\Transactions;
 
 class FilmController extends Controller
@@ -103,18 +104,13 @@ class FilmController extends Controller
     {
         $film = Film::findOrFail($id);
 
-        // Get all transactions that have this film
-        $transactions = $film->transactions;
+        // Usuń wszystkie rekordy z tabeli 'items' powiązane z tym filmem
+        $film->item()->delete();
 
-        // Check if there are transactions with the film
-        if ($transactions) {
-            // Remove the film from each transaction
-            foreach ($transactions as $transaction) {
-                $transaction->item()->where('film_id', $film->id)->delete();
-            }
-        }
+        // Aktualizuj klucz obcy 'id_film' w tabeli 'items' na NULL
+        Item::where('id_film', $id)->update(['id_film' => null]);
 
-        // Delete the film
+        // Usuń sam film
         $film->delete();
 
         return redirect('film')->with('flash_message', 'Film deleted!');

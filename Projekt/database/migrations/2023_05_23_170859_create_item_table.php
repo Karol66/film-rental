@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('id_film');
+            $table->unsignedBigInteger('id_film')->nullable();
             $table->foreign('id_film')->references('id')->on('films');
-            $table->unsignedBigInteger('id_transaction');
+            $table->unsignedBigInteger('id_transaction')->nullable();
             $table->foreign('id_transaction')->references('id')->on('transactions');
         });
     }

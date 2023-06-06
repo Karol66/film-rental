@@ -66,13 +66,13 @@
         .sidebar {
             background-color: #5a1212 !important;
         }
-        /* .sidebar .nav-link:hover .feather
-        .sidebar .nav-link.active .feather{
-            color: #c32828;
-        } */
 
         .nav-link:hover {
             color: #c32828 !important;
+        }
+
+        a{
+            color: white !important;
         }
 
     </style>
@@ -153,10 +153,6 @@
             </div>
         </div>
     </div>
-
-    <footer class="bg-dark text-white text-center p-3 mt-5">
-        <p>Movie Rental  &copy; 2023. All rights reserved.</p>
-    </footer>
 
     <script>
         feather.replace();

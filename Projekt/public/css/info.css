@@ -48,3 +48,19 @@ body {
 .nav-link:hover {
     color: #c32828;
 }
+
+.dropdown-menu {
+    min-width: 300px;
+    max-width: 500px;
+    background-color: #343a40;
+    padding: 10px;
+}
+
+
+.dropdown-menu .total-section p,
+.dropdown-menu .product-name,
+.dropdown-menu .price-quantity .price,
+.dropdown-menu .count,
+.dropdown-menu .checkout a {
+    color: #fff;
+}

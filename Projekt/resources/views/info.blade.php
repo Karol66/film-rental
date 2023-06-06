@@ -34,19 +34,18 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
+        <img class="rounded-circle" width="140" height="140" src="\img\2.png">
         <h2>Blu-ray Promotion</h2>
         <p>Discover the world of Blu-ray with our extensive collection of high-definition movies. Immerse yourself in stunning visuals and superior audio quality.</p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <img class="rounded-circle" width="140" height="140" src="\img\3.png">
 
         <h2>Blu-ray Collection</h2>
         <p>Explore our vast collection of Blu-ray movies. From action-packed blockbusters to captivating dramas, we have something for everyone.</p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <img class="rounded-circle" width="140" height="140" src="\img\2.png">
 
         <h2>Upgrade to Blu-ray</h2>
         <p>Experience your favorite movies like never before. Upgrade to Blu-ray and enjoy crystal-clear picture quality and immersive surround sound.</p>
@@ -64,7 +63,7 @@
         <p class="lead">Indulge in the breathtaking visuals and incredible detail of Blu-ray. Immerse yourself in the world of high-definition entertainment.</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img class="featurette-image img-fluid mx-auto" width="500" height="500" src="\img\5.png">
 
       </div>
     </div>
@@ -77,7 +76,7 @@
         <p class="lead">Unleash the full potential of your home theater setup with Blu-ray. Enjoy unparalleled audiovisual quality and a truly immersive cinematic experience.</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img class="featurette-image img-fluid mx-auto" width="500" height="500" src="\img\4.png">
 
       </div>
     </div>
@@ -90,7 +89,7 @@
         <p class="lead">Embrace the ultimate home entertainment experience with Blu-ray. Elevate your movie nights and enjoy a theater-like atmosphere in the comfort of your own home.</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <img class="featurette-image img-fluid mx-auto" width="500" height="500" src="\img\3.png">
 
       </div>
     </div>

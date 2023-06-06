@@ -176,10 +176,7 @@ right: 0;
     color: #727272;
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-    color: #727272;
-}
+
 
 .sidebar-heading {
     font-size: .75rem;

@@ -55,7 +55,6 @@ Route::middleware([\App\Http\Middleware\UserMiddleware::class])->group(function 
     Route::post('/update-basket/{id}', [ShopController::class, 'update'])->name('update_basket');
     Route::delete('/shop/delete', [ShopController::class, 'delete'])->name('shop.delete');
     Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search');
-    Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
     Route::post('/shop/account/payment', [ShopController::class, 'pay'])->name('shop.pay');
     Route::get('/shop/account/payment',  [ShopController::class, 'payment'])->name('shop.payment');
@@ -75,3 +74,5 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/info', function () {
     return view('info');
 })->name('info');
+Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
+

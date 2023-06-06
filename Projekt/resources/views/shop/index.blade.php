@@ -38,8 +38,7 @@
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link"
-                                href="{{ Auth::check() ? route('shop.account') : route('login') }}">Personal
-                                data</a>
+                                href="{{ Auth::check() ? route('shop.account') : route('login') }}">My data</a>
                         </li>
                         <li>
                             <div class="dropdown">
@@ -83,8 +82,9 @@
                             </div>
                         </li>
                     @endif
-
-                    @if (Auth::check())
+                </ul>
+                <ul class="navbar-nav  mb-2 mb-lg-0">
+                @if (Auth::check())
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
                         </li>

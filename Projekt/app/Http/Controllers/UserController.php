@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Adresses;
+use App\Models\Transactions;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -53,20 +55,30 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        $user = User::findOrFail($id);
+
+        $user->adresses()->delete();
+
+        Adresses::where('id_user', $id)->update(['id_user' => null]);
+
+        $user->transactions()->delete();
+
+        Transactions::where('id_user', $id)->update(['id_user' => null]);
+
         User::destroy($id);
         return redirect('users')->with('flash_message', 'User deleted!');
     }
 
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
+    // public function search(Request $request)
+    // {
+    //     $search = $request->input('search');
 
-        if ($search) {
-            $users = User::where('name', 'like', '%' . $search . '%')->paginate(10);
-        } else {
-            $users = User::paginate(10);
-        }
+    //     if ($search) {
+    //         $users = User::where('name', 'like', '%' . $search . '%')->paginate(10);
+    //     } else {
+    //         $users = User::paginate(10);
+    //     }
 
-        return view('users.index')->with('users', $users)->with('search', $search);
-    }
+    //     return view('users.index')->with('users', $users)->with('search', $search);
+    // }
 }
