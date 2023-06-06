@@ -111,7 +111,7 @@ class FilmsTableSeeder extends Seeder
                 'release_date' => '2022-01-01',
                 'country' => 'USA',
                 'type' => 'Horror',
-                'image_path' => public_path('/img/atlantis.jpg'),
+                'image_path' => public_path('/img/jurasic-world.jpg'),
                 'price' => 19.99,
             ],
             [

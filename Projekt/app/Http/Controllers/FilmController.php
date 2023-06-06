@@ -44,6 +44,19 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'film_length' => 'required|numeric',
+            'release_date' => 'required',
+            'country' => 'required',
+            'price' => 'required|numeric',
+            'image' => 'required|image',
+        ], [
+            'film_length.numeric' => 'The Film Length field must be a number!',
+            'price.numeric' => 'The Price field must be a number!',
+        ]);
+
         $input = $request->all();
 
         $input['release_date'] = Carbon::parse($input['release_date']);
@@ -82,6 +95,20 @@ class FilmController extends Controller
     public function update(Request $request, string $id)
     {
         $film = Film::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'film_length' => 'required|numeric',
+            'release_date' => 'required',
+            'country' => 'required',
+            'price' => 'required|numeric',
+            'image' => 'image',
+        ], [
+            'film_length.numeric' => 'The Film Length field must be a number!',
+            'price.numeric' => 'The Price field must be a number!',
+        ]);
+
         $input = $request->all();
 
         $input['release_date'] = Carbon::parse($input['release_date']);

@@ -85,6 +85,17 @@
                 }
             }
         </style>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-unstyled">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="row">
             <div class="card-body">
                 <form action="{{ route('film.update', $film->id) }}" method="post" enctype="multipart/form-data">

@@ -86,6 +86,16 @@
             }
         </style>
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-unstyled">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="row">
             <form method="POST" action="{{ route('film.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -137,7 +147,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="film_length">Time</label><br>
+                        <label for="film_length">Film Length</label><br>
                         <input type="text" name="film_length" id="film_length" class="form-control">
                     </div>
                     <div class="form-group">
