@@ -77,5 +77,10 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/info', function () {
     return view('info');
 })->name('info');
+
 Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
+
+Route::get('/loading', function () {
+    return view('loading');
+});
 

@@ -18,19 +18,22 @@
             <tbody>
                 @foreach ($transactions as $transaction)
                     <tr>
-                        <td>{{ $transaction->id }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>${{ $transaction->price }}</td>
                         <td>{{ $transaction->quantity }}</td>
                         <td>
-                            @php
-                                $address = $transaction->addresses
-                                    ->selectRaw("CONCAT(street, ', ', home_number, ', ', apartment_number, ', ', city) AS full_address")
-                                    ->pluck('full_address')
-                                    ->first();
-
-                                echo $address;
-                            @endphp
-
+                            <ul class="list-unstyled">
+                                @if ($transaction->addresses)
+                                <li>{{ $transaction->addresses->street }}, {{ $transaction->addresses->home_number }}, {{ $transaction->addresses->apartment_number }}, {{ $transaction->addresses->city }}</li>
+                                @endif
+                                <div id="hiddenValues">
+                                    @foreach ($transactions as $transaction)
+                                        <div class="hiddenValue" style="display: none;">
+                                            {{ $transaction->id }}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </ul>
                         </td>
                         <td>
                             <ul class="list-unstyled">
@@ -50,4 +53,15 @@
     <div class="pagination-container d-flex justify-content-center mt-5">
         {{ $transactions->links('pagination::bootstrap-4') }}
     </div>
+
+    <script>
+        const showAddressesButtons = document.querySelectorAll('.show-addresses-btn');
+
+        showAddressesButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const addressesContainer = button.parentNode.querySelector('.list-unstyled');
+                addressesContainer.classList.toggle('show');
+            });
+        });
+    </script>
 @endsection

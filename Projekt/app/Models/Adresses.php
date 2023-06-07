@@ -26,6 +26,6 @@ class Adresses extends Model
 
     public function transactions()
     {
-        return $this->hasMany(Transactions::class, 'id_transaction');
+        return $this->hasMany(Transactions::class, 'id_adresses');
     }
 }

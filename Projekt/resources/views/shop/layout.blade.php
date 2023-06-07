@@ -18,6 +18,7 @@
 
         @media (max-width: 992px) {
             .sidebar {
+                top: 100;
                 margin-left: -100%;
                 position: fixed;
                 width: 100%;
@@ -31,7 +32,6 @@
             .sidebar.active {
                 margin-left: 0;
             }
-
         }
     </style>
 </head>
@@ -113,27 +113,27 @@
                     @endif
                 </ul>
                 @if (Route::is('shop.films'))
-                <form class="d-flex  me-auto" role="search" action="{{ route('shop.search') }}" method="GET">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                        name="search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                    <form class="d-flex  me-auto" role="search" action="{{ route('shop.search') }}" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                            name="search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                 @endif
 
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     @if (Auth::check())
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
-                            </li>
-                        @endif
-                        <li>
-                            @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
-                            </li>
-                        @endguest
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
                         </li>
-                    </ul>
+                    @endif
+                    <li>
+                        @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+                    @endguest
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -146,7 +146,7 @@
                     Route::is('addresses.index') ||
                     Route::is('shop.create') ||
                     Route::is('shop.edit'))
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar ">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar">
                     <div class="position-sticky pt-3 sidebar-wrapper">
                         <ul class="nav flex-column">
                             <li class="nav-item">
@@ -177,38 +177,39 @@
                     </div>
                 </nav>
             @endif
+
+
+
+            @if (Route::is('shop.account') ||
+                    Route::is('shop.password_change') ||
+                    Route::is('addresses.index') ||
+                    Route::is('shop.create') ||
+                    Route::is('shop.edit'))
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    <div class="container pt-4">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @yield('content')
+                    </div>
+                </main>
+            @else
+                <div class="container pt-4">
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @yield('content')
+                </div>
+            @endif
         </div>
     </div>
 
-
-
-    @if (Route::is('shop.account') ||
-            Route::is('shop.password_change') ||
-            Route::is('addresses.index') ||
-            Route::is('shop.create') ||
-            Route::is('shop.edit'))
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="container pt-4">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                @yield('content')
-            </div>
-        </main>
-    @else
-        <div class="container pt-4">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            @yield('content')
-        </div>
-    @endif
 
     <script>
         function toggleDropdown() {

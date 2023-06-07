@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Adresses;
 use App\Models\Item;
 use App\Models\Transactions;
-
+use Illuminate\Support\Facades\View;
 
 class ShopController extends Controller
 {
@@ -39,8 +39,7 @@ class ShopController extends Controller
 
         $transactions = Transactions::with(['user', 'addresses', 'item.films'])
             ->where('id_user', $userId)
-            ->paginate(5);
-
+            ->paginate(10);
         return view('shop.account', compact('transactions'));
     }
 
@@ -181,6 +180,10 @@ class ShopController extends Controller
 
     public function payment()
     {
+        if (empty(session('basket'))) {
+            return redirect()->route('shop.basket')->with('message', 'Your basket is empty. Please add items to your basket before proceeding to payment.');
+        }
+
         $user = Auth::user();
         $addresses = Adresses::where('id_user', $user->id)->get();
         $transaction = Transactions::where('id_user', $user->id)->first();
@@ -191,6 +194,7 @@ class ShopController extends Controller
     public function pay(Request $request)
     {
         $addressId = $request->input('id_adresses');
+        // dd($addressId);
         $user = Auth::user();
 
         $basket = session()->get('basket');

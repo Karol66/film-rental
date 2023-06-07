@@ -1,6 +1,13 @@
 @extends('shop.layout')
 
 @section('content')
+
+    @if (session('message'))
+        <div class="alert alert-warning" role="alert">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <div id="margin">
         <div class="table-responsive">
             <table class="table table-dark table-striped" id="margin">

@@ -306,7 +306,6 @@ class FilmsTableSeeder extends Seeder
         ];
 
         foreach ($films as $film) {
-            // Przechowaj zdjęcie w bazie danych jako MEDIUMBLOB
             $imageContents = file_get_contents($film['image_path']);
 
             DB::table('films')->insert([
