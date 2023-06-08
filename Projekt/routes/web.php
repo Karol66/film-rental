@@ -29,9 +29,9 @@ Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('re
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
 Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->group(function () {
-    Route::get('film/transactions', [TransactionsController::class, 'index'])->name('film.transactions');
-    Route::get('/film/films', [FilmController::class, 'film'])->name('film.films');
-    Route::get('/film/search', [FilmController::class, 'search'])->name('film.search');
+    Route::get('/transactions', [TransactionsController::class, 'index'])->name('film.transactions');
+    Route::get('/films', [FilmController::class, 'film'])->name('film.films');
+    Route::get('/films/search', [FilmController::class, 'search'])->name('film.search');
     Route::resource("/film", FilmController::class);
     Route::get('/film', [FilmController::class, 'index'])->name('film.index');
     Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('film.edit');

@@ -136,7 +136,7 @@ class ShopController extends Controller
         ];
 
         session()->put('basket', $basket);
-        return redirect()->back()->with('success', 'Number of days has been updated !');
+        return redirect()->back()->with('success', 'Number of days has been updated!');
     }
 
     /**

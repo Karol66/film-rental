@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
     <title>404 - Not Found</title>
     <style>
         body {
@@ -12,6 +14,7 @@
             justify-content: space-between;
             height: 100vh;
             margin: 0;
+            font-family: 'Roboto Slab', serif;
         }
 
         h1, p {

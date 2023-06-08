@@ -19,9 +19,14 @@ class FilmController extends Controller
         $startDate = Carbon::now()->subWeek();
         $endDate = Carbon::now();
 
-        $transactions = Transactions::whereBetween('created_at', [$startDate, $endDate])->get();
+        $transactions = Transactions::whereBetween('created_at', [$startDate, $endDate])->paginate(10);
 
-        return view('film.index')->with('transactions', $transactions);
+        $allTransactions = Transactions::whereBetween('created_at', [$startDate, $endDate])->get();
+
+        return view('film.index')->with([
+            'transactions' => $transactions,
+            'allTransactions' => $allTransactions,
+        ]);
     }
 
 

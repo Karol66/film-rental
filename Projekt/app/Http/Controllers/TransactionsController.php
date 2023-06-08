@@ -16,4 +16,5 @@ class TransactionsController extends Controller
         $transactions = Transactions::paginate(10);
         return view('film.transactions')->with('transactions', $transactions);
     }
+
 }

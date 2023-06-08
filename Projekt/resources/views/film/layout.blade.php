@@ -71,10 +71,91 @@
             color: #c32828 !important;
         }
 
-        a{
+        a {
             color: white !important;
         }
+        .btn-success{
+            background-color: rgba(44, 117, 59, 0.897);
+            border-color: transparent;
+        }
 
+        input[type="file"] {
+                display: none;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .film-image {
+                width: 350px;
+                height: 500px;
+                margin-top: 40px;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                border: 1px solid #ccc;
+                display: inline-block;
+                overflow: hidden;
+            }
+
+            .film-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                margin: 0;
+            }
+
+            .form-fields {
+                padding-top: 20px;
+            }
+
+            .form-fields .form-group {
+                width: 100%;
+            }
+
+            .form-control {
+                width: 60%;
+                background-color: rgba(255, 255, 255, 0.1);
+                border: transparent;
+                color: white;
+            }
+
+            @media (min-width: 768px) {
+                .film-image {
+                    float: left;
+                    margin-right: 20px;
+                }
+
+                .form-fields {
+                    float: left;
+                    width: calc(100% - 380px);
+                }
+            }
+
+            @media (max-width: 767px) {
+                .form-check {
+                    flex-basis: 100%;
+                }
+            }
+
+            .form-check-group {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .form-check-group .form-check {
+                flex-basis: calc(50% - 5px);
+                max-width: calc(50% - 5px);
+                margin-bottom: 10px;
+            }
+
+            @media (max-width: 575px) {
+                .form-check-group .form-check {
+                    flex-basis: 100%;
+                    max-width: 100%;
+                }
+            }
     </style>
 
 
@@ -90,11 +171,11 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <form class="w-100" action="{{ route('film.search') }}" method="GET">
-            <input class="form-control form-control-dark" name="search" type="text" placeholder="Search"
-                aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="w-100 d-flex" action="{{ route('film.search') }}" method="GET">
+            <input class="form-control form-control-dark me-2" name="search" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
         </form>
+
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" href="{{ route('logout') }}">Sign out</a>
@@ -114,12 +195,6 @@
                                 Dashboard
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file"></span>
-                                Orders
-                            </a>
-                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('film.films') }}">
                                 <span data-feather="shopping-cart"></span>

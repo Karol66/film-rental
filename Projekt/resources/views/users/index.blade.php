@@ -31,7 +31,13 @@
                             <td>{{ $item->last_name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->user_name }}</td>
-                            <td>{{ $item->is_admin }}</td>
+                            <td>
+                                @if ($item->is_admin)
+                                    Yes
+                                @else
+                                    No
+                                @endif
+                            </td>
                             <td>
                                 @if ($item->trashed())
                                     <form method="POST" action="{{ route('users.restore', $item->id) }}">
