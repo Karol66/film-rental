@@ -136,7 +136,6 @@ class FilmController extends Controller
     {
         $film = Film::findOrFail($id);
 
-        // Soft delete the film
         $film->delete();
 
         return redirect('film')->with('flash_message', 'Film deleted!');
@@ -147,7 +146,7 @@ class FilmController extends Controller
         $film = Film::withTrashed()->find($id);
 
         if (!$film) {
-            return redirect('film')->with('error', 'Film not found');
+            return redirect('shop.')->with('error', 'Film not found');
         }
 
         $film->restore();

@@ -20,7 +20,7 @@ class AdressesController extends Controller
         $userId = Auth::id();
 
         // Fetch the addresses for the user
-        $addresses = Adresses::where('id_user', $userId)->get();
+        $addresses = Adresses::withTrashed()->where('id_user', $userId)->get();
 
         return view('shop.adresses', compact('addresses'));
     }
@@ -108,8 +108,23 @@ class AdressesController extends Controller
      */
     public function destroy(string $id)
     {
-        Adresses::destroy($id);
+        $address = Adresses::findOrFail($id);
 
-        return redirect()->route('addresses.index')->with('success', 'Address deleted successfully.');
+        $address->delete();
+
+        return redirect()->route('addresses.index')->with('flash_message', 'Address deleted successfully.');
+    }
+
+    public function restore($id)
+    {
+        $address = Adresses::withTrashed()->find($id);
+
+        if (!$address) {
+            return redirect('/shop/account/addresses')->with('error', 'Address not found');
+        }
+
+        $address->restore();
+
+        return redirect('/shop/account/addresses')->with('success', 'Address restored successfully');
     }
 }

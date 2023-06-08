@@ -37,8 +37,8 @@
                                 href="{{ Auth::check() ? route('shop.films') : route('login') }}">Films</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link"
-                                href="{{ Auth::check() ? route('shop.account') : route('login') }}">My data</a>
+                            <a class="nav-link" href="{{ Auth::check() ? route('shop.account') : route('login') }}">My
+                                data</a>
                         </li>
                         <li>
                             <div class="dropdown">
@@ -84,7 +84,7 @@
                     @endif
                 </ul>
                 <ul class="navbar-nav  mb-2 mb-lg-0">
-                @if (Auth::check())
+                    @if (Auth::check())
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
                         </li>
@@ -185,7 +185,8 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <button class="promo-button btn btn-primary btn-block">
+                <button class="promo-button btn btn-block"
+                    style="background-color: beige; color:black; border-color:transparent">
                     <div class="promo-content" style="color:black">
                         <p class="promo-text text-center">Create an account now and receive a 20% discount on your
                             first
@@ -194,7 +195,8 @@
                 </button>
             </div>
             <div class="col-md-4">
-                <button class="promo-button btn btn-danger btn-block" style="background-color: #711212; color:beige">
+                <button class="promo-button btn btn-danger btn-block"
+                    style="background-color: #711212; color:beige; border-color:transparent">
                     <div class="promo-content">
                         <p class="promo-text text-center">Receive a 5% discount on your order if it is $100 or more!
                         </p>
@@ -202,7 +204,8 @@
                 </button>
             </div>
             <div class="col-md-4">
-                <button class="promo-button btn btn-primary btn-block">
+                <button class="promo-button btn btn-block"
+                    style="background-color: beige; color:black; border-color:transparent">
                     <div class="promo-content" style="color:black">
                         <p class="promo-text text-center">Offer for regular customers after the purchase of 200 films
                             fixed 3%

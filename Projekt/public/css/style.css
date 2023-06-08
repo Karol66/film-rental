@@ -4,7 +4,7 @@ body {
     font-family: 'Roboto Slab', serif;
 }
 
-.navbar{
+.navbar {
     padding: 0;
     padding-left: 10px;
     padding-top: 5px;
@@ -12,22 +12,21 @@ body {
     font-size: x-large;
 }
 
-.navbar a{
+.navbar a {
     color: white;
 }
 
-.btn-primary{
-    background-color:transparent;
+.btn-primary {
+    background-color: transparent;
 }
 
-.btn-primary:hover
-{
-    background-color:#711212;
+.btn-primary:hover {
+    background-color: #711212;
 }
 
 .btn-primary:active,
-.btn-primary:focus:active{
-    background-color:#b51b1b;
+.btn-primary:focus:active {
+    background-color: #b51b1b;
 }
 
 .grid-container {
@@ -140,13 +139,13 @@ p {
     border-radius: 3px;
 }
 
- .pagination a:hover {
+.pagination a:hover {
     background-color: #711212;
     border-color: transparent;
     color: white;
 }
 
- .pagination .page-item.disabled .page-link {
+.pagination .page-item.disabled .page-link {
     background-color: transparent;
     border-color: transparent;
     color: white;

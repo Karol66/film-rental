@@ -70,6 +70,10 @@ Route::middleware([\App\Http\Middleware\UserMiddleware::class])->group(function 
     Route::get('/shop/account/create', [AdressesController::class, 'create'])->name('shop.create');
     Route::patch('/shop/account/{id}', [AdressesController::class, 'update'])->name('shop.update');
     Route::get('/shop/account/{id}/edit', [AdressesController::class, 'edit'])->name('shop.edit');
+    Route::delete('/shop/account/{id}', [AdressesController::class, 'destroy'])->name('shop.destroy');
+    Route::post('/shop/account/{id}', [AdressesController::class, 'restore'])->name('shop.restore');
+
+
 });
 
 

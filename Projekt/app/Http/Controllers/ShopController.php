@@ -91,6 +91,8 @@ class ShopController extends Controller
             $totalFilmCount = 0;
         }
 
+        $total = round($total, 2);
+
         return view('shop.basket', compact('addresses', 'total'));
     }
 
@@ -233,7 +235,7 @@ class ShopController extends Controller
         $transaction = new Transactions();
         $transaction->id_user = $user->id;
         $transaction->id_adresses = $addressId;
-        $transaction->price = $total;
+        $transaction->price = round($total, 2);
         $transaction->quantity = $filmCount;
         $transaction->save();
 
