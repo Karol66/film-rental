@@ -25,7 +25,7 @@
                                 <img class="imidz" src="data:image/jpeg;base64,{{ base64_encode($film->image) }}">
                             </td>
                             <td>{{ $film->name }}</td>
-                            <td>{{ $film->type }}</td>
+                            <td>{{ $film->filmType->name }}</td>
                             <td>{{ $film->film_length }}</td>
                             <td>{{ $film->release_date }}</td>
                             <td>{{ $film->country }}</td>

@@ -38,39 +38,12 @@
                                 style="background-color: rgba(255, 255, 255, 0.1); border: transparent; color: white;">
                         </div>
                         <div class="form-group">
-                            <label>Type</label><br>
-                            <div class="form-check-group">
-                                <div class="form-check">
-                                    <input type="radio" name="type" id="type_comedy" class="form-check-input"
-                                        value="comedy" checked>
-                                    <label for="type_comedy" class="form-check-label">Comedy</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" name="type" id="type_adventure" class="form-check-input"
-                                        value="adventure">
-                                    <label for="type_adventure" class="form-check-label">Adventure</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" name="type" id="type_drama" class="form-check-input"
-                                        value="drama">
-                                    <label for="type_drama" class="form-check-label">Drama</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" name="type" id="type_action" class="form-check-input"
-                                        value="action">
-                                    <label for="type_action" class="form-check-label">Action</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" name="type" id="type_horror" class="form-check-input"
-                                        value="horror">
-                                    <label for="type_horror" class="form-check-label">Horror</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" name="type" id="type_thriller" class="form-check-input"
-                                        value="thriller">
-                                    <label for="type_thriller" class="form-check-label">Thriller</label>
-                                </div>
-                            </div>
+                            <label for="id_film_type">Type</label><br>
+                            <select name="id_film_type" id="id_film_type" class="form-select form-control">
+                                @foreach($filmTypes as $filmType)
+                                    <option value="{{ $filmType->id }}">{{ $filmType->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="film_length">Film Length</label>

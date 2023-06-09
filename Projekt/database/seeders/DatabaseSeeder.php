@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\FilmsTableSeeder;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\AdressesTableSeeder;
+use Database\Seeders\FilmTypeTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([FilmsTableSeeder::class, UsersTableSeeder::class, AdressesTableSeeder::class, TransactionTableSeeder::class]);
+        $this->call([FilmTypeTableSeeder::class, FilmsTableSeeder::class, UsersTableSeeder::class, AdressesTableSeeder::class, TransactionTableSeeder::class]);
     }
 }

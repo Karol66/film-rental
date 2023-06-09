@@ -29,6 +29,8 @@ Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('re
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
 Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->group(function () {
+
+    Route::post('/film-type', [FilmController::class, 'storeFilmType'])->name('filmType.storeFilmType');
     Route::get('/transactions', [TransactionsController::class, 'index'])->name('film.transactions');
     Route::get('/films', [FilmController::class, 'film'])->name('film.films');
     Route::get('/films/search', [FilmController::class, 'search'])->name('film.search');

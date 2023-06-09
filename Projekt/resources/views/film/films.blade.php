@@ -34,7 +34,7 @@
                                         {{ $item->name }}
                                     @endif
                                 </td>
-                                <td>{{ $item->type }}</td>
+                                <td>{{ $item->filmType->name }}</td>
                                 <td>{{ $item->film_length }}</td>
                                 <td>{{ $item->release_date }}</td>
                                 <td>{{ $item->country }}</td>

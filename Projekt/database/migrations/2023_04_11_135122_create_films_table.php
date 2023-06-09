@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('film_length');
             $table->date('release_date');
             $table->string('country');
-            $table->string('type');
+            $table->unsignedBigInteger('id_film_type');
+            $table->foreign('id_film_type')->references('id')->on('film_types');
             $table->double('price');
             $table->timestamps();
             $table->softDeletes();

@@ -17,7 +17,7 @@ class Film extends Model
     protected $fillable = [
         'image',
         'name',
-        'type',
+        'id_film_type',
         'film_length',
         'release_date',
         'country',
@@ -27,5 +27,10 @@ class Film extends Model
     public function item()
     {
         return $this->hasMany(Item::class, 'id_transaction');
+    }
+
+    public function filmType()
+    {
+        return $this->belongsTo(FilmType::class, 'id_film_type');
     }
 }

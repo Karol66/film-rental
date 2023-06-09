@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\FilmType;
 use App\Models\Item;
 use App\Models\Transactions;
 
@@ -29,10 +30,11 @@ class FilmController extends Controller
         ]);
     }
 
-
     public function film()
     {
-        $film = Film::withTrashed()->paginate(10);
+        $film = Film::with(['filmType'])
+            ->paginate(10);
+
         return view('film.films')->with('film', $film);
     }
 
@@ -41,40 +43,41 @@ class FilmController extends Controller
      */
     public function create()
     {
-        return view('film.create');
+        $filmTypes = FilmType::all();
+        return view('film.create', compact('filmTypes'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'type' => 'required',
-            'film_length' => 'required|numeric',
-            'release_date' => 'required',
-            'country' => 'required',
-            'price' => 'required|numeric',
-            'image' => 'required|image',
-        ], [
-            'film_length.numeric' => 'The Film Length field must be a number!',
-            'price.numeric' => 'The Price field must be a number!',
-        ]);
+{
+    $request->validate([
+        'name' => 'required',
+        'id_film_type' => 'required',
+        'film_length' => 'required|numeric',
+        'release_date' => 'required',
+        'country' => 'required',
+        'price' => 'required|numeric',
+        'image' => 'required|image',
+    ], [
+        'film_length.numeric' => 'The Film Length field must be a number!',
+        'price.numeric' => 'The Price field must be a number!',
+    ]);
 
-        $input = $request->all();
+    $input = $request->all();
 
-        $input['release_date'] = Carbon::parse($input['release_date']);
+    $input['release_date'] = Carbon::parse($input['release_date']);
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $image = $request->file('image');
-            $imageData = file_get_contents($image->getRealPath());
-            $input['image'] = $imageData;
-        }
-
-        Film::create($input);
-        return redirect('film')->with('flash_message', 'Film Added!');
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        $image = $request->file('image');
+        $imageData = file_get_contents($image->getRealPath());
+        $input['image'] = $imageData;
     }
+
+    Film::create($input);
+    return redirect('film')->with('flash_message', 'Film Added!');
+}
 
     /**
      * Display the specified resource.
@@ -90,8 +93,9 @@ class FilmController extends Controller
      */
     public function edit(string $id)
     {
+        $filmTypes = FilmType::all();
         $film = Film::findOrFail($id);
-        return view('film.edit', compact('film'));
+        return view('film.edit', compact('film','filmTypes'));
     }
 
     /**
@@ -103,7 +107,7 @@ class FilmController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'type' => 'required',
+            'id_film_type' => 'required',
             'film_length' => 'required|numeric',
             'release_date' => 'required',
             'country' => 'required',
@@ -168,5 +172,18 @@ class FilmController extends Controller
         }
 
         return view('film.films')->with('film', $film)->with('search', $search);
+    }
+
+    public function storeFilmType(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        FilmType::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect('film')->with('flash_message', 'Film type added successfully');
     }
 }

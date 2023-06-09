@@ -113,14 +113,11 @@
                         <input type="text" name="name" id="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Type</label><br>
-                        <select name="type" id="type" class="form-select form-control">
-                            <option value="comedy">Comedy</option>
-                            <option value="adventure">Adventure</option>
-                            <option value="drama">Drama</option>
-                            <option value="action">Action</option>
-                            <option value="horror">Horror</option>
-                            <option value="thriller">Thriller</option>
+                        <label for="id_film_type">Type</label><br>
+                        <select name="id_film_type" id="id_film_type" class="form-select form-control">
+                            @foreach($filmTypes as $filmType)
+                                <option value="{{ $filmType->id }}">{{ $filmType->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -149,8 +146,7 @@
             </form>
         </div>
 
-        <div class="modal fade" id="addFilmTypeModal" tabindex="-1" role="dialog" aria-labelledby="addFilmTypeModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="addFilmTypeModal" tabindex="-1" role="dialog" aria-labelledby="addFilmTypeModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="background-color: #343a40;">
                     <div class="modal-header">
@@ -158,16 +154,17 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="{{ route('filmType.storeFilmType') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="filmType" class="form-label">Film Type</label>
-                                <input type="text" class="form-control" id="filmType" placeholder="Enter film type">
+                                <input type="text" class="form-control" id="filmType" name="name" placeholder="Enter film type">
                             </div>
+                            <button type="submit" class="btn btn-success">Save</button>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
