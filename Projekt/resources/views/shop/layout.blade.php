@@ -14,8 +14,6 @@
             transition: margin 0.3s;
         }
 
-
-
         @media (max-width: 992px) {
             .sidebar {
                 top: 100;

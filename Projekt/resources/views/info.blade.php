@@ -34,18 +34,18 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-lg-4">
-        <img class="rounded-circle" width="140" height="140" src="\img\2.png">
+        <img class="rounded-circle" width="140" height="140" src="\img\3.png">
         <h2>Blu-ray Promotion</h2>
         <p>Discover the world of Blu-ray with our extensive collection of high-definition movies. Immerse yourself in stunning visuals and superior audio quality.</p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <img class="rounded-circle" width="140" height="140" src="\img\3.png">
+        <img class="rounded-circle" width="140" height="140" src="\img\4.png">
 
         <h2>Blu-ray Collection</h2>
         <p>Explore our vast collection of Blu-ray movies. From action-packed blockbusters to captivating dramas, we have something for everyone.</p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <img class="rounded-circle" width="140" height="140" src="\img\2.png">
+        <img class="rounded-circle" width="140" height="140" src="\img\3.png">
 
         <h2>Upgrade to Blu-ray</h2>
         <p>Experience your favorite movies like never before. Upgrade to Blu-ray and enjoy crystal-clear picture quality and immersive surround sound.</p>
@@ -63,7 +63,7 @@
         <p class="lead">Indulge in the breathtaking visuals and incredible detail of Blu-ray. Immerse yourself in the world of high-definition entertainment.</p>
       </div>
       <div class="col-md-5">
-        <img class="featurette-image img-fluid mx-auto" width="500" height="500" src="\img\5.png">
+        <img class="featurette-image img-fluid mx-auto" width="500" height="500" src="\img\1.png">
 
       </div>
     </div>

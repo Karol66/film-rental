@@ -48,6 +48,7 @@
                 color: white;
             }
 
+
             @media (min-width: 768px) {
                 .film-image {
                     float: left;
@@ -113,38 +114,14 @@
                     </div>
                     <div class="form-group">
                         <label>Type</label><br>
-                        <div class="form-check-group">
-                            <div class="form-check">
-                                <input type="radio" name="type" id="type_comedy" class="form-check-input"
-                                    value="comedy" checked>
-                                <label for="type_comedy" class="form-check-label">Comedy</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="type" id="type_adventure" class="form-check-input"
-                                    value="adventure">
-                                <label for="type_adventure" class="form-check-label">Adventure</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="type" id="type_drama" class="form-check-input"
-                                    value="drama">
-                                <label for="type_drama" class="form-check-label">Drama</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="type" id="type_action" class="form-check-input"
-                                    value="action">
-                                <label for="type_action" class="form-check-label">Action</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="type" id="type_horror" class="form-check-input"
-                                    value="horror">
-                                <label for="type_horror" class="form-check-label">Horror</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="type" id="type_thriller" class="form-check-input"
-                                    value="thriller">
-                                <label for="type_thriller" class="form-check-label">Thriller</label>
-                            </div>
-                        </div>
+                        <select name="type" id="type" class="form-select form-control">
+                            <option value="comedy">Comedy</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="drama">Drama</option>
+                            <option value="action">Action</option>
+                            <option value="horror">Horror</option>
+                            <option value="thriller">Thriller</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="film_length">Film Length</label><br>
@@ -165,11 +142,38 @@
                     </div>
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-success">Upload</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#addFilmTypeModal">Add New Film Type</button>
                     </div>
                 </div>
             </form>
         </div>
+
+        <div class="modal fade" id="addFilmTypeModal" tabindex="-1" role="dialog" aria-labelledby="addFilmTypeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="background-color: #343a40;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addFilmTypeModalLabel">Add New Film Type</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="filmType" class="form-label">Film Type</label>
+                                <input type="text" class="form-control" id="filmType" placeholder="Enter film type">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+
 
     <script>
         document.addEventListener('change', function(e) {
@@ -185,4 +189,11 @@
             reader.readAsDataURL(file);
         });
     </script>
+
+
+    <script>
+        var addFilmTypeModal = new bootstrap.Modal(document.getElementById('addFilmTypeModal'));
+    </script>
+
+
 @endsection

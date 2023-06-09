@@ -79,7 +79,7 @@
             border-color: transparent;
         }
 
-        input[type="file"] {
+         input[type="file"] {
                 display: none;
             }
 
