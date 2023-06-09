@@ -4,9 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
 
     <link rel="stylesheet" href="/css/admin_panel.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -74,88 +71,89 @@
         a {
             color: white !important;
         }
-        .btn-success{
+
+        .btn-success {
             background-color: rgba(44, 117, 59, 0.897);
             border-color: transparent;
         }
 
-         input[type="file"] {
-                display: none;
-            }
+        input[type="file"] {
+            display: none;
+        }
 
-            .form-group {
-                margin-bottom: 20px;
-            }
+        .form-group {
+            margin-bottom: 20px;
+        }
 
+        .film-image {
+            width: 350px;
+            height: 500px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .film-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            margin: 0;
+        }
+
+        .form-fields {
+            padding-top: 20px;
+        }
+
+        .form-fields .form-group {
+            width: 100%;
+        }
+
+        .form-control {
+            width: 60%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: transparent;
+            color: white;
+        }
+
+        @media (min-width: 768px) {
             .film-image {
-                width: 350px;
-                height: 500px;
-                margin-top: 40px;
-                margin-bottom: 20px;
-                border-radius: 10px;
-                border: 1px solid #ccc;
-                display: inline-block;
-                overflow: hidden;
-            }
-
-            .film-img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                margin: 0;
+                float: left;
+                margin-right: 20px;
             }
 
             .form-fields {
-                padding-top: 20px;
+                float: left;
+                width: calc(100% - 380px);
             }
+        }
 
-            .form-fields .form-group {
-                width: 100%;
+        @media (max-width: 767px) {
+            .form-check {
+                flex-basis: 100%;
             }
+        }
 
-            .form-control {
-                width: 60%;
-                background-color: rgba(255, 255, 255, 0.1);
-                border: transparent;
-                color: white;
-            }
+        .form-check-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
 
-            @media (min-width: 768px) {
-                .film-image {
-                    float: left;
-                    margin-right: 20px;
-                }
+        .form-check-group .form-check {
+            flex-basis: calc(50% - 5px);
+            max-width: calc(50% - 5px);
+            margin-bottom: 10px;
+        }
 
-                .form-fields {
-                    float: left;
-                    width: calc(100% - 380px);
-                }
-            }
-
-            @media (max-width: 767px) {
-                .form-check {
-                    flex-basis: 100%;
-                }
-            }
-
-            .form-check-group {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
-
+        @media (max-width: 575px) {
             .form-check-group .form-check {
-                flex-basis: calc(50% - 5px);
-                max-width: calc(50% - 5px);
-                margin-bottom: 10px;
+                flex-basis: 100%;
+                max-width: 100%;
             }
-
-            @media (max-width: 575px) {
-                .form-check-group .form-check {
-                    flex-basis: 100%;
-                    max-width: 100%;
-                }
-            }
+        }
     </style>
 
 
@@ -172,7 +170,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <form class="w-100 d-flex" action="{{ route('film.search') }}" method="GET">
-            <input class="form-control form-control-dark me-2" name="search" type="text" placeholder="Search" aria-label="Search">
+            <input class="form-control form-control-dark me-2" name="search" type="text" placeholder="Search"
+                aria-label="Search" style="width: 50%">
             <button class="btn btn-success" type="submit">Search</button>
         </form>
 

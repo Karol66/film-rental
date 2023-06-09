@@ -44,13 +44,15 @@ class AdressesController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $request->validate([
+        $request->validate([
             'street' => 'required|string',
-            'home_number' => 'required|numeric',
+            'home_number' => 'required|numeric|min:1',
             'apartment_number' => 'nullable|string',
-            'city' => 'required|string',
+            'city' => 'required|alpha',
         ], [
             'home_number.numeric' => 'The home number must be a number.',
+            'home_number.min' => 'The home number must be a positive number.',
+            'city.alpha' => 'The City field must contain only letters!',
         ]);
 
         $addressData = $request->all();
@@ -87,13 +89,15 @@ class AdressesController extends Controller
     {
         $address = Adresses::findOrFail($id);
 
-        $validator = $request->validate([
+        $request->validate([
             'street' => 'required|string',
-            'home_number' => 'required|numeric',
+            'home_number' => 'required|numeric|min:1',
             'apartment_number' => 'nullable|string',
-            'city' => 'required|string',
+            'city' => 'required|alpha',
         ], [
             'home_number.numeric' => 'The home number must be a number.',
+            'home_number.min' => 'The home number must be a positive number.',
+            'city.alpha' => 'The City field must contain only letters!',
         ]);
 
         $address->update($request->all());

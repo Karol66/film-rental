@@ -47,6 +47,11 @@ class AuthManager extends Controller
         $request->validate([
             'email' => 'email|unique:users',
             'password' => 'required|confirmed',
+            'name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+        ], [
+            'name.alpha' => 'The name field must not contain numbers.',
+            'last_name.alpha' => 'The last name field must not contain numbers.',
         ]);
 
         $data = $request->only('email', 'name', 'last_name', 'user_name', 'password');
@@ -82,9 +87,13 @@ class AuthManager extends Controller
             'new_password' => 'required|confirmed',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'user_name' => 'required|unique:users,user_name,' . $user->id,
-            'name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+        ], [
+            'name.alpha' => 'The name field must not contain numbers.',
+            'last_name.alpha' => 'The last name field must not contain numbers.',
         ]);
+
 
         if (!Hash::check($validatedData['current_password'], $user->password)) {
             return back()->withErrors(['current_password' => 'Incorrect current password']);

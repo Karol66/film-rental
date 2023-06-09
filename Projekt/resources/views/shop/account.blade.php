@@ -24,15 +24,10 @@
                         <td>
                             <ul class="list-unstyled">
                                 @if ($transaction->addresses)
-                                <li>{{ $transaction->addresses->street }}, {{ $transaction->addresses->home_number }}, {{ $transaction->addresses->apartment_number }}, {{ $transaction->addresses->city }}</li>
+                                    <li>{{ $transaction->addresses->street }}, {{ $transaction->addresses->home_number }},
+                                        {{ $transaction->addresses->apartment_number }}, {{ $transaction->addresses->city }}
+                                    </li>
                                 @endif
-                                <div id="hiddenValues">
-                                    @foreach ($transactions as $transaction)
-                                        <div class="hiddenValue" style="display: none;">
-                                            {{ $transaction->id }}
-                                        </div>
-                                    @endforeach
-                                </div>
                             </ul>
                         </td>
                         <td>
@@ -52,6 +47,14 @@
 
     <div class="pagination-container d-flex justify-content-center mt-5">
         {{ $transactions->links('pagination::bootstrap-4') }}
+    </div>
+
+    <div id="hiddenValues" style="display: none;">
+        @foreach ($transactions as $transaction)
+            <div class="hiddenValue">
+                {{ $transaction->id }}
+            </div>
+        @endforeach
     </div>
 
     <script>

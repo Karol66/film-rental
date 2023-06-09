@@ -31,6 +31,11 @@
                 margin-left: 0;
             }
         }
+
+        .btn-success{
+            background-color: rgba(44, 117, 59, 0.897);
+            border-color: transparent;
+        }
     </style>
 </head>
 
@@ -114,7 +119,7 @@
                     <form class="d-flex  me-auto" role="search" action="{{ route('shop.search') }}" method="GET">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                             name="search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-success" type="submit">Search</button>
                     </form>
                 @endif
 

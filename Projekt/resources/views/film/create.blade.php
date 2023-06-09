@@ -115,7 +115,7 @@
                     <div class="form-group">
                         <label for="id_film_type">Type</label><br>
                         <select name="id_film_type" id="id_film_type" class="form-select form-control">
-                            @foreach($filmTypes as $filmType)
+                            @foreach ($filmTypes as $filmType)
                                 <option value="{{ $filmType->id }}">{{ $filmType->name }}</option>
                             @endforeach
                         </select>
@@ -146,19 +146,22 @@
             </form>
         </div>
 
-        <div class="modal fade" id="addFilmTypeModal" tabindex="-1" role="dialog" aria-labelledby="addFilmTypeModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addFilmTypeModal" tabindex="-1" role="dialog" aria-labelledby="addFilmTypeModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="background-color: #343a40;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addFilmTypeModalLabel">Add New Film Type</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="{{ route('filmType.storeFilmType') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="filmType" class="form-label">Film Type</label>
-                                <input type="text" class="form-control" id="filmType" name="name" placeholder="Enter film type">
+                                <input type="text" class="form-control" id="filmType" name="name"
+                                    placeholder="Enter film type">
                             </div>
                             <button type="submit" class="btn btn-success">Save</button>
                         </form>
@@ -170,7 +173,6 @@
             </div>
         </div>
     </main>
-
 
     <script>
         document.addEventListener('change', function(e) {
@@ -188,9 +190,9 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         var addFilmTypeModal = new bootstrap.Modal(document.getElementById('addFilmTypeModal'));
-    </script>
+    </script> --}}
 
 
 @endsection

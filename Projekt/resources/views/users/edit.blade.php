@@ -6,6 +6,17 @@
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Edit User</h1>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="list-unstyled">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="card-body">
                 <form action="{{ route('users.update', $users->id) }}" method="POST">
                     @csrf
@@ -26,8 +37,8 @@
                         value="{{ $users->user_name }}" class="form-control"><br>
                     <label>Is Admin</label><br>
                     <select class="form-control" name="is_admin" id="is_admin">
-                        <option value="1" @if($users->is_admin == 1) selected @endif>Yes</option>
-                        <option value="0" @if($users->is_admin == 0) selected @endif>No</option>
+                        <option value="1" @if ($users->is_admin == 1) selected @endif>Yes</option>
+                        <option value="0" @if ($users->is_admin == 0) selected @endif>No</option>
                     </select><br>
                     <input type="submit" value="Update" class="btn btn-success"><br>
                 </form>

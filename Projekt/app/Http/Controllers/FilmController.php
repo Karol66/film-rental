@@ -9,6 +9,7 @@ use App\Models\Film;
 use App\Models\FilmType;
 use App\Models\Item;
 use App\Models\Transactions;
+use Illuminate\Support\Facades\DB;
 
 class FilmController extends Controller
 {
@@ -51,33 +52,52 @@ class FilmController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required',
-        'id_film_type' => 'required',
-        'film_length' => 'required|numeric',
-        'release_date' => 'required',
-        'country' => 'required',
-        'price' => 'required|numeric',
-        'image' => 'required|image',
-    ], [
-        'film_length.numeric' => 'The Film Length field must be a number!',
-        'price.numeric' => 'The Price field must be a number!',
-    ]);
+    {
+        $min_film_type_id = DB::table('film_types')->min('id');
+        $max_film_type_id = DB::table('film_types')->max('id');
 
-    $input = $request->all();
+        $request->validate([
+            'name' => 'required',
+            'id_film_type' => 'required|numeric|gte:' . $min_film_type_id . '|lte:' . $max_film_type_id,
+            'film_length' => 'required|numeric|min:0',
+            'release_date' => 'required|date|after_or_equal:' . Carbon::createFromDate(1900, 1, 1)->format('Y-m-d') . '|before_or_equal:' . Carbon::now()->format('Y-m-d'),
+            'country' => 'required|alpha',
+            'price' => 'required|numeric|min:0',
+            'image' => 'required|image',
+        ], [
+            'id_film_type.required' => 'The Type field is required!',
+            'id_film_type.numeric' => 'The Type field must be a number!',
+            'id_film_type.gte' => 'The Type field must not be less than the minimum value from the database!',
+            'id_film_type.lte' => 'The Type field must not exceed the maximum value from the database!',
+            'film_length.required' => 'The Film Length field is required!',
+            'film_length.numeric' => 'The Film Length field must be a number!',
+            'film_length.min' => 'The Film Length field must be a non-negative number!',
+            'release_date.required' => 'The Release Date field is required!',
+            'release_date.date' => 'The Release Date field must be a valid date!',
+            'release_date.after_or_equal' => 'The Release Date field must be greater than or equal to 1900!',
+            'release_date.before_or_equal' => 'The Release Date field cannot be a future date!',
+            'country.required' => 'The Country field is required!',
+            'country.alpha' => 'The Country field must contain only letters!',
+            'price.required' => 'The Price field is required!',
+            'price.numeric' => 'The Price field must be a number!',
+            'price.min' => 'The Price field must be a non-negative number!',
+            'image.required' => 'The Image field is required!',
+            'image.image' => 'The Image must be a valid image file!',
+        ]);
 
-    $input['release_date'] = Carbon::parse($input['release_date']);
+        $input = $request->all();
 
-    if ($request->hasFile('image') && $request->file('image')->isValid()) {
-        $image = $request->file('image');
-        $imageData = file_get_contents($image->getRealPath());
-        $input['image'] = $imageData;
+        $input['release_date'] = Carbon::parse($input['release_date']);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image');
+            $imageData = file_get_contents($image->getRealPath());
+            $input['image'] = $imageData;
+        }
+
+        Film::create($input);
+        return redirect('film')->with('flash_message', 'Film Added!');
     }
-
-    Film::create($input);
-    return redirect('film')->with('flash_message', 'Film Added!');
-}
 
     /**
      * Display the specified resource.
@@ -95,7 +115,7 @@ class FilmController extends Controller
     {
         $filmTypes = FilmType::all();
         $film = Film::findOrFail($id);
-        return view('film.edit', compact('film','filmTypes'));
+        return view('film.edit', compact('film', 'filmTypes'));
     }
 
     /**
@@ -105,17 +125,36 @@ class FilmController extends Controller
     {
         $film = Film::findOrFail($id);
 
+        $min_film_type_id = DB::table('film_types')->min('id');
+        $max_film_type_id = DB::table('film_types')->max('id');
+
         $request->validate([
             'name' => 'required',
-            'id_film_type' => 'required',
-            'film_length' => 'required|numeric',
-            'release_date' => 'required',
-            'country' => 'required',
-            'price' => 'required|numeric',
-            'image' => 'image',
+            'id_film_type' => 'required|numeric|gte:' . $min_film_type_id . '|lte:' . $max_film_type_id,
+            'film_length' => 'required|numeric|min:0',
+            'release_date' => 'required|date|after_or_equal:' . Carbon::createFromDate(1900, 1, 1)->format('Y-m-d') . '|before_or_equal:' . Carbon::now()->format('Y-m-d'),
+            'country' => 'required|alpha',
+            'price' => 'required|numeric|min:0',
+            'image' => 'required|image',
         ], [
+            'id_film_type.required' => 'The Type field is required!',
+            'id_film_type.numeric' => 'The Type field must be a number!',
+            'id_film_type.gte' => 'The Type field must not be less than the minimum value from the database!',
+            'id_film_type.lte' => 'The Type field must not exceed the maximum value from the database!',
+            'film_length.required' => 'The Film Length field is required!',
             'film_length.numeric' => 'The Film Length field must be a number!',
+            'film_length.min' => 'The Film Length field must be a non-negative number!',
+            'release_date.required' => 'The Release Date field is required!',
+            'release_date.date' => 'The Release Date field must be a valid date!',
+            'release_date.after_or_equal' => 'The Release Date field must be greater than or equal to 1900!',
+            'release_date.before_or_equal' => 'The Release Date field cannot be a future date!',
+            'country.required' => 'The Country field is required!',
+            'country.alpha' => 'The Country field must contain only letters!',
+            'price.required' => 'The Price field is required!',
             'price.numeric' => 'The Price field must be a number!',
+            'price.min' => 'The Price field must be a non-negative number!',
+            'image.required' => 'The Image field is required!',
+            'image.image' => 'The Image must be a valid image file!',
         ]);
 
         $input = $request->all();
@@ -177,7 +216,9 @@ class FilmController extends Controller
     public function storeFilmType(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|alpha',
+        ], [
+            'name.alpha' => 'The Type field must not contain numbers.',
         ]);
 
         FilmType::create([

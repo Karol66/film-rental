@@ -41,6 +41,7 @@ class ShopController extends Controller
 
         $transactions = Transactions::with(['user', 'addresses', 'item.films'])
             ->where('id_user', $userId)
+            ->orderByDesc('created_at')
             ->paginate(10);
         return view('shop.account', compact('transactions'));
     }

@@ -8,7 +8,7 @@ use App\Models\Transactions;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -45,7 +45,18 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $users = User::findOrFail($id);
-        $input = $request->except('password'); // Wyklucz pole 'password' z żądania
+
+        $request->validate([
+            'name' => 'alpha',
+            'last_name' => 'alpha',
+            'is_admin' => Rule::in([0, 1]),
+        ], [
+            'name.alpha' => 'The first name may only contain letters.',
+            'last_name.alpha' => 'The last name may only contain letters.',
+            'is_admin.in' => 'The is admin field must be either 0 or 1.',
+        ]);
+
+        $input = $request->except('password');
         $users->update($input);
         return redirect('users')->with('flash_message', 'User Updated!');
     }
