@@ -199,7 +199,6 @@ class ShopController extends Controller
     public function pay(Request $request)
     {
         $addressId = $request->input('id_adresses');
-        // dd($addressId);
         $user = Auth::user();
 
         $basket = session()->get('basket');

@@ -22,7 +22,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'id_film_type' => 1,
                 'image_path' => public_path('/img/atlantis.jpg'),
-                'price' => 9.99,
+                'price' => 7.49,
             ],
             [
                 'name' => 'Godzilla',
@@ -40,7 +40,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Russia',
                 'id_film_type' => 3,
                 'image_path' => public_path('/img/hunter-killer.jpg'),
-                'price' => 9.99,
+                'price' => 9.59,
             ],
             [
                 'name' => 'Jurney',
@@ -49,7 +49,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'id_film_type' => 4,
                 'image_path' => public_path('/img/jurney.jpg'),
-                'price' => 8.99,
+                'price' => 8.39,
             ],
             [
                 'name' => 'Jurney 2',
@@ -58,7 +58,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'UK',
                 'id_film_type' => 5,
                 'image_path' => public_path('/img/jurney2.jpg'),
-                'price' => 9.99,
+                'price' => 9.75,
             ],
             [
                 'name' => 'Star Wars',
@@ -76,7 +76,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'id_film_type' => 1,
                 'image_path' => public_path('/img/supergirl.jpg'),
-                'price' => 9.99,
+                'price' => 9.26,
             ],
             [
                 'name' => 'Pirates of the Caribbean',
@@ -85,7 +85,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Japan',
                 'id_film_type' => 2,
                 'image_path' => public_path('/img/pirates.jpg'),
-                'price' => 7.99,
+                'price' => 7.49,
             ],
             [
                 'name' => 'Batman',
@@ -112,7 +112,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'id_film_type' => 5,
                 'image_path' => public_path('/img/jurasic-world.jpg'),
-                'price' => 19.99,
+                'price' => 19.87,
             ],
             [
                 'name' => 'Mandalorian',
@@ -130,7 +130,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'id_film_type' => 1,
                 'image_path' => public_path('/img/transformer.jpg'),
-                'price' => 9.99,
+                'price' => 9.67,
             ],
             [
                 'name' => 'Wanda',
@@ -148,7 +148,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Russia',
                 'id_film_type' => 3,
                 'image_path' => public_path('/img/star-trek.jpg'),
-                'price' => 4.99,
+                'price' => 4.11,
             ],
             [
                 'name' => 'Resident Evil',
@@ -175,7 +175,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'France',
                 'id_film_type' => 6,
                 'image_path' => public_path('/img/end-game.jpg'),
-                'price' => 8.99,
+                'price' => 8.45,
             ],
             [
                 'name' => 'Star Trek',
@@ -184,7 +184,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'id_film_type' => 1,
                 'image_path' => public_path('/img/start-trek.jpeg'),
-                'price' => 9.99,
+                'price' => 9.33,
             ],
             [
                 'name' => 'Avatar',
@@ -202,7 +202,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Russia',
                 'id_film_type' => 3,
                 'image_path' => public_path('/img/penthouses.jpg'),
-                'price' => 16.99,
+                'price' => 16.76,
             ],
             [
                 'name' => 'Titans',
@@ -211,7 +211,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'USA',
                 'id_film_type' => 4,
                 'image_path' => public_path('/img/titans.jpg'),
-                'price' => 17.99,
+                'price' => 17.13,
             ],
             [
                 'name' => 'Wanda',
@@ -220,7 +220,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'UK',
                 'id_film_type' => 5,
                 'image_path' => public_path('/img/wanda.webp'),
-                'price' => 19.99,
+                'price' => 19.89,
             ],
             [
                 'name' => 'The Falcon',
@@ -247,7 +247,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Japan',
                 'id_film_type' => 2,
                 'image_path' => public_path('/img/scream.jpg'),
-                'price' => 7.99,
+                'price' => 7.27,
             ],
             [
                 'name' => 'Dark',
@@ -256,7 +256,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'Russia',
                 'id_film_type' => 3,
                 'image_path' => public_path('/img/dark.jpg'),
-                'price' => 9.99,
+                'price' => 9.19,
             ],
             [
                 'name' => 'The meg',
@@ -274,7 +274,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'UK',
                 'id_film_type' => 5,
                 'image_path' => public_path('/img/widow.jpg'),
-                'price' => 11.99,
+                'price' => 11.24,
             ],
             [
                 'name' => 'Life',
@@ -283,7 +283,7 @@ class FilmsTableSeeder extends Seeder
                 'country' => 'France',
                 'id_film_type' => 6,
                 'image_path' => public_path('/img/life.jpg'),
-                'price' => 12.99,
+                'price' => 12.39,
             ],
             [
                 'name' => 'The godfather',

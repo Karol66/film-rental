@@ -33,7 +33,7 @@ class FilmController extends Controller
 
     public function film()
     {
-        $film = Film::with(['filmType'])
+        $film = Film::withTrashed(['filmType'])
             ->paginate(10);
 
         return view('film.films')->with('film', $film);
@@ -53,12 +53,11 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        $min_film_type_id = DB::table('film_types')->min('id');
-        $max_film_type_id = DB::table('film_types')->max('id');
+        $filmTypes = FilmType::pluck('id')->toArray();
 
         $request->validate([
             'name' => 'required',
-            'id_film_type' => 'required|numeric|gte:' . $min_film_type_id . '|lte:' . $max_film_type_id,
+            'id_film_type' => 'required|in:' . implode(',', $filmTypes),
             'film_length' => 'required|numeric|min:0',
             'release_date' => 'required|date|after_or_equal:' . Carbon::createFromDate(1900, 1, 1)->format('Y-m-d') . '|before_or_equal:' . Carbon::now()->format('Y-m-d'),
             'country' => 'required|alpha',
@@ -66,9 +65,7 @@ class FilmController extends Controller
             'image' => 'required|image',
         ], [
             'id_film_type.required' => 'The Type field is required!',
-            'id_film_type.numeric' => 'The Type field must be a number!',
-            'id_film_type.gte' => 'The Type field must not be less than the minimum value from the database!',
-            'id_film_type.lte' => 'The Type field must not exceed the maximum value from the database!',
+            'id_film_type.in' => 'The selected Type is invalid!',
             'film_length.required' => 'The Film Length field is required!',
             'film_length.numeric' => 'The Film Length field must be a number!',
             'film_length.min' => 'The Film Length field must be a non-negative number!',
@@ -124,13 +121,11 @@ class FilmController extends Controller
     public function update(Request $request, string $id)
     {
         $film = Film::findOrFail($id);
-
-        $min_film_type_id = DB::table('film_types')->min('id');
-        $max_film_type_id = DB::table('film_types')->max('id');
+        $filmTypes = FilmType::pluck('id')->toArray();
 
         $request->validate([
             'name' => 'required',
-            'id_film_type' => 'required|numeric|gte:' . $min_film_type_id . '|lte:' . $max_film_type_id,
+            'id_film_type' => 'required|in:' . implode(',', $filmTypes),
             'film_length' => 'required|numeric|min:0',
             'release_date' => 'required|date|after_or_equal:' . Carbon::createFromDate(1900, 1, 1)->format('Y-m-d') . '|before_or_equal:' . Carbon::now()->format('Y-m-d'),
             'country' => 'required|alpha',
@@ -138,9 +133,7 @@ class FilmController extends Controller
             'image' => 'required|image',
         ], [
             'id_film_type.required' => 'The Type field is required!',
-            'id_film_type.numeric' => 'The Type field must be a number!',
-            'id_film_type.gte' => 'The Type field must not be less than the minimum value from the database!',
-            'id_film_type.lte' => 'The Type field must not exceed the maximum value from the database!',
+            'id_film_type.in' => 'The selected Type is invalid!',
             'film_length.required' => 'The Film Length field is required!',
             'film_length.numeric' => 'The Film Length field must be a number!',
             'film_length.min' => 'The Film Length field must be a non-negative number!',
@@ -226,5 +219,21 @@ class FilmController extends Controller
         ]);
 
         return redirect('film')->with('flash_message', 'Film type added successfully');
+    }
+
+    public function updateFilmType(Request $request)
+    {
+        $filmTypeId = $request->input('filmType');
+        $newFilmType = $request->input('newFilmType');
+
+        $filmType = FilmType::find($filmTypeId);
+        if (!$filmType) {
+            return redirect()->back()->withErrors(['error' => 'Film type not found.']);
+        }
+
+        $filmType->name = $newFilmType;
+        $filmType->save();
+
+        return redirect()->back()->with('success', 'Film type updated successfully.');
     }
 }

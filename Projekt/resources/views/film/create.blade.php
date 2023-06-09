@@ -85,6 +85,21 @@
                     max-width: 100%;
                 }
             }
+
+            .btn-primary {
+                border-color: transparent;
+                background-color: #711212;
+            }
+
+            .btn-primary:hover {
+                border-color: transparent;
+                background-color: #b51b1b;
+            }
+
+            .btn-primary:active,
+            .btn-primary:focus:active {
+                background-color: #b51b1b;
+            }
         </style>
 
         @if ($errors->any())
@@ -141,6 +156,8 @@
                         <button type="submit" class="btn btn-success">Upload</button>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#addFilmTypeModal">Add New Film Type</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editFilmTypeModal">Edit Film Type</button>
                     </div>
                 </div>
             </form>
@@ -163,15 +180,52 @@
                                 <input type="text" class="form-control" id="filmType" name="name"
                                     placeholder="Enter film type">
                             </div>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="editFilmTypeModal" tabindex="-1" role="dialog"
+            aria-labelledby="editFilmTypeModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="background-color: #343a40;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editFilmTypeModalLabel">Edit Film Type</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form id="editFilmTypeForm" method="POST"
+                        action="{{ route('filmType.updateFilmType', ['id' => $filmType->id]) }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="filmType">Film Type</label>
+                                <select name="filmType" id="filmType" class="form-control">
+                                    @foreach ($filmTypes as $filmType)
+                                        <option value="{{ $filmType->id }}">{{ $filmType->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="newFilmType">New Film Type</label>
+                                <input type="text" name="newFilmType" id="newFilmType" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <script>
