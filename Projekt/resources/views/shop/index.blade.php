@@ -101,12 +101,9 @@
         </div>
     </nav>
 
-
-
-
     <header class="jumbotron text-center pt-4"
         style="background-image: url(/img/tlo2.jpg); height: 450px; background-size: cover;">
-        <h1>Online Movie Rental</h1>
+        <h1>Mail Order Movie Rental</h1>
         <p>Find and rent your favorite movies</p>
         <a href="{{ Auth::check() ? route('shop.films') : route('login') }}" class="btn btn-primary border-white ">Go
             to the collection of
