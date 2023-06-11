@@ -204,7 +204,8 @@
                 <button class="promo-button btn btn-block"
                     style="background-color: beige; color:black; border-color:transparent">
                     <div class="promo-content" style="color:black">
-                        <p class="promo-text text-center">Offer for regular customers after the purchase of 200 films
+                        <p class="promo-text text-center">Offer for regular customers after renting movies for a total
+                            period of 200 days
                             fixed 3%
                             discounts!</p>
                     </div>
