@@ -13,7 +13,7 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        $transactions = Transactions::paginate(10);
+        $transactions = Transactions::with('addresses')->paginate(10);
         return view('film.transactions')->with('transactions', $transactions);
     }
 

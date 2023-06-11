@@ -182,7 +182,7 @@ class FilmController extends Controller
         $film = Film::withTrashed()->find($id);
 
         if (!$film) {
-            return redirect('shop.')->with('error', 'Film not found');
+            return redirect('film')->with('error', 'Film not found');
         }
 
         $film->restore();

@@ -124,11 +124,11 @@ class AdressesController extends Controller
         $address = Adresses::withTrashed()->find($id);
 
         if (!$address) {
-            return redirect('/shop/account/addresses')->with('error', 'Address not found');
+            return redirect('/shop/accouts/addresses')->with('error', 'Address not found');
         }
 
         $address->restore();
 
-        return redirect('/shop/account/addresses')->with('success', 'Address restored successfully');
+        return redirect('/shop/accouts/addresses')->with('success', 'Address restored successfully');
     }
 }

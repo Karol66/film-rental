@@ -12,10 +12,7 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>User</th>
-                        <th>Street</th>
-                        <th>Home Number</th>
-                        <th>Apartment Number</th>
-                        <th>City</th>
+                        <th>Address</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,10 +23,15 @@
                                 <td>${{ $transaction->price }}</td>
                                 <td>{{ $transaction->quantity }}</td>
                                 <td>{{ $transaction->user->name }}</td>
-                                <td>{{ $transaction->addresses->street }}</td>
-                                <td>{{ $transaction->addresses->home_number }}</td>
-                                <td>{{ $transaction->addresses->apartment_number }}</td>
-                                <td>{{ $transaction->addresses->city }}</td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        @if ($transaction->addresses)
+                                            <li>{{ $transaction->addresses->street }}, {{ $transaction->addresses->home_number }},
+                                                {{ $transaction->addresses->apartment_number }}, {{ $transaction->addresses->city }}
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </td>
                             </tr>
                         @endforeach
                     @endisset
