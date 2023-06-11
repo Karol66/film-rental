@@ -49,6 +49,7 @@
                     Route::is('addresses.index') ||
                     Route::is('shop.create') ||
                     Route::is('shop.edit'))
+
                 <button class="navbar-toggler" type="button" onclick="toggleSidebar()">
                     <span class="navbar-toggler-icon"></span>
                 </button>

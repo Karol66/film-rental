@@ -66,11 +66,11 @@ Route::middleware([\App\Http\Middleware\UserMiddleware::class])->group(function 
     Route::get('/shop/accouts/change', [AuthManager::class, 'changePasswordForm'])->name('shop.password_change');
     Route::post('/shop/accouts/change', [AuthManager::class, 'update'])->name('account.update');
 
+    Route::get('/shop/accouts/addresses/{id}/edit', [AdressesController::class, 'edit'])->name('shop.edit');
     Route::resource('/shop/accouts/addresses', AdressesController::class);
     Route::get('/shop/accouts/addresses', [AdressesController::class, 'index'])->name('addresses.index');
     Route::get('/shop/accouts/addresses/create', [AdressesController::class, 'create'])->name('shop.create');
     Route::patch('/shop/accouts/addresses/{id}', [AdressesController::class, 'update'])->name('shop.update');
-    Route::get('/shop/accouts/addresses/{id}/edit', [AdressesController::class, 'edit'])->name('shop.edit');
     Route::delete('/shop/accouts/addresses/{id}', [AdressesController::class, 'destroy'])->name('shop.destroy');
     Route::post('/shop/accouts/addresses/{id}', [AdressesController::class, 'restore'])->name('shop.restore');
 });
