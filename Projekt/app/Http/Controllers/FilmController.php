@@ -9,7 +9,8 @@ use App\Models\Film;
 use App\Models\FilmType;
 use App\Models\Item;
 use App\Models\Transactions;
-use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
 class FilmController extends Controller
 {
@@ -88,8 +89,19 @@ class FilmController extends Controller
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
-            $imageData = file_get_contents($image->getRealPath());
-            $input['image'] = $imageData;
+
+            // Skompresuj rozmiar zdjęcia do 350 KB
+            $compressedImage = Image::make($image)
+                ->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encode('jpg', 75); // Zmniejsz jakość do 75%
+
+            // Konwertuj skompresowane zdjęcie do formatu Medium Blob
+            $blobData = $compressedImage->getEncoded();
+
+            $input['image'] = $blobData;
         }
 
         Film::create($input);
@@ -156,8 +168,19 @@ class FilmController extends Controller
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
-            $imageData = file_get_contents($image->getRealPath());
-            $input['image'] = $imageData;
+
+            // Skompresuj rozmiar zdjęcia do 350 KB
+            $compressedImage = Image::make($image)
+                ->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encode('jpg', 75); // Zmniejsz jakość do 75%
+
+            // Konwertuj skompresowane zdjęcie do formatu Medium Blob
+            $blobData = $compressedImage->getEncoded();
+
+            $input['image'] = $blobData;
         }
 
         $film->update($input);

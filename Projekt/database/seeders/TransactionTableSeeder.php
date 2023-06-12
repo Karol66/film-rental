@@ -53,15 +53,12 @@ class TransactionTableSeeder extends Seeder
                 'updated_at' => $date,
             ]);
 
-            $filmIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]; // Replace with actual film IDs
+            $filmIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
-            // Losowo miesza elementy tablicy filmIds
             shuffle($filmIds);
 
-            // Wybiera pierwsze trzy losowe identyfikatory
             $randomFilmIds = array_slice($filmIds, 0, 3);
 
-            // Tworzy items dla każdej transakcji z losowo wybranymi identyfikatorami filmów
             foreach ($randomFilmIds as $filmId) {
                 Item::create([
                     'id_film' => $filmId,
