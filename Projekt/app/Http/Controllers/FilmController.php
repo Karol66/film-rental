@@ -43,7 +43,7 @@ class FilmController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function add()
     {
         $filmTypes = FilmType::all();
         return view('film.create', compact('filmTypes'));
@@ -105,7 +105,7 @@ class FilmController extends Controller
         }
 
         Film::create($input);
-        return redirect('film')->with('flash_message', 'Film Added!');
+        return redirect('films')->with('flash_message', 'Film Added!');
     }
 
     /**
@@ -185,7 +185,7 @@ class FilmController extends Controller
 
         $film->update($input);
 
-        return redirect('film')->with('flash_message', 'Film Updated!');
+        return redirect('films')->with('flash_message', 'Film Updated!');
     }
 
     /**
@@ -197,7 +197,7 @@ class FilmController extends Controller
 
         $film->delete();
 
-        return redirect('film')->with('flash_message', 'Film deleted!');
+        return redirect('films')->with('flash_message', 'Film deleted!');
     }
 
     public function restore($id)
@@ -205,12 +205,12 @@ class FilmController extends Controller
         $film = Film::withTrashed()->find($id);
 
         if (!$film) {
-            return redirect('film')->with('error', 'Film not found');
+            return redirect('films')->with('error', 'Film not found');
         }
 
         $film->restore();
 
-        return redirect('film')->with('success', 'Film restored successfully');
+        return redirect('films')->with('success', 'Film restored successfully');
     }
 
     /**
@@ -241,7 +241,7 @@ class FilmController extends Controller
             'name' => $request->input('name'),
         ]);
 
-        return redirect('film')->with('flash_message', 'Film type added successfully');
+        return redirect('films')->with('flash_message', 'Film type added successfully');
     }
 
     public function updateFilmType(Request $request)

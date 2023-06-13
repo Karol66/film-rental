@@ -125,7 +125,7 @@
                 <div class="form-fields">
                     <div class="form-group">
                         <label for="name">Name</label><br>
-                        <input type="text" name="name" id="name" class="form-control">
+                        <input type="text" name="name" id="name" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="id_film_type">Type</label><br>
@@ -137,20 +137,20 @@
                     </div>
                     <div class="form-group">
                         <label for="film_length">Film Length</label><br>
-                        <input type="text" name="film_length" id="film_length" class="form-control">
+                        <input type="text" name="film_length" id="film_length" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="release_date">Release Date</label><br>
                         <input type="date" name="release_date" id="release_date" class="form-control"
-                            value="{{ old('release_date') }}">
+                            value="{{ old('release_date') }}" required>
                     </div>
                     <div class="form-group">
                         <label for="country">Country</label><br>
-                        <input type="text" name="country" id="country" class="form-control">
+                        <input type="text" name="country" id="country" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="price">Price</label><br>
-                        <input type="text" name="price" id="price" class="form-control">
+                        <input type="text" name="price" id="price" class="form-control" required>
                     </div>
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-success">Upload</button>

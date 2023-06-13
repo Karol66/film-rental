@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <div class="login-box">
     <h2>Registration</h2>
     <div class="mt-5">
@@ -34,27 +33,27 @@
         @csrf
 
       <div class="user-box">
-            <input type="email" name="email" required="">
+            <input type="email" name="email" required>
             <label>Email</label>
       </div>
       <div class="user-box">
-        <input type="text" name="name" required="">
+        <input type="text" name="name" required pattern="[a-zA-Z\s]+" title="Name must contain only letters">
         <label>Name</label>
       </div>
       <div class="user-box">
-        <input type="text" name="last_name" required="">
+        <input type="text" name="last_name" required pattern="[a-zA-Z\s]+" title="Last name must contain only letters">
         <label>Last name</label>
       </div>
       <div class="user-box">
-        <input type="text" name="user_name" required="">
+        <input type="text" name="user_name" required minlength="5">
         <label>User name</label>
       </div>
       <div class="user-box">
-        <input type="password" name="password" required="">
+        <input type="password" name="password" required minlength="8">
         <label>Password</label>
       </div>
       <div class="user-box">
-        <input type="password" name="password_confirmation" required="">
+        <input type="password" name="password_confirmation" required minlength="8">
         <label>Repeat password</label>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>

@@ -10,4 +10,4 @@ call php artisan migrate:fresh --seed
 
 call php artisan key:generate
 
-code .
+call php artisan serve

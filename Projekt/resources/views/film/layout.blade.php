@@ -213,7 +213,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('film.create') }}">
+                            <a class="nav-link" href="{{ route('film.add') }}">
                                 <span data-feather="layers"></span>
                                 Add New Film
                             </a>

@@ -64,7 +64,7 @@
         </div>
         <div class="form-group">
             <label for="city">City:</label>
-            <input type="text" name="city" class="form-control" required>
+            <input type="text" name="city" class="form-control" required pattern="[a-zA-Z\s]+" title="City name must contain only letters">
         </div>
         <br>
         <button type="submit" class="btn btn-success">Save</button>
