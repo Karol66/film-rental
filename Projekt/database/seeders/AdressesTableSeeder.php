@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Adresses;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
@@ -17,8 +18,7 @@ class AdressesTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        DB::table('adresses')->insert([
-            [
+        Adresses::create([
                 'street' => $faker->streetName,
                 'home_number' => 123,
                 'apartment_number' => 'A1',
@@ -26,8 +26,8 @@ class AdressesTableSeeder extends Seeder
                 'id_user' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
+            ]);
+            Adresses::create([
                 'street' => $faker->streetName,
                 'home_number' => 456,
                 'apartment_number' => 'B2',
@@ -35,8 +35,8 @@ class AdressesTableSeeder extends Seeder
                 'id_user' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
+            ]);
+            Adresses::create([
                 'street' => $faker->streetName,
                 'home_number' => 789,
                 'apartment_number' => 'C3',
@@ -44,8 +44,8 @@ class AdressesTableSeeder extends Seeder
                 'id_user' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
+            ]);
+            Adresses::create([
                 'street' => $faker->streetName,
                 'home_number' => 987,
                 'apartment_number' => 'D4',
@@ -53,8 +53,8 @@ class AdressesTableSeeder extends Seeder
                 'id_user' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
+            ]);
+            Adresses::create([
                 'street' => $faker->streetName,
                 'home_number' => 654,
                 'apartment_number' => 'E5',
@@ -62,7 +62,6 @@ class AdressesTableSeeder extends Seeder
                 'id_user' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-        ]);
+            ]);
     }
 }
