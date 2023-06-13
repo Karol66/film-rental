@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class FilmsTableSeeder extends Seeder
 {
@@ -307,7 +308,13 @@ class FilmsTableSeeder extends Seeder
 
 
         foreach ($films as $film) {
-            $imageContents = file_get_contents($film['image_path']);
+            $compressedImage = Image::make($film['image_path'])
+                ->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->encode('jpg', 75);
+
+            $imageContents = $compressedImage->getEncoded();
 
             DB::table('films')->insert([
                 'name' => $film['name'],
@@ -323,4 +330,3 @@ class FilmsTableSeeder extends Seeder
         }
     }
 }
-
